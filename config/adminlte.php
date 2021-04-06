@@ -191,7 +191,7 @@ return [
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
+    'register_url' => false,
     'password_reset_url' => false,
     'password_email_url' => false,
     'profile_url' => false,
@@ -289,7 +289,7 @@ return [
 
         [
             'text' => 'Pengguna',
-            'url'  => '#',
+            'url'  => 'users',
             'icon' => 'fas fa-fw fa-user',
         ],
 
