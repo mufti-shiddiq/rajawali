@@ -23,17 +23,18 @@
 <table class="table table-bordered bg-light">
     <thead>
         <tr>
+            <th style="width: 50px">No</th>
             <th><b>Nama</b></th>
             <th style="width: 300px"><b>Username</b></th>
             <th style="width: 100px"><b>Status</b></th>
-            <!-- <th>Role</th> -->
+            <th style="width: 200px">Role</th>
             <th style="width: 200px"><b></b></th>
         </tr>
     </thead>
     <tbody>
         @foreach($users as $user)
         <tr>
-
+            <th class="leading-6 text-center whitespace-nowrap">{{$user->id}}.</th>
             <td>{{$user->name}}</td>
 
             <td>{{$user->username}}</td>
@@ -49,6 +50,8 @@
                 </span>
                 @endif
             </td>
+
+            <td>{{$user->role}}</td>
 
             <td>
                 <a class="btn btn-info text-white btn-sm" href="{{route('users.edit', [$user->id])}}">Edit</a>
