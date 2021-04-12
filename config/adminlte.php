@@ -259,6 +259,11 @@ return [
             'icon' => 'fas fa-fw fa-hashtag',
         ],
         [
+            'text' => 'Satuan Produk',
+            'url'  => 'units',
+            'icon' => 'fas fa-fw fa-weight-hanging',
+        ],
+        [
             'text' => 'Pelanggan',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-address-book',
