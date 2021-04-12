@@ -34,7 +34,7 @@
     <tbody>
         @foreach($users as $user)
         <tr>
-            <th class="leading-6 text-center whitespace-nowrap">{{$user->id}}.</th>
+            <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
             <td>{{$user->name}}</td>
 
             <td>{{$user->username}}</td>

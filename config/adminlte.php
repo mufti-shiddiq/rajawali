@@ -249,9 +249,14 @@ return [
             'icon' => 'fas fa-fw fa-box',
         ],
         [
-            'text' => 'Stok',
+            'text' => 'Stok Produk',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-archive',
+        ],
+        [
+            'text' => 'Kategori Produk',
+            'url'  => 'categories',
+            'icon' => 'fas fa-fw fa-hashtag',
         ],
         [
             'text' => 'Pelanggan',
