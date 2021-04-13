@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,5 @@ Route::resource('categories', CategoryController::class);
 Route::resource('units', UnitController::class);
 
 Route::resource('customers', CustomerController::class);
+
+Route::resource('suppliers', SupplierController::class);

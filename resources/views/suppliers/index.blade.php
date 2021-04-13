@@ -1,14 +1,14 @@
 @extends("adminlte::page")
 
-@section("title") Pelanggan @endsection
+@section("title") Supplier @endsection
 
 @section('content_header')
 <div class="row">
     <div class="col-md-6">
-        <h1>Pelanggan</h1>
+        <h1>Supplier</h1>
     </div>
     <div class="col-md-6 text-right">
-        <a href="{{route('customers.create')}}" class="btn btn-primary">Tambah Pelanggan Baru</a>
+        <a href="{{route('suppliers.create')}}" class="btn btn-primary">Tambah Supplier Baru</a>
     </div>
 </div>
 @stop
@@ -28,22 +28,22 @@
                 </tr>
             </thead>
             <tbody>
-        @foreach($customers as $customer)
+        @foreach($suppliers as $supplier)
         <tr>
             <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
             
-            <td>{{$customer->name}}</td>
+            <td>{{$supplier->name}}</td>
 
-            <td>{{$customer->company}}</td>
+            <td>{{$supplier->company}}</td>
 
-            <td>{{$customer->phone}}</td>
+            <td>{{$supplier->phone}}</td>
 
-            <td>{{$customer->address}}</td>
+            <td>{{$supplier->address}}</td>
 
             <td>
-                <a class="btn btn-info text-white btn-sm" href="{{route('customers.edit', [$customer->id])}}">Edit</a>
+                <a class="btn btn-info text-white btn-sm" href="{{route('suppliers.edit', [$supplier->id])}}">Edit</a>
 
-                <form onsubmit="return confirm('Yakin ingin menghapus Pelanggan ini?')" class="d-inline" action="{{route('customers.destroy', [$customer->id])}}" method="POST">
+                <form onsubmit="return confirm('Yakin ingin menghapus Supplier ini?')" class="d-inline" action="{{route('suppliers.destroy', [$supplier->id])}}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
@@ -56,7 +56,7 @@
     <tfoot>
         <tr>
             <td colspan=10>
-                {{$customers->appends(Request::all())->links()}}
+                {{$suppliers->appends(Request::all())->links()}}
             </td>
         </tr>
     </tfoot>
