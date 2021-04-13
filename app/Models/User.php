@@ -50,11 +50,11 @@ class User extends Authenticatable
 
     public function adminlte_desc()
     {
-        return 'Dia Manusia';
+        return 'Rajawali Group - Klaten';
     }
 
     public function adminlte_profile_url()
     {
-        return 'profile/username';
+        return '#';
     }
 }

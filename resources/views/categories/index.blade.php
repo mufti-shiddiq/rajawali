@@ -14,6 +14,7 @@
 
 <div class="row">
     <div class="col-md-6">
+    
         <form action="{{route('categories.index')}}">
             <div class="input-group">
                     <input type="text" class="form-control" placeholder="Filter berdasarkan nama kategori" name="name">
@@ -28,14 +29,15 @@
         <a href="{{route('categories.create')}}" class="btn btn-primary">Buat Kategori Baru</a>
     </div>
     <hr class="my-3">
-    <div class="col-md-12">
-        <table class="table table-bordered table-stripped">
+    <div class="col-md-8">
+    
+        <table class="table table-bordered table-stripped table-hover bg-white">
             <thead>
                 <tr>
                     <th style="width: 50px"><b>No</b></th>
-                    <th><b>Name</b></th>
-                    <th><b>Slug</b></th>
-                    <th style="width: 200px"><b></b></th>
+                    <th><b>Nama</b></th>
+                    <th style="width: 225px"><b>Slug</b></th>
+                    <th style="width: 125px"><b></b></th>
                 </tr>
             </thead>
             <tbody>

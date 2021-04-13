@@ -240,12 +240,12 @@ return [
         // ['header' => 'account_settings'],
         [
             'text' => 'Transaksi',
-            'url'  => '#',
+            'url'  => 'transactions',
             'icon' => 'fas fa-fw fa-dollar-sign',
         ],
         [
             'text' => 'Produk',
-            'url'  => '#',
+            'url'  => 'products',
             'icon' => 'fas fa-fw fa-box',
         ],
         [
@@ -265,17 +265,17 @@ return [
         ],
         [
             'text' => 'Pelanggan',
-            'url'  => '#',
+            'url'  => 'customers',
             'icon' => 'fas fa-fw fa-address-book',
         ],
         [
             'text' => 'Supplier',
-            'url'  => '#',
+            'url'  => 'suppliers',
             'icon' => 'fas fa-fw fa-truck',
         ],
         [
             'text' => 'Kas',
-            'url'  => '#',
+            'url'  => 'wallets',
             'icon' => 'fas fa-fw fa-wallet',
         ],
         [

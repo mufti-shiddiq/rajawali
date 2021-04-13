@@ -20,7 +20,7 @@
 </div>
 @endif
 
-<table class="table table-bordered bg-light">
+<table class="table table-bordered bg-white">
     <thead>
         <tr>
             <th style="width: 50px">No</th>

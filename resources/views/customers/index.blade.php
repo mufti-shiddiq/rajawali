@@ -1,42 +1,49 @@
 @extends("adminlte::page")
 
-@section("title") Satuan Produk @endsection
+@section("title") Pelanggan @endsection
 
 @section('content_header')
 <div class="row">
     <div class="col-md-6">
-        <h1>Satuan Produk</h1>
+        <h1>Pelanggan</h1>
     </div>
     <div class="col-md-6 text-right">
-        <a href="{{route('units.create')}}" class="btn btn-primary">Buat Satuan Produk Baru</a>
+        <a href="{{route('customers.create')}}" class="btn btn-primary">Buat Pelanggan Baru</a>
     </div>
 </div>
 @stop
 
 @section("content")
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <table class="table table-bordered table-stripped table-hover bg-white">
             <thead>
                 <tr>
                     <th style="width: 50px"><b>No</b></th>
                     <th><b>Nama</b></th>
-                    <th style="width: 150px"><b>Unit</b></th>
+                    <th><b>Perusahaan</b></th>
+                    <th><b>Telepon</b></th>
+                    <th><b>Alamat</b></th>
                     <th style="width: 125px"><b></b></th>
                 </tr>
             </thead>
             <tbody>
-        @foreach($units as $unit)
+        @foreach($customers as $customer)
         <tr>
             <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
-            <td>{{$unit->name}}</td>
+            
+            <td>{{$customer->name}}</td>
 
-            <td>{{$unit->code}}</td>
+            <td>{{$customer->company}}</td>
+
+            <td>{{$customer->phone}}</td>
+
+            <td>{{$customer->address}}</td>
 
             <td>
-                <a class="btn btn-info text-white btn-sm" href="{{route('units.edit', [$unit->id])}}">Edit</a>
+                <a class="btn btn-info text-white btn-sm" href="{{route('customers.edit', [$customer->id])}}">Edit</a>
 
-                <form onsubmit="return confirm('Yakin ingin menghapus Satuan Produk ini?')" class="d-inline" action="{{route('units.destroy', [$unit->id])}}" method="POST">
+                <form onsubmit="return confirm('Yakin ingin menghapus Pelanggan ini?')" class="d-inline" action="{{route('customers.destroy', [$customer->id])}}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
@@ -49,7 +56,7 @@
     <tfoot>
         <tr>
             <td colspan=10>
-                {{$units->appends(Request::all())->links()}}
+                {{$customers->appends(Request::all())->links()}}
             </td>
         </tr>
     </tfoot>
