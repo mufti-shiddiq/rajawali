@@ -7,6 +7,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,4 @@ Route::resource('suppliers', SupplierController::class);
 
 Route::resource('products', ProductController::class);
 
+Route::resource('transactions', TransactionController::class);
