@@ -27,11 +27,11 @@
                         <table width="100%">
                             <tr>
                                 <td style="vertical-align: top;">
-                                    <label for="date">Date</label>
+                                    <label for="date">Tanggal / Waktu</label>
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="date" id="date" value="" class="form-control">
+                                        <input type="datetime" id="date" value="{{ $waktu }}" class="form-control" readonly>
                                     </div>
                                 </td>
                             </tr>
@@ -41,7 +41,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text" id="user" value="" class="form-control" readonly>
+                                        <input id="user" value="{{ $kasir->name }}" class="form-control" readonly>
                                     </div>
                                 </td>
                             </tr>
@@ -53,6 +53,10 @@
                                     <div>
                                         <select id="customer" class="form-control">
                                             <option value="">Umum</option>
+                                            @foreach ($customer as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                            </select>
                                         </select>
                                     </div>
                                 </td>
@@ -78,7 +82,7 @@
                                         <input type="hidden" id="stock">
                                         <input type="text" id="product_name" class="form-control" autofocus>
                                         <span class="input-group-btn">
-                                            <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-item">
+                                            <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#modal-item">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </span>
@@ -99,7 +103,7 @@
                                 <td></td>
                                 <td>
                                     <button type="button" id="add_cart" class="btn btn-primary">
-                                        <i class="fa fa-cart-plus"></i> Add
+                                        <i class="fa fa-cart-plus"></i> Tambah
                                     </button>
                                 </td>
                             </tr>
@@ -244,12 +248,13 @@
 
             <div class="col-lg-3">
                 <div>
-                    <button id="cancel_payment" class="btn btn-warning">
-                        <i class="fa fa-refresh"></i> Cancel
+                    <br>
+                    <button id="cancel_payment" class="btn btn-warning text-white">
+                        <i class="fa fa-sync-alt"></i>  Cancel
                     </button>
-                    <br><br>
+                    <!-- <br><br> -->
                     <button id="process_payment" class="btn btn-lg btn-success">
-                        <i class="fa fa-paper-plane-o"></i> Process Payment
+                        <i class="fa fa-paper-plane"></i> Process Payment
                     </button>
                 </div>
             </div>
