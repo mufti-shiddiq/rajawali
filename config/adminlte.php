@@ -149,7 +149,7 @@ return [
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
-    'sidebar_collapse_remember_no_transition' => true,
+    'sidebar_collapse_remember_no_transition' => false,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => false,
@@ -232,7 +232,7 @@ return [
         ],
         [
             'text'        => 'Dashboard',
-            'url'         => '/home',
+            'url'         => 'dashboard',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
             // 'label'       => 4,
             // 'label_color' => 'success',
@@ -244,25 +244,51 @@ return [
             'icon' => 'fas fa-fw fa-dollar-sign',
         ],
         [
-            'text' => 'Produk',
-            'url'  => 'products',
-            'icon' => 'fas fa-fw fa-box',
+            'text'    => 'Produk',
+            'icon'    => 'fas fa-fw fa-box',
+            'submenu' => [
+                [
+                    'text' => 'Produk',
+                    'url'  => 'products',
+                    // 'icon' => 'fas fa-fw fa-box',
+                ],
+                [
+                    'text' => 'Stok Produk',
+                    'url'  => '#',
+                    // 'icon' => 'fas fa-fw fa-archive',
+                ],
+                [
+                    'text' => 'Kategori Produk',
+                    'url'  => 'categories',
+                    // 'icon' => 'fas fa-fw fa-hashtag',
+                ],
+                [
+                    'text' => 'Satuan Produk',
+                    'url'  => 'units',
+                    // 'icon' => 'fas fa-fw fa-weight-hanging',
+                ],
+            ],
         ],
-        [
-            'text' => 'Stok Produk',
-            'url'  => '#',
-            'icon' => 'fas fa-fw fa-archive',
-        ],
-        [
-            'text' => 'Kategori Produk',
-            'url'  => 'categories',
-            'icon' => 'fas fa-fw fa-hashtag',
-        ],
-        [
-            'text' => 'Satuan Produk',
-            'url'  => 'units',
-            'icon' => 'fas fa-fw fa-weight-hanging',
-        ],
+        // [
+        //     'text' => 'Produk',
+        //     'url'  => 'products',
+        //     'icon' => 'fas fa-fw fa-box',
+        // ],
+        // [
+        //     'text' => 'Stok Produk',
+        //     'url'  => '#',
+        //     'icon' => 'fas fa-fw fa-archive',
+        // ],
+        // [
+        //     'text' => 'Kategori Produk',
+        //     'url'  => 'categories',
+        //     'icon' => 'fas fa-fw fa-hashtag',
+        // ],
+        // [
+        //     'text' => 'Satuan Produk',
+        //     'url'  => 'units',
+        //     'icon' => 'fas fa-fw fa-weight-hanging',
+        // ],
         [
             'text' => 'Pelanggan',
             'url'  => 'customers',

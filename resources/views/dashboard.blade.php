@@ -13,8 +13,8 @@
 
         <div class="small-box bg-info">
              <div class="inner">
-                <h3>150</h3>
-                <p>Transaksi</p>
+                <h3>0</h3>
+                <p>Transaksi Hari ini</p>
             </div>
             <div class="icon">
                 <i class="fas fa-shopping-cart"></i>
@@ -30,7 +30,7 @@
 
         <div class="small-box bg-success">
              <div class="inner">
-                <h3>100</h3>
+                <h3> {{ $total_produk }} </h3>
                 <p>Produk</p>
             </div>
             <div class="icon">
@@ -46,7 +46,7 @@
 
         <div class="small-box bg-warning">
              <div class="inner">
-                <h3>10</h3>
+                <h3> {{ $total_pelanggan }} </h3>
                 <p>Pelanggan</p>
             </div>
             <div class="icon">
@@ -62,7 +62,7 @@
 
         <div class="small-box bg-danger">
              <div class="inner">
-                <h3>5</h3>
+                <h3> {{ $total_pengguna }} </h3>
                 <p>Pengguna</p>
             </div>
             <div class="icon">

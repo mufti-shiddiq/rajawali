@@ -16,8 +16,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = \App\Models\product::paginate(5);
-        return view('products.index', ['products' => $products]);
+        $products = Product::with('category', 'unit')->paginate(5);
+        // $product_code = Product::orderBy('code', 'DESC')->get();
+
+        return view('products.index', compact('products'));
+        
+        // return view('products.index', ['products' => $products]);
     }
 
     /**
@@ -42,8 +46,8 @@ class ProductController extends Controller
     {
         $product_name = $request->get('product_name');
         $code = $request->get('code');
-        $category = $request->get('category');
-        $unit = $request->get('unit');
+        $category_id = $request->get('category_id');
+        $unit_id = $request->get('unit_id');
         $stock = $request->get('stock');
         $buy_price = $request->get('buy_price');
         $sell_price = $request->get('sell_price');
@@ -52,8 +56,8 @@ class ProductController extends Controller
 
         $new_product->product_name = $product_name;
         $new_product->code = $code;
-        $new_product->category = $category;
-        $new_product->unit = $unit;
+        $new_product->category_id = $category_id;
+        $new_product->unit_id = $unit_id;
         $new_product->stock = $stock;
         $new_product->buy_price = $buy_price;
         $new_product->sell_price = $sell_price;
@@ -99,8 +103,8 @@ class ProductController extends Controller
     {
         $product_name = $request->get('product_name');
         $code = $request->get('code');
-        $category = $request->get('category');
-        $unit = $request->get('unit');
+        $category_id = $request->get('category_id');
+        $unit_id = $request->get('unit_id');
         $stock = $request->get('stock');
         $buy_price = $request->get('buy_price');
         $sell_price = $request->get('sell_price');
@@ -109,8 +113,8 @@ class ProductController extends Controller
 
         $product->product_name = $product_name;
         $product->code = $code;
-        $product->category = $category;
-        $product->unit = $unit;
+        $product->category = $category_id;
+        $product->unit = $unit_id;
         $product->stock = $stock;
         $product->buy_price = $buy_price;
         $product->sell_price = $sell_price;

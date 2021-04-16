@@ -25,6 +25,7 @@
                     <th><b>Kategori</b></th>
                     <th><b>Satuan</b></th>
                     <th><b>Stok</b></th>
+                    <th><b>Terjual</b></th>
                     <th><b>Harga Beli</b></th>
                     <th><b>Harga Jual</b></th>
                     <th style="width: 125px"><b></b></th>
@@ -39,11 +40,13 @@
 
             <td>{{$product->product_name}}</td>
 
-            <td>{{$product->category}}</td>
+            <td>{{$product->category->name}}</td>
 
-            <td>{{$product->unit}}</td>
+            <td>{{$product->unit->name}}</td>
 
             <td>{{$product->stock}}</td>
+
+            <td>{{$product->sold}}</td>
 
             <td>{{$product->buy_price}}</td>
 

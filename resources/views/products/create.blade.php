@@ -40,8 +40,8 @@
                     
                     <!-- category -->
                     <div class="form-group">
-                        <label for="category">Kategory Produk</label>
-                        <select class="form-control" name="category" id="category">
+                        <label for="category_id">Kategory Produk</label>
+                        <select class="form-control" name="category_id" id="category_id">
                         <option>-- Pilih --</option>
                         @foreach ($category as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -51,8 +51,8 @@
 
                     <!-- unit -->
                     <div class="form-group">
-                        <label for="unit">Satuan</label>
-                        <select class="form-control" name="unit" id="unit">
+                        <label for="unit_id">Satuan</label>
+                        <select class="form-control" name="unit_id" id="unit_id">
                         <option>-- Pilih --</option>
                         @foreach ($unit as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
