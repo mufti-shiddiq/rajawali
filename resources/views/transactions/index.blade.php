@@ -141,9 +141,9 @@
                                     <th>Produk</th>
                                     <th>Harga</th>
                                     <th>Qty</th>
-                                    <th width="10%">Discount Item</th>
+                                    <th width="10%">Diskon Item</th>
                                     <th width="15%">Total</th>
-                                    <th>Actions</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="cart_table">
@@ -185,7 +185,7 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: top;">
-                                    <label for="grand_total">Grand Total</label>
+                                    <label for="grand_total">Total</label>
                                 </td>
                                 <td>
                                     <div class="form-group">
@@ -204,7 +204,7 @@
                         <table width="100%">
                             <tr>
                                 <td style="vertical-align: top; width:30%">
-                                    <label for="cash">Cash</label>
+                                    <label for="cash">Tunai</label>
                                 </td>
                                 <td>
                                     <div class="form-group">
@@ -214,7 +214,7 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: top;">
-                                    <label for="change">Change</label>
+                                    <label for="change">Kembalian</label>
                                 </td>
                                 <td>
                                     <div class="form-group">
@@ -233,7 +233,7 @@
                         <table width="100%">
                             <tr>
                                 <td style="vertical-align: top;">
-                                    <label for="note">Note</label>
+                                    <label for="note">Catatan</label>
                                 </td>
                                 <td>
                                     <div>
@@ -250,11 +250,11 @@
                 <div>
                     <br>
                     <button id="cancel_payment" class="btn btn-warning text-white">
-                        <i class="fa fa-sync-alt"></i>  Cancel
+                        <i class="fa fa-sync-alt"></i>  Batal
                     </button>
                     <!-- <br><br> -->
                     <button id="process_payment" class="btn btn-lg btn-success">
-                        <i class="fa fa-paper-plane"></i> Process Payment
+                        <i class="fa fa-paper-plane"></i> Proses Transaksi
                     </button>
                 </div>
             </div>
