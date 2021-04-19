@@ -85,11 +85,7 @@
             {data: 'sell_price', name: 'sell_price'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
-
     });
-
-    
-
   });
 
 </script>

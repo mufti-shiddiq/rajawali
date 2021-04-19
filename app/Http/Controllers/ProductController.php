@@ -57,7 +57,16 @@ class ProductController extends Controller
                             return $btn;
                             
                     })
-                    ->rawColumns(['action'])
+
+                    ->addColumn('actions', function($rows){
+                                              
+                        $btns = '<a class="btn btn-info text-white btn-sm" href="'.route('products.edit', [$rows->id]).'"><i class="fa fa-check"></i> Pilih</a>';
+                        
+                        return $btns;
+                        
+                })
+
+                    ->rawColumns(['action', 'actions'])
                     ->make(true);
         }
 

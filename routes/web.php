@@ -29,19 +29,19 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home')->middleware('auth');
 
-Route::resource("users", UserController::class);
+Route::resource("users", UserController::class)->middleware('can:isAdmin');
 
-Route::resource('categories', CategoryController::class);
+Route::resource('categories', CategoryController::class)->middleware('auth');
 
-Route::resource('units', UnitController::class);
+Route::resource('units', UnitController::class)->middleware('auth');
 
-Route::resource('customers', CustomerController::class);
+Route::resource('customers', CustomerController::class)->middleware('auth');
 
-Route::resource('suppliers', SupplierController::class);
+Route::resource('suppliers', SupplierController::class)->middleware('auth');
 
-Route::resource('products', ProductController::class);
+Route::resource('products', ProductController::class)->middleware('auth');
 
-Route::resource('transactions', TransactionController::class);
+Route::resource('transactions', TransactionController::class)->middleware('auth');
