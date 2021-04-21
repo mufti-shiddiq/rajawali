@@ -24,7 +24,7 @@ class TransactionController extends Controller
         date_default_timezone_set("Asia/Jakarta");
         $waktu = date("d-m-Y / H:i:s");
 
-        return view('transactions.index', compact('customer','kasir', 'waktu'));
+        return view('transactions.index', compact('customer', 'kasir', 'waktu'));
     }
 
     /**
