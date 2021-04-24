@@ -92,10 +92,10 @@
 
                                             <input type="hidden" id="id" name="id">
                                             <input type="hidden" id="name" name="name">
-                                            <input type="text" id="unit" name="unit">
+                                            <input type="hidden" id="unit" name="unit">
                                             <input type="hidden" id="price" name="price">
                                             
-                                            <input type="text" id="code" name="code" class="form-control" autofocus>
+                                            <input type="text" id="code" name="code" class="form-control" readonly>
 
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-primary btn-flat" data-toggle="modal"
@@ -179,7 +179,7 @@
                     <div class="box-body">
                         <div align="right">
                             <h4>Invoice <b><span id="invoice">RJ160420210001</span></b></h4>
-                            <h1><b><span id="grand_total2" style="font-size: 50pt;">{{ \Cart::getTotal() }}</span></b></h1>
+                            <h1><b><span class="grand_total2" id="grand_total2" style="font-size: 50pt;">{{ \Cart::getTotal() }}</span></b></h1>
                         </div>
                     </div>
                 </div>
@@ -201,9 +201,9 @@
                                     <th width="50px">No</th>
                                     <th>Kode</th>
                                     <th>Produk</th>
-                                    <th>Harga</th>
                                     <th>Qty</th>
                                     <th>Satuan</th>
+                                    <th>Harga Satuan</th>
                                     <th>Total</th>
                                     <!-- <th width="10%">Diskon Item</th> -->
                                     <!-- <th width="15%">Total</th> -->
@@ -220,9 +220,9 @@
                                         <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
                                         <td>{{$item->attributes->code}}</td>
                                         <td>{{$item->name}}</td>
-                                        <td>{{$item->price}}</td>
                                         <td>{{$item->quantity}}</td>
                                         <td>{{$item->attributes->unit}}</td>
+                                        <td>{{$item->price}}</td>
                                         <td>{{$item->getPriceSum()}}</td>
 
                                         <td>
@@ -302,7 +302,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="sub_total" value="{{ \Cart::getSubTotal() }}" class="form-control" readonly>
+                                        <input type="number" id="sub_total" class="sub_total" value="{{ \Cart::getSubTotal() }}" class="form-control" readonly>
                                     </div>
                                 </td>
                             </tr>
@@ -312,7 +312,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="discount" value="0" min="0" class="form-control">
+                                        <input type="number" id="discount" class="discount" value="0" min="0" class="form-control">
                                     </div>
                                 </td>
                             </tr>
@@ -322,7 +322,8 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="grand_total" value="{{ \Cart::getTotal() }}" class="form-control" readonly>
+                                        <!-- <input type="number" id="grand_total" class="grand_total" value="" class="form-control" readonly> -->
+                                        <input type="number" id="grand_total" class="grand_total" value="{{ \Cart::getTotal() }}" class="form-control" readonly>
                                     </div>
                                 </td>
                             </tr>
@@ -341,7 +342,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="cash" value="0" min="0" class="form-control">
+                                        <input type="number" id="cash" class="cash" value="0" min="0" onkeyup="change()" class="form-control">
                                     </div>
                                 </td>
                             </tr>
@@ -351,7 +352,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="change" class="form-control" readonly>
+                                        <input type="number" id="change" class="change" class="form-control" readonly>
                                     </div>
                                 </td>
                             </tr>
@@ -466,6 +467,31 @@
 $('#updateitem').on('show.bs.modal', function(e) {
     $(this).find('.modal-body').text(e.relatedTarget.id);
 });
+
+function change() {
+    let grand_total = $("#grand_total").val(),
+        cash = $("#cash").val(),
+        discount = $("#discount").val();
+    $(".change").val(cash - grand_total - discount);
+}
+
+function total() {
+    let sub_total = $("#sub_total").val(),
+        discount = $("#discount").val();
+    $(".grand_total").val(sub_total - discount);
+}
+
+
 </script> -->
+
+<script type="text/javascript">
+
+function change() {
+    let grand_total = $("#grand_total").val(),
+        cash = $("#cash").val();
+    $(".change").val(cash - grand_total);
+}
+
+</script>
 
 @endpush

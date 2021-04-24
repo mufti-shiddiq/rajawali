@@ -31,7 +31,7 @@ class TransactionController extends Controller
         // $waktu = date("d-m-Y / H:i:s");
 
         $cartCollection = \Cart::getContent();
-
+        
         return view('transactions.index', compact('customer', 'kasir'))->with(['cartCollection' => $cartCollection]);
     }
 
