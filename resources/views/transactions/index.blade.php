@@ -178,7 +178,7 @@
                 <div class="box box-widget">
                     <div class="box-body">
                         <div align="right">
-                            <h4>Invoice <b><span id="invoice">RJ160420210001</span></b></h4>
+                            <h4>Invoice <b><span id="invoice"></span></b></h4>
                             <h1><b><span class="grand_total2" id="grand_total2" style="font-size: 50pt;">{{ \Cart::getTotal() }}</span></b></h1>
                         </div>
                     </div>
@@ -199,7 +199,7 @@
                             <thead>
                                 <tr>
                                     <th width="50px">No</th>
-                                    <th>Kode</th>
+                                    <th>Kode Produk</th>
                                     <th>Produk</th>
                                     <th>Qty</th>
                                     <th>Satuan</th>
@@ -318,7 +318,7 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: top;">
-                                    <label for="grand_total">Total</label>
+                                    <label for="grand_total">Grand Total</label>
                                 </td>
                                 <td>
                                     <div class="form-group">
@@ -491,6 +491,15 @@ function change() {
         cash = $("#cash").val();
     $(".change").val(cash - grand_total);
 }
+
+function invoice(jumlah) {
+    let hasil = "",
+        char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        total = char.length;
+    for (var r = 0; r < jumlah; r++) hasil += char.charAt(Math.floor(Math.random() * total));
+    return hasil
+}
+$("#invoice").html(invoice(10));
 
 </script>
 
