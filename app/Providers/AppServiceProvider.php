@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +26,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        Blade::directive('rupiah', function ($rupiah) {
+            return "Rp. <?php echo number_format($rupiah,0,',','.'); ?>";
+        });
+        
+        Blade::directive('money', function ($money) {
+            return "<?php echo number_format($money,0,',','.'); ?>";
+        });
     }
 }

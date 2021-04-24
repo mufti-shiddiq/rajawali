@@ -8,8 +8,9 @@ var productSelected = {};
 function selectProductAction() {
   var selectedData = $(this).data();
   $('input#id').val(selectedData.id);
-  $('input#name').val(selectedData.name);
   $('input#code').val(selectedData.code);
+  $('input#name').val(selectedData.name);
+  $('input#unit').val(selectedData.unit);
   $('input#price').val(selectedData.price);
   $('.modal').modal('hide');
 }
@@ -57,7 +58,7 @@ $(document).ready(function () {
       orderable: false,
       searchable: false,
       render: function render(data, type, row) {
-        return '<button data-id="' + row.id + '" data-name="' + row.product_name + '" data-code="' + row.code + '" data-price="' + row.sell_price + '" class="btn btn-info text-white btn-sm btn-select-product">Pilih</button>';
+        return '<button data-id="' + row.id + '" data-code="' + row.code + '" data-name="' + row.product_name + '" data-unit="' + row.unit + '" data-price="' + row.sell_price + '" class="btn btn-info text-white btn-sm btn-select-product">Pilih</button>';
       }
     }]
   });

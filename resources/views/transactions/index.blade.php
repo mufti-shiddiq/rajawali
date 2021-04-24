@@ -92,6 +92,7 @@
 
                                             <input type="hidden" id="id" name="id">
                                             <input type="hidden" id="name" name="name">
+                                            <input type="text" id="unit" name="unit">
                                             <input type="hidden" id="price" name="price">
                                             
                                             <input type="text" id="code" name="code" class="form-control" autofocus>
@@ -202,6 +203,7 @@
                                     <th>Produk</th>
                                     <th>Harga</th>
                                     <th>Qty</th>
+                                    <th>Satuan</th>
                                     <th>Total</th>
                                     <!-- <th width="10%">Diskon Item</th> -->
                                     <!-- <th width="15%">Total</th> -->
@@ -220,6 +222,7 @@
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->price}}</td>
                                         <td>{{$item->quantity}}</td>
+                                        <td>{{$item->attributes->unit}}</td>
                                         <td>{{$item->getPriceSum()}}</td>
 
                                         <td>

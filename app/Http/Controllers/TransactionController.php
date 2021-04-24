@@ -42,7 +42,8 @@ class TransactionController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'attributes' => array(
-                'code' => $request->code
+                'code' => $request->code,
+                'unit' => $request->unit
             )
         ));
         return redirect()->route('transaction.index');
