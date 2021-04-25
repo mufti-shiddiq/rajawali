@@ -10,6 +10,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\WalletController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,5 @@ Route::post('/transactions/process',[TransactionController::class, 'process'])->
 Route::get('/transactions/success',[TransactionController::class, 'success'])->name('transaction.success');
 
 Route::get('/reports/transaction',[ReportController::class, 'transaction'])->name('reports.transaction');
+
+Route::get('/wallets',[WalletController::class, 'index'])->name('wallet.index');
