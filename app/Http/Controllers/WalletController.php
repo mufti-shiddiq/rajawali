@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Wallet;
+use Yajra\DataTables\Facades\DataTables;
 
 class WalletController extends Controller
 {
@@ -11,9 +14,37 @@ class WalletController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('wallets.index');
+        $cash_in = DB::table("wallets")->sum('cash_in');
+        $cash_out = DB::table("wallets")->sum('cash_out');
+
+        $balance = $cash_in - $cash_out;
+        // dd ($balance);
+
+        if ($request->ajax()) {
+            $data = Wallet::all();
+
+            return Datatables::of($data)
+                ->addIndexColumn()
+
+                ->addColumn('action', function ($row) {
+                    // $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                    // $product = Product::all();
+
+                    $btn = '<form action="' . route('wallets.destroy', [$row->id]) . '" class="d-inline" method="POST">
+                                ' . csrf_field() . '
+                                ' . method_field("DELETE") . '
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm(\'Yakin ingin menghapus catatan kas ini?\')">Hapus</a>
+                            </form>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('wallets.index', compact('cash_in', 'cash_out', 'balance'));
     }
 
     /**
@@ -23,18 +54,53 @@ class WalletController extends Controller
      */
     public function create()
     {
-        //
+
+
+        return view('wallets.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function add_cash_in()
     {
-        //
+        return view('wallets.add_cash_in');
+    }
+
+    public function add_cash_out()
+    {
+        return view('wallets.add_cash_out');
+    }
+
+    public function store_cash_in(Request $request)
+    {
+        
+
+        $new_wallet = new \App\Models\Wallet;
+        // $new_wallet->transaction = json_encode($request->get('transaction'));
+        $new_wallet->transaction = $request->get('transaction');
+        $new_wallet->datetime = $request->get('datetime');
+        $new_wallet->cash_in = $request->get('cash_in');
+        $new_wallet->note = $request->get('note');
+        
+        $new_wallet->created_by = \Auth::user()->name;
+
+        $new_wallet->save();
+        return redirect()->route('wallets.add_cash_in')->with('status', 'Kas Masuk berhasil ditambahkan');
+    }
+
+    public function store_cash_out(Request $request)
+    {
+        
+
+        $new_wallet = new \App\Models\Wallet;
+        // $new_wallet->transaction = json_encode($request->get('transaction'));
+        $new_wallet->transaction = $request->get('transaction');
+        $new_wallet->datetime = $request->get('datetime');
+        $new_wallet->cash_out = $request->get('cash_out');
+        $new_wallet->note = $request->get('note');
+        
+        $new_wallet->created_by = \Auth::user()->name;
+
+        $new_wallet->save();
+        return redirect()->route('wallets.add_cash_out')->with('status', 'Kas Keluar berhasil ditambahkan');
     }
 
     /**
@@ -79,6 +145,8 @@ class WalletController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $wallet = \App\Models\Wallet::findOrFail($id);
+        $wallet->delete();
+        return redirect()->route('wallets.index')->with('status', 'Catatan Kas berhasil dihapus');
     }
 }

@@ -57,4 +57,10 @@ Route::get('/transactions/success',[TransactionController::class, 'success'])->n
 
 Route::get('/reports/transaction',[ReportController::class, 'transaction'])->name('reports.transaction');
 
-Route::get('/wallets',[WalletController::class, 'index'])->name('wallet.index');
+// Route::resource('/wallets', WalletController::class);
+Route::get('/wallets',[WalletController::class, 'index'])->name('wallets.index');
+Route::get('/wallets/add_cash_in',[WalletController::class, 'add_cash_in'])->name('wallets.add_cash_in');
+Route::get('/wallets/add_cash_out',[WalletController::class, 'add_cash_out'])->name('wallets.add_cash_out');
+Route::post('/wallets/store_cash_in',[WalletController::class, 'store_cash_in'])->name('wallets.store_cash_in');
+Route::post('/wallets/store_cash_out',[WalletController::class, 'store_cash_out'])->name('wallets.store_cash_out');
+Route::delete('/wallets/{id}',[WalletController::class, 'destroy'])->name('wallets.destroy');

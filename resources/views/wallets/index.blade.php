@@ -13,9 +13,10 @@
     <div class="col-md-6">
         <h1>Kas Toko</h1>
     </div>
-    <div class="col-md-6 text-right">
-        <a href="{{route('products.create')}}" class="btn btn-primary">Transaksi Kas Baru</a>
-    </div>
+    <!-- <div class="col-md-6 text-right">
+        <a href="{{route('wallets.add_cash_in')}}" class="btn btn-primary">Input Kas Masuk</a>
+        <a href="{{route('wallets.add_cash_out')}}" class="btn btn-info">Input Kas Keluar</a>
+    </div> -->
 </div>
 @stop
 
@@ -25,14 +26,14 @@
 
         <div class="small-box bg-info">
              <div class="inner">
-                <h3>0</h3>
+                <h3>{{$balance}}</h3>
                 <p>Saldo Kas</p>
             </div>
             <div class="icon">
                 <i class="fas fa-money-bill"></i>
             </div>
             <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
+                <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
 
@@ -42,14 +43,14 @@
 
         <div class="small-box bg-success">
              <div class="inner">
-                <h3>10</h3>
+                <h3>{{$cash_in}}</h3>
                 <p>Total Kas Masuk</p>
             </div>
             <div class="icon">
                 <i class="fas fa-plus"></i>
             </div>
-            <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
+            <a href="{{route('wallets.add_cash_in')}}" class="small-box-footer">
+                Input Kas Masuk <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     
@@ -59,14 +60,14 @@
 
         <div class="small-box bg-danger">
              <div class="inner">
-                <h3>30</h3>
+                <h3>{{$cash_out}}</h3>
                 <p>Total Kas Keluar</p>
             </div>
             <div class="icon">
                 <i class="fas fa-minus"></i>
             </div>
-            <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
+            <a href="{{route('wallets.add_cash_out')}}" class="small-box-footer">
+                Input Kas Keluar <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
 
@@ -83,10 +84,11 @@
                     <th>No</th>
                     <th>Tanggal</th>
                     <th>Transaksi</th>
-                    <th>Nominal</th>
-                    <th>Pengguna</th>
+                    <th>Nominal Kas Masuk</th>
+                    <th>Nominal Kas Keluar</th>
+                    <th>User</th>
                     <th>Catatan</th>
-                    <th>Aksi</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -106,15 +108,15 @@
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 
   $(function () {
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        order: [ 3, "asc" ],
+        order: [ 1, "asc" ],
                 
-        ajax: "{{ route('products.index') }}",
+        ajax: "{{ route('wallets.index') }}",
         columns: [
 
             { "data": null,"sortable": false, 
@@ -123,19 +125,16 @@
                             }  
             },
 
-            {data: 'id', name: 'id', visible: false, orderable: false, searchable: false},
-            {data: 'code', name: 'code'},
-            {data: 'product_name', name: 'product_name'},
-            {data: 'category', name: 'category.name'},
-            {data: 'unit', name: 'unit.code'},
-            {data: 'stock', name: 'stock'},
-            {data: 'sold', name: 'sold'},
-            {data: 'buy_price', name: 'buy_price', render: $.fn.dataTable.render.number('.', '.', 0, '')},
-            {data: 'sell_price', name: 'sell_price', render: $.fn.dataTable.render.number('.', '.', 0, '')},
+            {data: 'datetime', name: 'datetime'},
+            {data: 'transaction', name: 'transaction'},
+            {data: 'cash_in', name: 'cash_in', render: $.fn.dataTable.render.number('.', '.', 0, '')},
+            {data: 'cash_out', name: 'cash_out', render: $.fn.dataTable.render.number('.', '.', 0, '')},
+            {data: 'created_by', name: 'created_by'},
+            {data: 'note', name: 'note'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
   });
 
-</script> -->
+</script>
 @endpush
