@@ -26,14 +26,14 @@
 
         <div class="small-box bg-info">
              <div class="inner">
-                <h3>{{$balance}}</h3>
+                <h3>{{number_format($balance,0,".",".")}}</h3>
                 <p>Saldo Kas</p>
             </div>
             <div class="icon">
                 <i class="fas fa-money-bill"></i>
             </div>
-            <a href="#" class="small-box-footer">
-                <i class="fas fa-arrow-circle-right"></i>
+            <a class="small-box-footer">
+                <i class="fas fa-info-circle"></i>
             </a>
         </div>
 
@@ -43,7 +43,7 @@
 
         <div class="small-box bg-success">
              <div class="inner">
-                <h3>{{$cash_in}}</h3>
+                <h3>{{number_format($cash_in,0,".",".")}}</h3>
                 <p>Total Kas Masuk</p>
             </div>
             <div class="icon">
@@ -60,7 +60,7 @@
 
         <div class="small-box bg-danger">
              <div class="inner">
-                <h3>{{$cash_out}}</h3>
+                <h3>{{number_format($cash_out,0,".",".")}}</h3>
                 <p>Total Kas Keluar</p>
             </div>
             <div class="icon">
