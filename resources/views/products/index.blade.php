@@ -81,8 +81,8 @@
             {data: 'unit', name: 'unit.code'},
             {data: 'stock', name: 'stock'},
             {data: 'sold', name: 'sold'},
-            {data: 'buy_price', name: 'buy_price'},
-            {data: 'sell_price', name: 'sell_price'},
+            {data: 'buy_price', name: 'buy_price', render: $.fn.dataTable.render.number('.', '.', 0, '')},
+            {data: 'sell_price', name: 'sell_price', render: $.fn.dataTable.render.number('.', '.', 0, '')},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });

@@ -179,7 +179,7 @@
                     <div class="box-body">
                         <div align="right">
                             <h4>Invoice <b><span id="invoice"></span></b></h4>
-                            <h1><b><span class="grand_total2" id="grand_total2" style="font-size: 50pt;">{{ \Cart::getTotal() }}</span></b></h1>
+                            <h1><b><span class="grand_total2" id="grand_total2" style="font-size: 50pt;">{{ number_format(\Cart::getTotal(),0,".",".") }}</span></b></h1>
                         </div>
                     </div>
                 </div>
@@ -204,17 +204,14 @@
                                     <th>Qty</th>
                                     <th>Satuan</th>
                                     <th>Harga Satuan</th>
-                                    <th>Total</th>
                                     <!-- <th width="10%">Diskon Item</th> -->
+                                    <th>Total</th>
                                     <!-- <th width="15%">Total</th> -->
                                     <th width="100px"></th>
                                 </tr>
                             </thead>
                             <tbody id="cart_table">
-                                <!-- <tr>
-                                    <td colspan="9" class="text-center">Tidak ada item</td>
-                                </tr> -->
-
+                                
                                 @forelse($cartCollection as $item)
                                     <tr >
                                         <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
@@ -222,8 +219,9 @@
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->quantity}}</td>
                                         <td>{{$item->attributes->unit}}</td>
-                                        <td>{{$item->price}}</td>
-                                        <td>{{$item->getPriceSum()}}</td>
+                                        <td>{{number_format($item->price,0,".",".")}}</td>
+                                        <td>{{number_format($item->getPriceSum(),0,".",".")}}</td>
+                                        
 
                                         <td>
                                             <div class="form-group input-group">
@@ -302,7 +300,8 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="sub_total" class="sub_total" value="{{ \Cart::getSubTotal() }}" class="form-control" readonly>
+                                        <input type="text" id="sub_total_view" class="sub_total" value="{{ number_format(\Cart::getSubTotal(),0,".",".") }}" class="form-control" readonly>
+                                        <input type="hidden" id="sub_total" class="sub_total" value="{{ \Cart::getSubTotal() }}" >
                                     </div>
                                 </td>
                             </tr>
@@ -323,7 +322,8 @@
                                 <td>
                                     <div class="form-group">
                                         <!-- <input type="number" id="grand_total" class="grand_total" value="" class="form-control" readonly> -->
-                                        <input type="number" id="grand_total" class="grand_total" value="{{ \Cart::getTotal() }}" class="form-control" readonly>
+                                        <input type="text" id="grand_total_view" class="grand_total" value="{{ number_format(\Cart::getTotal(),0,".",".") }}" class="form-control" readonly>
+                                        <input type="hidden" id="grand_total" class="grand_total" value="{{ \Cart::getTotal() }}" >
                                     </div>
                                 </td>
                             </tr>
@@ -352,7 +352,8 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="change" class="change" class="form-control" readonly>
+                                        <input type="text" id="change_view" class="change" class="form-control" readonly>
+                                        <input type="hidden" id="change" class="change">
                                     </div>
                                 </td>
                             </tr>
@@ -462,6 +463,7 @@
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{asset('js/cart.js')}}"></script>
+<script src="{{asset('js/transaction.js')}}"></script>
 
 <!-- <script type="text/javascript">
 $('#updateitem').on('show.bs.modal', function(e) {
@@ -484,7 +486,7 @@ function total() {
 
 </script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 function change() {
     let grand_total = $("#grand_total").val(),
@@ -501,6 +503,6 @@ function invoice(jumlah) {
 }
 $("#invoice").html(invoice(10));
 
-</script>
+</script> -->
 
 @endpush

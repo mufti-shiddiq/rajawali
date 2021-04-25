@@ -51,3 +51,4 @@ Route::post('/transactions/update',[TransactionController::class, 'update'])->na
 Route::post('/transactions/remove',[TransactionController::class, 'remove'])->name('cart.remove');
 Route::post('/transactions/clear',[TransactionController::class, 'clear'])->name('cart.clear');
 Route::post('/transactions/process',[TransactionController::class, 'process'])->name('transaction.process');
+Route::get('/transactions/success',[TransactionController::class, 'success'])->name('transaction.success');

@@ -31,6 +31,8 @@ class TransactionController extends Controller
         // $waktu = date("d-m-Y / H:i:s");
 
         $cartCollection = \Cart::getContent();
+
+        // dd ($cartCollection);
         
         return view('transactions.index', compact('customer', 'kasir'))->with(['cartCollection' => $cartCollection]);
     }
@@ -70,4 +72,11 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index');
     }
 
+    public function process(Request$request){
+        
+    }
+
+    public function success(){
+
+    }
 }

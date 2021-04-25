@@ -51,7 +51,8 @@ $(document).ready(function () {
       name: 'stock'
     }, {
       data: 'sell_price',
-      name: 'sell_price'
+      name: 'sell_price',
+      render: $.fn.dataTable.render.number('.', '.', 0, '')
     }, {
       data: 'actions',
       name: 'actions',
