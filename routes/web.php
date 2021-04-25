@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,5 @@ Route::post('/transactions/remove',[TransactionController::class, 'remove'])->na
 Route::post('/transactions/clear',[TransactionController::class, 'clear'])->name('cart.clear');
 Route::post('/transactions/process',[TransactionController::class, 'process'])->name('transaction.process');
 Route::get('/transactions/success',[TransactionController::class, 'success'])->name('transaction.success');
+
+Route::get('/reports/transaction',[ReportController::class, 'transaction'])->name('reports.transaction');

@@ -309,6 +309,10 @@ return [
             'icon'    => 'fas fa-fw fa-chart-pie',
             'submenu' => [
                 [
+                    'text' => 'Laporan Transaksi',
+                    'url'  => '/reports/transaction',
+                ],
+                [
                     'text' => 'Laporan Harian',
                     'url'  => '#',
                 ],
