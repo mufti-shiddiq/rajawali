@@ -36,7 +36,7 @@ class WalletController extends Controller
                                 ' . csrf_field() . '
                                 ' . method_field("DELETE") . '
                                 <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm(\'Yakin ingin menghapus catatan kas ini?\')">Hapus</a>
+                                    onclick="return confirm(\'Yakin ingin menghapus catatan kas ini?\')"><i class="fa fa-trash-alt"></i></a>
                             </form>';
                     return $btn;
                 })

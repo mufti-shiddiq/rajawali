@@ -94,16 +94,23 @@
                                             <input type="hidden" id="name" name="name">
                                             <input type="hidden" id="unit" name="unit">
                                             <input type="hidden" id="price" name="price">
-                                            
+
                                             <input type="text" id="code" name="code" class="form-control" readonly>
 
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-primary btn-flat" data-toggle="modal"
-                                                    data-target="#pilihProduk">
+                                                <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#pilihProduk">
                                                     <i class="fa fa-search"></i>
                                                 </button>
                                             </span>
                                         </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:top;">
+                                        <label>Diskon Item</label>
+                                    </td>
+                                    <td>
+                                        <input type="number" id="discount_item" name="discount_item" min="0" class="form-control">
                                     </td>
                                 </tr>
                                 <tr>
@@ -119,11 +126,11 @@
                                             </button>
                                         </div>
                                     </td>
-                                    
+
                                 </tr>
                                 <tr class="text-right">
                                     <td></td>
-                                    
+
                                 </tr>
                             </table>
 
@@ -204,80 +211,83 @@
                                     <th>Qty</th>
                                     <th>Satuan</th>
                                     <th>Harga Satuan</th>
-                                    <!-- <th width="10%">Diskon Item</th> -->
+                                    <th width="10%">Diskon Item</th>
                                     <th>Total</th>
                                     <!-- <th width="15%">Total</th> -->
                                     <th width="100px"></th>
                                 </tr>
                             </thead>
                             <tbody id="cart_table">
-                                
+
                                 @forelse($cartCollection as $item)
-                                    <tr >
-                                        <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
-                                        <td>{{$item->attributes->code}}</td>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->quantity}}</td>
-                                        <td>{{$item->attributes->unit}}</td>
-                                        <td>{{number_format($item->price,0,".",".")}}</td>
-                                        <td>{{number_format($item->getPriceSum(),0,".",".")}}</td>
-                                        
+                                <tr>
+                                    <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
+                                    <td>{{$item->attributes->code}}</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->quantity}}</td>
+                                    <td>{{$item->attributes->unit}}</td>
+                                    <td>{{number_format($item->price,0,".",".")}}</td>
+                                    <td>{{$item->conditions->parsedRawValue}}</td>
+                                    <td>{{number_format($item->getPriceSumWithConditions(),0,".",".")}}</td>
 
-                                        <td>
-                                            <div class="form-group input-group">
-                                                <!-- <form> -->
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateitem{{$item->id}}"><i class="fa fa-edit"></i></button>
-                                                <!-- </form> -->
+                                    <td>
+                                        <div class="form-group input-group">
+                                            <!-- <form> -->
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateitem{{$item->id}}"><i class="fa fa-edit"></i></button>
+                                            <!-- </form> -->
 
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="updateitem{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="UpdateItem" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Perbaharui Item</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="updateitem{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="UpdateItem" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Perbaharui Item</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form action="{{ route('cart.update') }}" method="POST">
-                                                                @csrf
-                                                                <div class="modal-body row">
-                                                                    <div class="col-md-8 mx-auto">
-                                                                        <input type="hidden" value="{{ $item->id}}" id="id" name="id">
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('cart.update') }}" method="POST">
+                                                            @csrf
+                                                            <div class="modal-body row">
+                                                                <div class="col-md-8 mx-auto">
+                                                                    <input type="hidden" value="{{ $item->id}}" id="id" name="id">
 
-                                                                        <!-- <div class="form-group">
+                                                                    <!-- <div class="form-group">
                                                                             <label for="price">Harga Produk</label>
                                                                             <input  class="form-control" type="number" name="price" id="price" value="{{ $item->price }}"/>
                                                                         </div> -->
 
-                                                                        <div class="form-group">
-                                                                            <label for="quantity">Quantity</label>
-                                                                            <input  class="form-control" type="number" name="quantity" id="quantity" value="{{ $item->quantity }}"/>
-                                                                        </div>
+                                                                    <div class="form-group">
+                                                                        <label for="discount_item">Diskon Item</label>
+                                                                        <input class="form-control" type="number" name="discount_item" id="discount_item" value="{{ $item->discount_item }}" />
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="quantity">Quantity</label>
+                                                                        <input class="form-control" type="number" name="quantity" id="quantity" value="{{ $item->quantity }}" />
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                
-                                                
-                                                <form action="{{ route('cart.remove') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" value="{{ $item->id }}" name="id">
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                                </form>
-                                            </div> 
-                                        </td>
+                                            <form action="{{ route('cart.remove') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{ $item->id }}" name="id">
+                                                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
 
-                                    </tr>
+                                </tr>
                                 @empty
-                                    <td colspan="10" class="text-center">Tidak ada item</td>
+                                <td colspan="10" class="text-center">Tidak ada item</td>
                                 @endforelse
 
 
@@ -301,7 +311,7 @@
                                 <td>
                                     <div class="form-group">
                                         <input type="text" id="sub_total_view" class="sub_total" value="{{ number_format(\Cart::getSubTotal(),0,".",".") }}" class="form-control" readonly>
-                                        <input type="hidden" id="sub_total" class="sub_total" value="{{ \Cart::getSubTotal() }}" >
+                                        <input type="hidden" id="sub_total" class="sub_total" value="{{ \Cart::getSubTotal() }}">
                                     </div>
                                 </td>
                             </tr>
@@ -323,7 +333,7 @@
                                     <div class="form-group">
                                         <!-- <input type="number" id="grand_total" class="grand_total" value="" class="form-control" readonly> -->
                                         <input type="text" id="grand_total_view" class="grand_total" value="{{ number_format(\Cart::getTotal(),0,".",".") }}" class="form-control" readonly>
-                                        <input type="hidden" id="grand_total" class="grand_total" value="{{ \Cart::getTotal() }}" >
+                                        <input type="hidden" id="grand_total" class="grand_total" value="{{ \Cart::getTotal() }}">
                                     </div>
                                 </td>
                             </tr>
@@ -407,8 +417,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="pilihProduk" tabindex="-1" role="dialog" aria-labelledby="pilihProdukTitle"
-    aria-hidden="true">
+<div class="modal fade" id="pilihProduk" tabindex="-1" role="dialog" aria-labelledby="pilihProdukTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -421,8 +430,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered table-stripped table-hover bg-white data-table"
-                                id="table">
+                            <table class="table table-bordered table-stripped table-hover bg-white data-table" id="table">
                                 <thead>
                                     <tr>
                                         <th>No</th>

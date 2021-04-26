@@ -32,51 +32,71 @@ class TransactionController extends Controller
 
         $cartCollection = \Cart::getContent();
 
-        // dd ($cartCollection);
-        
+        // dd($cartCollection);
+        // dd($discount_item);
+
         return view('transactions.index', compact('customer', 'kasir'))->with(['cartCollection' => $cartCollection]);
     }
 
-    public function add(Request$request){
-        \Cart::add(array(
+    public function add(Request $request)
+    {
+        $discount_items = new CartCondition(array(
+            'name' => 'Diskon Item',
+            'type' => 'promo',
+            'value' => '-' . $request->discount_item,
+        ));
+
+        // dd($discount_items);
+
+        $cart = \Cart::add(array(
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity,
+            'conditions' => $discount_items,
             'attributes' => array(
                 'code' => $request->code,
                 'unit' => $request->unit
-            )
+            ),
         ));
+
+        // dd($cart);
+
         return redirect()->route('transaction.index');
     }
 
-    public function remove(Request $request){
+    public function remove(Request $request)
+    {
         \Cart::remove($request->id);
         return redirect()->route('transaction.index');
     }
 
-    public function update(Request $request){
-        \Cart::update($request->id,
+    public function update(Request $request)
+    {
+
+        \Cart::update(
+            $request->id,
             array(
                 'quantity' => array(
                     'relative' => false,
                     'value' => $request->quantity
                 ),
-        ));
+            )
+        );
         return redirect()->route('transaction.index');
     }
 
-    public function clear(){
+    public function clear()
+    {
         \Cart::clear();
         return redirect()->route('transaction.index');
     }
 
-    public function process(Request$request){
-        
+    public function process(Request $request)
+    {
     }
 
-    public function success(){
-
+    public function success()
+    {
     }
 }
