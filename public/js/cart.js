@@ -74,7 +74,7 @@ $(document).ready(function () {
 });
 
 $(function() { 
-  $('#product-table input[type=search]').focus();
+  $('.product-table input[type=search]').focus();
 });
 
 

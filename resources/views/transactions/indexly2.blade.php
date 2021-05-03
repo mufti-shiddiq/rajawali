@@ -18,19 +18,25 @@
 
 @section("content")
 
-<div class="row">
+<div class="card">
+    <div class="card-header">
+        <div class="row">
 
-    <div class="col-lg-4 pr-3">
-
-        <div class="card">
-
-            <div class="card-body">
-
-
+            <div class="col-lg-4">
                 <div class="box box-widget">
                     <div class="box-body">
                         <table width="100%">
-
+                            <!-- <tr>
+                                <td style="vertical-align: top;">
+                                    <label for="date">Tanggal / Waktu</label>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="datetime" id="date" value="{{-- $waktu --}}" class="form-control"
+                                            readonly>
+                                    </div>
+                                </td>
+                            </tr> -->
                             <tr>
                                 <td style="vertical-align:top; width:30%">
                                     <label for="user">Kasir</label>
@@ -41,15 +47,36 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td style="vertical-align:top">
+                                    <label for="customer">Customer</label>
+                                </td>
+                                <td>
+                                    <div>
+                                        <select id="customer" class="form-control">
+                                            <option value="">Umum</option>
+                                            @foreach ($customer as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
                         </table>
+                    </div>
+                </div>
+            </div>
 
-                        <!-- <br> -->
 
+            <div class="col-lg-4 pl-5 pr-1">
+                <div class="box box-widget">
+                    <div class="box-body">
                         <form action="{{ route('cart.store') }}" method="POST">
                             @csrf
                             <table width="100%">
                                 <tr>
-                                    <td style="vertical-align: top; width:30%">
+                                    <td style="vertical-align: top;  width:20%">
                                         <label for="code">Produk</label>
                                     </td>
                                     <td>
@@ -83,13 +110,12 @@
                                         <input type="number" id="discount_item" name="discount_item" min="0" class="form-control">
                                     </td>
                                 </tr>
-
                                 <tr>
-                                    <td style="vertical-align:top;" class="pt-3">
+                                    <td style="vertical-align:top;">
                                         <label>Qty</label>
                                     </td>
                                     <td>
-                                        <div class="input-group pt-3">
+                                        <div class="input-group">
                                             <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control">
                                             <div class="px-5"></div>
                                             <button type="submit" class="btn btn-primary">
@@ -98,48 +124,34 @@
                                         </div>
                                     </td>
                                 </tr>
-
+                                <tr class="text-right">
+                                    <td></td>
+                                </tr>
                             </table>
                         </form>
-
-                        <br>
-
-                        <div>
-                            <!-- <h4>Invoice <b><span id="invoice"></span></b></h4> -->
-                            <h1><b style="font-size: 30pt;">Total: <span class="grand_total" id="grand_total2" style="font-size: 50pt;">{{ number_format(\Cart::getTotal(),0,".",".") }}</span></b></h1>
-                        </div>
-
-                        <br>
-
-                        <div class="row">
-                            <div class="col-lg-2">
-                            </div>
-                            <div class="col-lg-10 text-right">
-                                <div class="form group input-group">
-                                    <br>
-                                    <form action="{{ route('cart.clear') }}" method="POST">
-                                        @csrf
-                                        <button class="btn btn-warning text-white"><i class="fa fa-sync-alt"></i> Reset</button>
-                                    </form>
-                                    <div class='px-1'></div>
-                                    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#prosesTransaksi"><i class="fa fa-paper-plane"></i> Proses Transaksi</button>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-4">
+                <div class="box box-widget">
+                    <div class="box-body">
+                        <div align="right">
+                            <h4>Invoice <b><span id="invoice"></span></b></h4>
+                            <h1><b><span class="grand_total" id="grand_total2" style="font-size: 50pt;">{{ number_format(\Cart::getTotal(),0,".",".") }}</span></b></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <div class="col-lg-8">
+    <div class="card-body">
 
-        <div class="card">
+        <div class="row">
 
-            <div class="card-body">
-
-
+            <div class="col-lg-12">
                 <div class="box box-widget">
                     <div class="box-body table-responsive">
                         <table class="table table-bordered table-hover cart-table" id="cart-table">
@@ -165,8 +177,35 @@
             </div>
 
         </div>
+        <div class="row mt-4">
 
+            <div class="col-lg-3 px-3"></div>
+            <div class="col-lg-3 px-3"></div>
+            <div class="col-lg-3 px-3"></div>
 
+            <div class="col-lg-3">
+                <div class="form group input-group">
+                    <br>
+                    <form action="{{ route('cart.clear') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-warning text-white"><i class="fa fa-sync-alt"></i> Reset</button>
+                    </form>
+                    <div class='px-1'></div>
+                    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#prosesTransaksi"><i class="fa fa-paper-plane"></i> Proses Transaksi</button>
+                    <!-- <form action="{{ route('transaction.process') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-success btn-lg"><i class="fa fa-paper-plane"></i> Proses Transaksi</button>
+                    </form> -->
+                    <!-- <button id="cancel_payment" class="btn btn-warning text-white">
+                        <i class="fa fa-sync-alt"></i> Reset
+                    </button> -->
+                    <!-- <br><br> -->
+                    <!-- <button id="process_payment" class="btn btn-lg btn-success">
+                        <i class="fa fa-paper-plane"></i> Proses Transaksi
+                    </button> -->
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -247,18 +286,8 @@
 
 
                     <div class="form-group">
-                        <label>Customer</label>
-                        <select id="customer" class="form-control">
-                            <!-- <option value="3">Umum</option> -->
-                            @foreach ($customer as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
                         <label>Catatan</label>
-                        <textarea id="note" rows="2" class="form-control"></textarea>
+                        <textarea id="note" rows="3" class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
