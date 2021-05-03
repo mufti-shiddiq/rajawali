@@ -16,7 +16,7 @@ function selectProductAction() {
 }
 
 $(document).ready(function () {
-  $('.data-table').DataTable({
+  $('.product-table').DataTable({
     processing: true,
     serverSide: true,
     order: [2, "asc"],
@@ -36,23 +36,29 @@ $(document).ready(function () {
       searchable: false
     }, {
       data: 'code',
-      name: 'code'
+      name: 'code',
+      orderable: false
     }, {
       data: 'product_name',
-      name: 'product_name'
+      name: 'product_name',
+      orderable: false
     }, {
       data: 'category',
-      name: 'category.name'
+      name: 'category.name',
+      orderable: false
     }, {
       data: 'unit',
-      name: 'unit.code'
+      name: 'unit.code',
+      orderable: false
     }, {
       data: 'stock',
-      name: 'stock'
+      name: 'stock',
+      orderable: false
     }, {
       data: 'sell_price',
       name: 'sell_price',
-      render: $.fn.dataTable.render.number('.', '.', 0, '')
+      render: $.fn.dataTable.render.number('.', '.', 0, ''),
+      orderable: false
     }, {
       data: 'actions',
       name: 'actions',
@@ -63,7 +69,15 @@ $(document).ready(function () {
       }
     }]
   });
-  $('.data-table').on('click', '.btn-select-product', selectProductAction);
+  $('.product-table').on('click', '.btn-select-product', selectProductAction);
+  
 });
+
+$(function() { 
+  $('#product-table input[type=search]').focus();
+});
+
+
+
 /******/ })()
 ;

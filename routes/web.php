@@ -47,20 +47,20 @@ Route::resource('suppliers', SupplierController::class)->middleware('auth');
 Route::resource('products', ProductController::class)->middleware('auth');
 
 // Route::resource('transactions', TransactionController::class)->middleware('auth');
-Route::get('/transactions',[TransactionController::class, 'index'])->name('transaction.index');
-Route::post('/transactions/add',[TransactionController::class, 'add'])->name('cart.store');
-Route::post('/transactions/update',[TransactionController::class, 'update'])->name('cart.update');
-Route::post('/transactions/remove',[TransactionController::class, 'remove'])->name('cart.remove');
-Route::post('/transactions/clear',[TransactionController::class, 'clear'])->name('cart.clear');
-Route::post('/transactions/process',[TransactionController::class, 'process'])->name('transaction.process');
-Route::get('/transactions/success',[TransactionController::class, 'success'])->name('transaction.success');
+Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction.index')->middleware('auth');
+Route::post('/transactions/add', [TransactionController::class, 'add'])->name('cart.store');
+Route::post('/transactions/update', [TransactionController::class, 'update'])->name('cart.update');
+Route::delete('/transactions/remove', [TransactionController::class, 'remove'])->name('cart.remove');
+Route::post('/transactions/clear', [TransactionController::class, 'clear'])->name('cart.clear');
+Route::post('/transactions/process', [TransactionController::class, 'process'])->name('transaction.process');
+Route::get('/transactions/success', [TransactionController::class, 'success'])->name('transaction.success');
 
-Route::get('/reports/transaction',[ReportController::class, 'transaction'])->name('reports.transaction');
+Route::get('/reports/transaction', [ReportController::class, 'transaction'])->name('reports.transaction');
 
 // Route::resource('/wallets', WalletController::class);
-Route::get('/wallets',[WalletController::class, 'index'])->name('wallets.index');
-Route::get('/wallets/add_cash_in',[WalletController::class, 'add_cash_in'])->name('wallets.add_cash_in');
-Route::get('/wallets/add_cash_out',[WalletController::class, 'add_cash_out'])->name('wallets.add_cash_out');
-Route::post('/wallets/store_cash_in',[WalletController::class, 'store_cash_in'])->name('wallets.store_cash_in');
-Route::post('/wallets/store_cash_out',[WalletController::class, 'store_cash_out'])->name('wallets.store_cash_out');
-Route::delete('/wallets/{id}',[WalletController::class, 'destroy'])->name('wallets.destroy');
+Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.index');
+Route::get('/wallets/add_cash_in', [WalletController::class, 'add_cash_in'])->name('wallets.add_cash_in');
+Route::get('/wallets/add_cash_out', [WalletController::class, 'add_cash_out'])->name('wallets.add_cash_out');
+Route::post('/wallets/store_cash_in', [WalletController::class, 'store_cash_in'])->name('wallets.store_cash_in');
+Route::post('/wallets/store_cash_out', [WalletController::class, 'store_cash_out'])->name('wallets.store_cash_out');
+Route::delete('/wallets/{id}', [WalletController::class, 'destroy'])->name('wallets.destroy');

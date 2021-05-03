@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Unit;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 
 class ProductController extends Controller
@@ -22,6 +22,8 @@ class ProductController extends Controller
         // $product_code = Product::orderBy('code', 'DESC')->get();
 
         // return view('products.index', compact('products'));
+
+        // dd($data = Product::all());
 
         if ($request->ajax()) {
             $data = Product::all();
