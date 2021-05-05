@@ -29,21 +29,6 @@
 
                 <div class="box box-widget">
                     <div class="box-body">
-                        <table width="100%">
-
-                            <tr>
-                                <td style="vertical-align:top; width:30%">
-                                    <label for="user">Kasir</label>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input id="user" value="{{ $kasir->name }}" class="form-control" readonly>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <!-- <br> -->
 
                         <form action="{{ route('cart.store') }}" method="POST">
                             @csrf
@@ -106,7 +91,7 @@
 
                         <div>
                             <!-- <h4>Invoice <b><span id="invoice"></span></b></h4> -->
-                            <h1><b style="font-size: 30pt;">Total: <span class="grand_total" id="grand_total2" style="font-size: 50pt;">{{ number_format(\Cart::getTotal(),0,".",".") }}</span></b></h1>
+                            <h1><b style="font-size: 20pt;">Total: <span class="grand_total" id="grand_total2" style="font-size: 35pt;">{{ number_format(\Cart::getTotal(),0,".",".") }}</span></b></h1>
                         </div>
 
                         <br>
@@ -221,34 +206,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form">
-                    <!-- <div class="form-group">
-                        <label>Tanggal</label>
-                        <input type="text" class="form-control" name="tanggal" id="tanggal" required>
-                    </div> -->
-                    <!-- <div class="form-group">
-                        <label>Pelanggan</label>
-                        <select name="pelannggan" id="pelanggan" class="form-control select2"></select>
-                    </div> -->
+                <form enctype="multipart/form-data" action="{{route('transaction.process')}}" method="POST">
+                    @csrf
+
                     <!-- <div class="form-group">
                         <label>Jumlah Uang</label>
                         <input placeholder="Jumlah Uang" type="number" class="form-control" name="jumlah_uang" onkeyup="kembalian()" required>
                     </div> -->
-                    <!-- <div class="form-group">
-                        <label>Diskon</label>
-                        <input placeholder="Diskon" type="number" class="form-control" onkeyup="kembalian()" name="diskon">
-                    </div> -->
+
                     <!-- <div class="form-group">
                         <b>Total Bayar:</b> <span class="total_bayar"></span>
                     </div> -->
-                    <!-- <div class="form-group">
-                        <b>Kembalian:</b> <span class="kembalian"></span>
-                    </div> -->
 
+                    <div class="form-group">
+                        <label for="user">Kasir</label>
+                        <input id="user" value="{{ $kasir->name }}" class="form-control" readonly>
+                    </div>
 
                     <div class="form-group">
                         <label>Customer</label>
-                        <select id="customer" class="form-control">
+                        <select id="customer" name="customer" class="form-control">
                             <!-- <option value="3">Umum</option> -->
                             @foreach ($customer as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -258,12 +235,12 @@
 
                     <div class="form-group">
                         <label>Catatan</label>
-                        <textarea id="note" rows="2" class="form-control"></textarea>
+                        <textarea id="note" name="note" rows="2" class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label>Jumlah Uang</label>
-                        <input placeholder="Jumlah Uang" type="number" class="form-control cash" id="cash" name="cash" value="0" min="0" onkeyup="change()" required>
+                        <input placeholder="Jumlah Uang" type="number" class="form-control cash" id="cash" name="cash" min="0" onkeyup="change()" required>
                     </div>
 
                     <!-- <div class="form-group">
@@ -273,17 +250,22 @@
 
                     <div class="form-group">
                         <b style="font-size: 20pt">Total Bayar: <span id="grand_total_view" class="grand_total_view" style="font-size: 30pt">{{ number_format(\Cart::getTotal(),0,".",".") }}</span></b>
-                        <input type="hidden" id="grand_total" class="grand_total" value="{{ \Cart::getTotal() }}">
+                        <input type="hidden" id="grand_total" name="grand_total" class="grand_total" value="{{ \Cart::getTotal() }}">
                     </div>
 
                     <div class="form-group">
-                        <b style="font-size: 20pt">Kembalian: <span class="change" id="change_view" style="font-size: 30pt"></span></b>
-                        <input type="hidden" id="changes" class="change">
+                        <b style="font-size: 20pt">Kembalian: <span class="change" id="change" name="change" style="font-size: 30pt"></span></b>
+                        <input type="hidden" id="changes" name="changes" class="change">
                     </div><br>
 
-                    <button id="add" class="btn btn-success" type="submit" onclick="bayar()">Proses</button>
-                    <button id="cetak" class="btn btn-success" type="submit" onclick="bayarCetak()">Proses Dan Cetak</button>
-                    <button class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-success" value="Proses">Proses</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
+
+                    <!-- <button id="add" class="btn btn-success" type="submit" onclick="bayar()">Proses</button>
+                    <button id="cetak" class="btn btn-success" type="submit" onclick="bayarCetak()">Proses Dan Cetak</button> -->
+                    <!-- <button class="btn btn-danger" data-dismiss="modal">Batal</button> -->
                 </form>
             </div>
         </div>

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Darryldecode\Cart\CartCollection;
 use Darryldecode\Cart\CartCondition;
 use Darryldecode\Cart\Exceptions\InvalidConditionException;
@@ -18,11 +19,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class TransactionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         // $userId = \Auth::user()->id;
@@ -182,7 +178,7 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index');
     }
 
-    public function process(Request $request)
+    public function processx(Request $request)
     {
         $product = json_decode($request->product);
         $code = array();
@@ -207,7 +203,82 @@ class TransactionController extends Controller
         $data = $this->input->post('form');
     }
 
+    public function generateInvoice()
+    {
+
+        $last_trx = Transaction::latest('id')->first();
+        $conv_last_trx = (int)$last_trx->id;
+        $new_inv = $conv_last_trx + 1;
+
+        if ($conv_last_trx > 0) {
+            return 'RJ-INV-' . $new_inv;
+        }
+
+        return 'RJ-INV-1';
+    }
+
+    public function updateProduct($key, $qty)
+    {
+        Product::where('id', $key)->decrement('stock', $qty);
+        Product::where('id', $key)->increment('sold', $qty);
+    }
+
+    public function process(Request $request)
+    {
+        $customer = $request->get('customer');
+        $note = $request->get('note');
+        $cash = $request->get('cash');
+        $grand_total = $request->get('grand_total');
+        $change = $request->get('changes');
+        $cart = \Cart::getContent();
+
+        // dd($note);
+        // Store Data ke table transactions
+
+        $new_transaction = new \App\Models\Transaction();
+
+        $new_transaction->invoice = $this->generateInvoice();
+        $new_transaction->customer_id = $customer;
+        $new_transaction->note = $note;
+        $new_transaction->cash = $cash;
+        $new_transaction->grand_total = $grand_total;
+        $new_transaction->change = $change;
+
+        $new_transaction->created_by = \Auth::user()->id;
+
+        $new_transaction->save();
+
+        // Store Data ke table transaction_details
+
+        $new_trxdetail = new \App\Models\TransactionDetail();
+
+        foreach ($cart as $key => $row) {
+            $new_trxdetail->create([
+                'transaction_id' => $new_transaction->id,
+                'product_id' => $key,
+                'quantity' => $row['quantity'],
+                'unit' => $row->attributes->unit,
+                'price' => $row['price'],
+                'discount_item' => $row->conditions->parsedRawValue,
+                'sub_total' => $row->getPriceSumWithConditions(),
+            ]);
+            $qty = $row['quantity'];
+            $this->updateProduct($key, $qty);
+        }
+
+        // dd($new_trxdetail);
+
+        $new_trxdetail->save();
+
+        \Cart::clear();
+        return redirect()->route('transaction.success');
+    }
+
     public function success()
     {
+        $last_trx = Transaction::latest('created_at')->first();
+        $last_inv = $last_trx->invoice;
+        // dd($last_inv->invoice);
+        return view('transactions.success', compact('last_inv'));
     }
 }

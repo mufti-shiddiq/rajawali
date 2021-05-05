@@ -25,20 +25,11 @@ $(function () {
     });
 });
 
-function discount_total() {
-
-    let discount_total = $("#discount_total").val();
-    grand_total -= discount_total
-    console.log('ok',grand_total)
-    // $("#change").val(cash - grand_total);
-    
-}
-
 function change() {
     let grand_total = $("#grand_total").val(),
         cash = $("#cash").val();
-    $("#change").val(cash - grand_total);
-    $("#change_view").html(cash - grand_total);
+    $("#change").html(cash - grand_total);
+    $("#changes").val(cash - grand_total);
 }
 
 function invoice(jumlah) {
@@ -50,37 +41,3 @@ function invoice(jumlah) {
 }
 $("#invoice").html(invoice(10));
 
-
-function process() {
-    let data = item.rows().data(),
-        qty = [];
-    $.each(data, (index, value) => {
-        qty.push(value[3])
-    });
-    $.ajax({
-        url: addUrl,
-        type: "post",
-        dataType: "json",
-        data: {
-            produk: JSON.stringify(produk),
-            qty: qty,
-            total_bayar: $("#total").html(),
-            jumlah_uang: $('[name="jumlah_uang"]').val(),
-            diskon: $('[name="diskon"]').val(),
-            pelanggan: $("#pelanggan").val(),
-            nota: $("#nota").html()
-        },
-        success: res => {
-            if (isCetak) {
-                Swal.fire("Sukses", "Sukses Membayar", "success").
-                    then(() => window.location.href = `${cetakUrl}${res}`)
-            } else {
-                Swal.fire("Sukses", "Sukses Membayar", "success").
-                    then(() => window.location.reload())
-            }
-        },
-        error: err => {
-            console.log(err)
-        }
-    })
-}
