@@ -178,31 +178,6 @@ class TransactionController extends Controller
         return redirect()->route('transaction.index');
     }
 
-    public function processx(Request $request)
-    {
-        $product = json_decode($request->product);
-        $code = array();
-        foreach ($product as $product) {
-            Transaction::removeStok($product->id, $product->stok);
-            Transaction::addTerjual($product->id, $product->terjual);
-            array_push($code, $product->id);
-        }
-        $data = array(
-            'code' => implode(',', $code),
-            'quantity' => implode(',', $this->input->post('quantity')),
-            'grand_total' => $this->input->post('grand_total'),
-            'cash' => $this->input->post('cash'),
-            'discount_item' => $this->input->post('discount_item'),
-            'customer' => $this->input->post('customer'),
-            'invoice' => $this->input->post('invoice'),
-            'created_by' => $this->session->userdata('id')
-        );
-        if ($this->transaksi_model->create($data)) {
-            echo json_encode($this->db->insert_id());
-        }
-        $data = $this->input->post('form');
-    }
-
     public function generateInvoice()
     {
 
@@ -244,7 +219,7 @@ class TransactionController extends Controller
         $new_transaction->grand_total = $grand_total;
         $new_transaction->change = $change;
 
-        $new_transaction->created_by = \Auth::user()->id;
+        $new_transaction->user_id = \Auth::user()->id;
 
         $new_transaction->save();
 
@@ -256,6 +231,8 @@ class TransactionController extends Controller
             $new_trxdetail->create([
                 'transaction_id' => $new_transaction->id,
                 'product_id' => $key,
+                'code' => $row->attributes->code,
+                'product' => $row['name'],
                 'quantity' => $row['quantity'],
                 'unit' => $row->attributes->unit,
                 'price' => $row['price'],

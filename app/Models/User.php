@@ -22,6 +22,17 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function report()
+    {
+        return $this->hasMany(Report::class);
+    }
+
+
     /**
      * The attributes that should be hidden for arrays.
      *

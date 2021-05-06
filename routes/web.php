@@ -56,6 +56,8 @@ Route::post('/transactions/process', [TransactionController::class, 'process'])-
 Route::get('/transactions/success', [TransactionController::class, 'success'])->name('transaction.success');
 
 Route::get('/reports/transaction', [ReportController::class, 'transaction'])->name('reports.transaction');
+Route::get('/reports/transaction/{id}', [ReportController::class, 'trx_detail'])->name('reports.trx_detail');
+Route::delete('/reports/transaction/{id}', [ReportController::class, 'trx_destroy'])->name('reports.trx_destroy');
 
 // Route::resource('/wallets', WalletController::class);
 Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.index');

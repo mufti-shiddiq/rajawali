@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TransactionDetail extends Model
+class Report extends Model
 {
     use HasFactory;
-
     protected $guarded = [];
 
-    public function transaction()
+    public function customer()
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->belongsTo(Customer::class);
     }
 
-    public function product()
+    public function user()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(User::class);
     }
 }
