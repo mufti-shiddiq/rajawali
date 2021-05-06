@@ -50,8 +50,8 @@
                 <td width='20%'>Nama Barang</td>
                 <td width='4%'>Qty</td>
                 <td width='4%'>Satuan</td>
-                <td width='13%'>Harga</td>
-                <td width='7%'>Discount Item</td>
+                <td width='13%'>Harga Satuan</td>
+                <td width='7%'>Diskon Item</td>
                 <td width='13%'>Sub Total</td>
             </tr>
             @foreach($trx_detail as $item)

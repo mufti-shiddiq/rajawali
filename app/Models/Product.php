@@ -11,6 +11,8 @@ class Product extends Model
     protected $fillable = [
         'id', 'code', 'product_name', 'category', 'category_id', 'unit', 'unit_id', 'stock', 'sold', 'buy_price', 'sell_price'
     ];
+    protected $primaryKey = 'id';
+    protected $guarded = [];
 
     public function category()
     {
@@ -25,5 +27,15 @@ class Product extends Model
     public function transactionDetail()
     {
         return $this->hasMany(TransactionDetail::class);
+    }
+
+    public function stockIn()
+    {
+        return $this->hasMany(StockIn::class);
+    }
+
+    public function stockOut()
+    {
+        return $this->hasMany(StockOut::class);
     }
 }

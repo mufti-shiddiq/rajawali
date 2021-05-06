@@ -11,6 +11,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\StockInController;
+use App\Http\Controllers\StockOutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,12 @@ Route::resource('customers', CustomerController::class)->middleware('auth');
 Route::resource('suppliers', SupplierController::class)->middleware('auth');
 
 Route::resource('products', ProductController::class)->middleware('auth');
+// Route::get('/products/stock_in', [ProductController::class, 'stock_in.index'])->name('stock_in.index')->middleware('auth');
+// Route::get('/products/stock_in/create', [ProductController::class, 'stock_in.create'])->name('stock_in.create')->middleware('auth');
+// Route::post('/products/stock_in/store', [ProductController::class, 'stock_in.store'])->name('stock_in.store')->middleware('auth');
+
+Route::resource('stock_in', StockInController::class)->middleware('auth');
+Route::resource('stock_out', StockOutController::class)->middleware('auth');
 
 // Route::resource('transactions', TransactionController::class)->middleware('auth');
 Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction.index')->middleware('auth');

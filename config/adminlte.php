@@ -252,11 +252,21 @@ return [
                     'url'  => 'products',
                     // 'icon' => 'fas fa-fw fa-box',
                 ],
-                [
-                    'text' => 'Stok Produk',
-                    'url'  => '#',
-                    // 'icon' => 'fas fa-fw fa-archive',
-                ],
+                // [
+                //     'text' => 'Stok Produk',
+                //     'url'  => '#',
+                //     'submenu' => [
+                //         [
+                //             'text' => 'Stok Masuk',
+                //             'url'  => '#',
+                //         ],
+                //         [
+                //             'text' => 'Stok Keluar',
+                //             'url'  => '#',
+                //         ],
+                //     ]
+                //     // 'icon' => 'fas fa-fw fa-archive',
+                // ],
                 [
                     'text' => 'Kategori Produk',
                     'url'  => 'categories',
@@ -274,11 +284,21 @@ return [
         //     'url'  => 'products',
         //     'icon' => 'fas fa-fw fa-box',
         // ],
-        // [
-        //     'text' => 'Stok Produk',
-        //     'url'  => '#',
-        //     'icon' => 'fas fa-fw fa-archive',
-        // ],
+        [
+            'text' => 'Stok Produk',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-archive',
+            'submenu' => [
+                [
+                    'text' => 'Stok Masuk',
+                    'url'  => 'stock_in',
+                ],
+                [
+                    'text' => 'Stok Keluar',
+                    'url'  => 'stock_out',
+                ],
+            ]
+        ],
         // [
         //     'text' => 'Kategori Produk',
         //     'url'  => 'categories',

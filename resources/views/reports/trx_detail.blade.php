@@ -37,15 +37,15 @@
                 <br>
 
                 <b>Nilai Transaksi:</b> <br />
-                {{$transaction->grand_total}}
+                {{ number_format($transaction->grand_total,0,".",".") }}
                 <br>
 
                 <b>Total Bayar:</b> <br />
-                {{$transaction->cash}}
+                {{ number_format($transaction->cash,0,".",".") }}
                 <br>
 
                 <b>Kembalian:</b> <br />
-                {{$transaction->change}}
+                {{ number_format($transaction->change,0,".",".") }}
                 <br>
 
                 <b>Catatan:</b> <br />
@@ -87,11 +87,11 @@
 
                             <td>{{$item->unit}}</td>
 
-                            <td>{{$item->price}}</td>
+                            <td>{{ number_format($item->price,0,".",".") }}</td>
 
-                            <td>{{$item->discount_item}}</td>
+                            <td>{{ number_format($item->discount_item,0,".",".") }}</td>
 
-                            <td>{{$item->sub_total}}</td>
+                            <td>{{ number_format($item->sub_total,0,".",".") }}</td>
 
                         </tr>
                         @endforeach
