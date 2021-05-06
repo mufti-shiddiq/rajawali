@@ -77,7 +77,7 @@ class ReportController extends Controller
 
         // $productName = Product::where('id', $productId)->get('name');
 
-        return view('reports.trx_detail', ['transaction' => $transaction, 'trx_detail' => $trx_detail]);
+        return view('reports.trx_detail', ['transaction' => $transaction, 'trx_detail' => $trx_detail], compact('id'));
     }
 
     public function trx_destroy($id)

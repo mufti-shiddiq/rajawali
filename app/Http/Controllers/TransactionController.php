@@ -255,7 +255,41 @@ class TransactionController extends Controller
     {
         $last_trx = Transaction::latest('created_at')->first();
         $last_inv = $last_trx->invoice;
+        $last_id = $last_trx->id;
         // dd($last_inv->invoice);
-        return view('transactions.success', compact('last_inv'));
+        return view('transactions.success', compact('last_inv', 'last_id'));
+    }
+
+    public function print($id)
+    {
+        $transaction = \App\Models\Transaction::findOrFail($id);
+
+        $trx_detail = \App\Models\TransactionDetail::where('transaction_id', $id)->get();
+
+        return view('transactions.print', ['transaction' => $transaction, 'trx_detail' => $trx_detail]);
+        // $produk = TransactionDetail::all($id);
+
+        // $tanggal = new DateTime($produk->tanggal);
+        // $barcode = explode(',', $produk->barcode);
+        // $qty = explode(',', $produk->qty);
+
+        // $produk->tanggal = $tanggal->format('d m Y H:i:s');
+
+        // $dataProduk = $this->transaksi_model->getName($barcode);
+        // foreach ($dataProduk as $key => $value) {
+        //     $value->total = $qty[$key];
+        //     $value->harga = $value->harga * $qty[$key];
+        // }
+
+        // $data = array(
+        //     'nota' => $produk->nota,
+        //     'tanggal' => $produk->tanggal,
+        //     'produk' => $dataProduk,
+        //     'total' => $produk->total_bayar,
+        //     'bayar' => $produk->jumlah_uang,
+        //     'kembalian' => $produk->jumlah_uang - $produk->total_bayar,
+        //     'kasir' => $produk->kasir
+        // );
+        // $this->load->view('cetak', $data);
     }
 }

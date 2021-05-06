@@ -8,7 +8,7 @@
         <h1>Detail Transaksi</h1>
     </div>
     <div class="col-md-6 text-right">
-        <a href="#" class="btn btn-primary"><i class="fa fa-print"></i> Print</a>
+        <a class="btn btn-primary" href="{{route('transaction.print', [$id])}}"><i class="fa fa-print"></i> Print</a>
         <a href="{{route('reports.transaction')}}" class="btn btn-danger">Kembali</a>
     </div>
 </div>

@@ -54,6 +54,7 @@ Route::delete('/transactions/remove', [TransactionController::class, 'remove'])-
 Route::post('/transactions/clear', [TransactionController::class, 'clear'])->name('cart.clear');
 Route::post('/transactions/process', [TransactionController::class, 'process'])->name('transaction.process');
 Route::get('/transactions/success', [TransactionController::class, 'success'])->name('transaction.success');
+Route::get('/transactions/print/{id}', [TransactionController::class, 'print'])->name('transaction.print');
 
 Route::get('/reports/transaction', [ReportController::class, 'transaction'])->name('reports.transaction');
 Route::get('/reports/transaction/{id}', [ReportController::class, 'trx_detail'])->name('reports.trx_detail');
