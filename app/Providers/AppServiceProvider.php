@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,10 +28,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
+        config(['app.locale' => 'id']);
+        Carbon::setLocale('id');
+
         Blade::directive('rupiah', function ($rupiah) {
             return "Rp. <?php echo number_format($rupiah,0,',','.'); ?>";
         });
-        
+
         Blade::directive('money', function ($money) {
             return "<?php echo number_format($money,0,',','.'); ?>";
         });
