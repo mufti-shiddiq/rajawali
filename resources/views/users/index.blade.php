@@ -28,7 +28,7 @@
             <th style="width: 300px"><b>Username</b></th>
             <th style="width: 100px"><b>Status</b></th>
             <th style="width: 200px">Role</th>
-            <th style="width: 200px"><b></b></th>
+            <th style="width: 280px"><b></b></th>
         </tr>
     </thead>
     <tbody>
@@ -54,14 +54,17 @@
             <td>{{$user->role}}</td>
 
             <td>
-                <a class="btn btn-info text-white btn-sm" href="{{route('users.edit', [$user->id])}}">Edit</a>
+                <a class="btn btn-info text-white btn-sm" href="{{route('users.edit', [$user->id])}}"><i class="fas fa-edit"></i> Edit</a>
 
-                <a href="{{route('users.show', [$user->id])}}" class="btn btn-primary btn-sm">Detail</a>
+                <a class="btn btn-warning text-white btn-sm" href="{{route('users.changepw', [$user->id])}}"><i class="fas fa-key"></i> Password</a>
+
+                <!-- <a href="{{route('users.show', [$user->id])}}" class="btn btn-primary btn-sm"><i class="fas fa-info-circle"></i></a> -->
 
                 <form onsubmit="return confirm('Yakin ingin menghapus user ini?')" class="d-inline" action="{{route('users.destroy', [$user->id])}}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="DELETE">
-                    <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
+                    <!-- <input type="submit" value="Hapus" class="btn btn-danger btn-sm"> -->
+                    <button type="submit" class="btn btn-danger btn-sm" value="Hapus"><i class="fa fa-trash-alt"></i> Hapus</button>
                 </form>
             </td>
 

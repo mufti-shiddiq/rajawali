@@ -13,12 +13,15 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = \App\Models\Category::paginate(5);
+        $categories = \App\Models\Category::paginate(10);
 
         $filterKeyword = $request->get('name');
-        if($filterKeyword){
-            $categories = \App\Models\Category::where("name", "LIKE",
-            "%$filterKeyword%")->paginate(5);
+        if ($filterKeyword) {
+            $categories = \App\Models\Category::where(
+                "name",
+                "LIKE",
+                "%$filterKeyword%"
+            )->paginate(5);
         }
 
         return view('categories.index', ['categories' => $categories]);

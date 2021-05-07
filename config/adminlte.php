@@ -277,6 +277,11 @@ return [
                     'url'  => 'units',
                     // 'icon' => 'fas fa-fw fa-weight-hanging',
                 ],
+                [
+                    'text' => 'Import/Export',
+                    'url'  => 'product-import-export',
+                    // 'icon' => 'fas fa-fw fa-weight-hanging',
+                ],
             ],
         ],
         // [

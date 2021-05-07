@@ -21,7 +21,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units = \App\Models\unit::paginate(5);
+        $units = \App\Models\unit::paginate(10);
         return view('units.index', ['units' => $units]);
     }
 
@@ -45,7 +45,7 @@ class UnitController extends Controller
     {
         $name = $request->get('name');
         $code = $request->get('code');
-        
+
         $new_unit = new \App\Models\unit;
 
         $new_unit->name = $name;
@@ -90,7 +90,7 @@ class UnitController extends Controller
     public function update(Request $request, $id)
     {
         $name = $request->get('name');
-        $code= $request->get('code');
+        $code = $request->get('code');
 
         $unit = \App\Models\unit::findOrFail($id);
 
@@ -98,7 +98,7 @@ class UnitController extends Controller
         $unit->code = $code;
 
         $unit->updated_by = \Auth::user()->id;
-        
+
         $unit->save();
         return redirect()->route('units.edit', [$id])->with('status', 'Satuan produk berhasil diedit');
     }

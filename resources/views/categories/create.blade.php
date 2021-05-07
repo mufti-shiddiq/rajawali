@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <label for="name">Nama Kategori</label>
-                        <input  class="form-control" placeholder="Nama Kategori" type="text" name="name" id="name" />
+                        <input class="form-control" placeholder="Nama Kategori" type="text" name="name" id="name" />
                     </div>
 
                 </div>
@@ -38,7 +38,7 @@
                 <div class="card-footer">
                     <!-- <input class="btn btn-primary" type="submit" value="Save" /> -->
                     <button type="submit" class="btn btn-primary" value="Save">Simpan</button>
-                    <a href="{{route('categories.index')}}" class="btn btn-danger">Batal</a>
+                    <a href="{{route('categories.index')}}" class="btn btn-danger">Kembali</a>
                     <button type="reset" class="btn btn-flat">Reset</button>
                 </div>
             </form>

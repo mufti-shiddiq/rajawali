@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = \App\Models\User::paginate(5);
+        $users = \App\Models\User::paginate(10);
         return view('users.index', ['users' => $users]);
     }
 
@@ -46,7 +46,8 @@ class UserController extends Controller
         $new_user = new \App\Models\User;
         $new_user->name = $request->get('name');
         $new_user->username = $request->get('username');
-        $new_user->role = json_encode($request->get('role'));
+        // $new_user->role = json_encode($request->get('role'));
+        $new_user->role = $request->get('role');
 
         $new_user->password = \Hash::make($request->get('password'));
 
@@ -78,6 +79,12 @@ class UserController extends Controller
         return view('users.edit', ['user' => $user]);
     }
 
+    public function changepw($id)
+    {
+        $user = \App\Models\User::findOrFail($id);
+        return view('users.changepw', ['user' => $user]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -90,11 +97,20 @@ class UserController extends Controller
         $user = \App\Models\User::findOrFail($id);
         $user->name = $request->get('name');
         $user->username = $request->get('username');
-        $user->password = \Hash::make($request->get('password'));
-        $user->role = json_encode($request->get('role'));
+        // $user->password = \Hash::make($request->get('password'));
+        $user->role = $request->get('role');
 
         $user->save();
         return redirect()->route('users.edit', [$id])->with('status', 'User berhasil diedit');
+    }
+
+    public function updatepw(Request $request, $id)
+    {
+        $user = \App\Models\User::findOrFail($id);
+        $user->password = \Hash::make($request->get('password'));
+
+        $user->save();
+        return redirect()->route('users.changepw', [$id])->with('status', 'Password berhasil diubah');
     }
 
     /**

@@ -31,12 +31,12 @@
 
                     <div class="form-group">
                         <label for="name">Nama</label>
-                        <input  class="form-control" value="{{$unit->name}}" placeholder="Nama Satuan Produk" type="text" name="name" id="name" />
+                        <input class="form-control" value="{{$unit->name}}" placeholder="Nama Satuan Produk" type="text" name="name" id="name" />
                     </div>
 
                     <div class="form-group">
                         <label for="name">Unit</label>
-                        <input  class="form-control" value="{{$unit->code}}" placeholder="Unit" type="text" name="code" id="code" />
+                        <input class="form-control" value="{{$unit->code}}" placeholder="Unit" type="text" name="code" id="code" />
                     </div>
 
                 </div>
@@ -45,7 +45,7 @@
                 <div class="card-footer">
                     <!-- <input class="btn btn-primary" type="submit" value="Save" /> -->
                     <button type="submit" class="btn btn-primary" value="Save">Simpan</button>
-                    <a href="{{route('units.index')}}" class="btn btn-danger">Batal</a>
+                    <a href="{{route('units.index')}}" class="btn btn-danger">Kembali</a>
                 </div>
             </form>
         </div>

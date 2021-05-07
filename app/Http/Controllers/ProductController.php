@@ -7,6 +7,9 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Unit;
 use Yajra\DataTables\Facades\DataTables;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductsImport;
+use App\Exports\ProductsExport;
 
 
 class ProductController extends Controller
@@ -187,5 +190,23 @@ class ProductController extends Controller
         $product = \App\Models\product::findOrFail($id);
         $product->delete();
         return redirect()->route('products.index')->with('status', 'Produk berhasil dihapus');
+    }
+
+
+    // Import Export
+    public function importExport()
+    {
+        return view('products.importExport');
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new ProductsImport, $request->file('file')->store('temp'));
+        return back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProductsExport, 'products-collection.xlsx');
     }
 }

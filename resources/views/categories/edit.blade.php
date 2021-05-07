@@ -31,12 +31,12 @@
 
                     <div class="form-group">
                         <label for="name">Nama Kategori</label>
-                        <input  class="form-control" value="{{$category->name}}" placeholder="Nama Kategori" type="text" name="name" id="name" />
+                        <input class="form-control" value="{{$category->name}}" placeholder="Nama Kategori" type="text" name="name" id="name" />
                     </div>
 
                     <div class="form-group">
                         <label for="name">Slug Kategori</label>
-                        <input  class="form-control" value="{{$category->slug}}" placeholder="Slug Kategori" type="text" name="slug" id="slug" />
+                        <input class="form-control" value="{{$category->slug}}" placeholder="Slug Kategori" type="text" name="slug" id="slug" />
                     </div>
 
                 </div>
@@ -45,7 +45,7 @@
                 <div class="card-footer">
                     <!-- <input class="btn btn-primary" type="submit" value="Save" /> -->
                     <button type="submit" class="btn btn-primary" value="Save">Simpan</button>
-                    <a href="{{route('categories.index')}}" class="btn btn-danger">Batal</a>
+                    <a href="{{route('categories.index')}}" class="btn btn-danger">Kembali</a>
                 </div>
             </form>
         </div>

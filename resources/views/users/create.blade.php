@@ -60,12 +60,20 @@
                     </div>
 
                     <!-- select -->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="">Role</label>
                         <select name="role" class="form-control">
                             <option value=""> -- Pilih -- </option>
                             <option class="form-control {{$errors->first('role') ? "is-invalid" : "" }}" name="role[]" id="ADMIN" value="ADMIN">Admin</option>
                             <option class="form-control {{$errors->first('role') ? "is-invalid" : "" }}" name="role[]" id="STAFF" value="STAFF">Staff</option>
+                        </select>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="">Role</label>
+                        <select name="role" class="form-control">
+                            <option value=""> -- Pilih -- </option>
+                            <option class="form-control" name="role" id="ADMIN" value="ADMIN">Admin</option>
+                            <option class="form-control" name="role" id="STAFF" value="STAFF">Staff</option>
                         </select>
                     </div>
 
@@ -87,7 +95,7 @@
                 <div class="card-footer">
                     <!-- <input class="btn btn-primary" type="submit" value="Save" /> -->
                     <button type="submit" class="btn btn-primary" value="Save">Simpan</button>
-                    <a href="{{route('users.index')}}" class="btn btn-danger">Batal</a>
+                    <a href="{{route('users.index')}}" class="btn btn-danger">Kembali</a>
                     <button type="reset" class="btn btn-flat">Reset</button>
                 </div>
             </form>

@@ -1,9 +1,9 @@
 @extends("adminlte::page")
 
-@section("title") Edit User @endsection
+@section("title") Ubah Password @endsection
 
 @section('content_header')
-<h1>Edit User</h1>
+<h1>Ubah Password</h1>
 @stop
 
 @section("content")
@@ -19,27 +19,25 @@
         <!-- general form elements -->
         <div class="card card-primary shadow-sm">
             <div class="card-header">
-                <h3 class="card-title">Edit User <b>{{$user->name}}</b> ({{"@".$user->username}})</h3>
+                <h3 class="card-title">Ubah Password <b>{{$user->name}}</b> ({{"@".$user->username}})</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form enctype="multipart/form-data" class="bg-white shadow-sm p-3" action="{{route('users.update', [$user->id])}}" method="POST">
+            <form enctype="multipart/form-data" class="bg-white shadow-sm p-3" action="{{route('users.updatepw', [$user->id])}}" method="POST">
                 @csrf
                 <input type="hidden" value="PUT" name="_method">
 
                 <div class="card-body">
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="name">Name</label>
-                        <input value="{{$user->name}}" class="form-control" placeholder="Full Name" type="text" name="name" id="name" />
+                        <input value="{{$user->name}}" class="form-control" placeholder="Full Name" type="text" name="name" id="name" disabled />
                     </div>
 
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input value="{{$user->username}}" class="form-control" placeholder="Username" type="text" name="username" id="username" />
-                    </div>
-
-                    <!-- <label class="text-danger">TODO: Jika form password kosong password tetap berubah</label>
+                        <input value="{{$user->username}}" class="form-control" placeholder="Username" type="text" name="username" id="username" disabled />
+                    </div> -->
 
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -52,25 +50,6 @@
                         <div class="invalid-feedback">
                             {{$errors->first('password_confirmation')}}
                         </div>
-                    </div> -->
-
-                    <label class="text-danger">TODO: Opsi ubah Role dan Status belum ada</label>
-
-                    <!-- select -->
-                    <!-- {{-- <div class="form-group">
-                        <label for="">Role</label>
-                        <select name="role" class="form-control">
-                            <option {{in_array("ADMIN", json_decode($user->role)) ? "checked" : ""}} name="role[]" id="ADMIN" value="ADMIN">Admin</option>
-                    <option {{in_array("STAFF", json_decode($user->role)) ? "checked" : ""}} name="role[]" id="STAFF" value="STAFF">Staff</option>
-                    </select>
-                </div> --}} -->
-
-                    <div class="form-group">
-                        <label for="">Role</label>
-                        <select name="role" class="form-control">
-                            <option {{ ( $user->role == "ADMIN") ? 'selected' : '' }} name="role" id="ADMIN" value="ADMIN">Admin</option>
-                            <option {{ ( $user->role == "STAFF") ? 'selected' : '' }} name="role" id="STAFF" value="STAFF">Staff</option>
-                        </select>
                     </div>
 
                 </div>

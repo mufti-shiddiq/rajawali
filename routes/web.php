@@ -37,6 +37,8 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'inde
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home')->middleware('auth');
 
 Route::resource("users", UserController::class)->middleware('can:isAdmin');
+Route::get('/users/{id}/change_password', [UserController::class, 'changepw'])->name('users.changepw')->middleware('can:isAdmin');
+Route::put('/users/{id}/update_password', [UserController::class, 'updatepw'])->name('users.updatepw')->middleware('can:isAdmin');
 
 Route::resource('categories', CategoryController::class)->middleware('auth');
 
@@ -75,3 +77,7 @@ Route::get('/wallets/add_cash_out', [WalletController::class, 'add_cash_out'])->
 Route::post('/wallets/store_cash_in', [WalletController::class, 'store_cash_in'])->name('wallets.store_cash_in');
 Route::post('/wallets/store_cash_out', [WalletController::class, 'store_cash_out'])->name('wallets.store_cash_out');
 Route::delete('/wallets/{id}', [WalletController::class, 'destroy'])->name('wallets.destroy');
+
+Route::get('product-import-export', [ProductController::class, 'importExport'])->name('product-import-export');
+Route::post('product-import', [ProductController::class, 'import'])->name('product-import');
+Route::get('product-export', [ProductController::class, 'export'])->name('product-export');

@@ -29,20 +29,20 @@
 
                     <div class="form-group">
                         <label for="name">Nama</label>
-                        <input  class="form-control" placeholder="Nama Pelanggan" type="text" name="name" id="name" />
+                        <input class="form-control" placeholder="Nama Pelanggan" type="text" name="name" id="name" />
                     </div>
                     <div class="form-group">
                         <label for="company">Perusahaan</label>
-                        <input  class="form-control" placeholder="Nama Perusahaan" type="text" name="company" id="company" />
+                        <input class="form-control" placeholder="Nama Perusahaan" type="text" name="company" id="company" />
                     </div>
                     <div class="form-group">
                         <label for="phone">Telepon</label>
-                        <input  class="form-control" placeholder="Nomor Telepon" type="tel" name="phone" id="phone" />
+                        <input class="form-control" placeholder="Nomor Telepon" type="tel" name="phone" id="phone" />
                     </div>
                     <div class="form-group">
                         <label for="address">Alamat</label>
-                        <textarea  class="form-control" name="address" id="address" rows="3"></textarea>
-                    </div>                   
+                        <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+                    </div>
 
                 </div>
                 <!-- /.card-body -->
@@ -50,7 +50,7 @@
                 <div class="card-footer">
                     <!-- <input class="btn btn-primary" type="submit" value="Save" /> -->
                     <button type="submit" class="btn btn-primary" value="Save">Simpan</button>
-                    <a href="{{route('customers.index')}}" class="btn btn-danger">Batal</a>
+                    <a href="{{route('customers.index')}}" class="btn btn-danger">Kembali</a>
                     <button type="reset" class="btn btn-flat">Reset</button>
                 </div>
             </form>

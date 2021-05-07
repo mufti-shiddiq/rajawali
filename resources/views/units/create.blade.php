@@ -30,12 +30,12 @@
                     <div class="form-group">
                         <label for="name">Nama</label>
                         <small class="text-muted"> (Misal: Kilogram, Liter, Lembar)</small>
-                        <input  class="form-control" placeholder="Nama Satuan Produk" type="text" name="name" id="name" />
+                        <input class="form-control" placeholder="Nama Satuan Produk" type="text" name="name" id="name" />
                     </div>
                     <div class="form-group">
                         <label for="code">Unit</label>
                         <small class="text-muted"> (Misal: kg, ltr, lbr, pcs)</small>
-                        <input  class="form-control" placeholder="Unit" type="text" name="code" id="code" />
+                        <input class="form-control" placeholder="Unit" type="text" name="code" id="code" />
                     </div>
 
                 </div>
@@ -44,7 +44,7 @@
                 <div class="card-footer">
                     <!-- <input class="btn btn-primary" type="submit" value="Save" /> -->
                     <button type="submit" class="btn btn-primary" value="Save">Simpan</button>
-                    <a href="{{route('units.index')}}" class="btn btn-danger">Batal</a>
+                    <a href="{{route('units.index')}}" class="btn btn-danger">Kembali</a>
                     <button type="reset" class="btn btn-flat">Reset</button>
                 </div>
             </form>
