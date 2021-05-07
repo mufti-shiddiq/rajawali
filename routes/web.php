@@ -69,6 +69,8 @@ Route::get('/transactions/print/{id}', [TransactionController::class, 'print'])-
 Route::get('/reports/transaction', [ReportController::class, 'transaction'])->name('reports.transaction');
 Route::get('/reports/transaction/{id}', [ReportController::class, 'trx_detail'])->name('reports.trx_detail');
 Route::delete('/reports/transaction/{id}', [ReportController::class, 'trx_destroy'])->name('reports.trx_destroy');
+Route::get('/reports/stock_in', [ReportController::class, 'stock_in'])->name('reports.stock_in');
+Route::get('/reports/stock_out', [ReportController::class, 'stock_out'])->name('reports.stock_out');
 
 // Route::resource('/wallets', WalletController::class);
 Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.index');

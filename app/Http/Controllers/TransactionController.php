@@ -16,6 +16,7 @@ use Darryldecode\Cart\Helpers\Helpers;
 use Darryldecode\Cart\Validators\CartItemValidator;
 use Darryldecode\Cart\Exceptions\UnknownModelException;
 use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
@@ -206,6 +207,9 @@ class TransactionController extends Controller
         $grand_total = $request->get('grand_total');
         $change = $request->get('changes');
         $cart = \Cart::getContent();
+        $datetime = Carbon::now()->format('d-m-Y H:i:s');
+
+        // dd($datetime);
 
         // dd($note);
         // Store Data ke table transactions
@@ -220,6 +224,10 @@ class TransactionController extends Controller
         $new_transaction->change = $change;
 
         $new_transaction->user_id = \Auth::user()->id;
+
+        $new_transaction->datetime = $datetime;
+
+        // dd($datetime);
 
         $new_transaction->save();
 

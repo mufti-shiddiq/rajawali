@@ -33,9 +33,7 @@ class ReportController extends Controller
                 })
 
 
-                ->addColumn('date', function ($data) {
-                    return $data->created_at;
-                })
+
 
                 ->addColumn('action', function ($row) {
                     // $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
@@ -83,7 +81,31 @@ class ReportController extends Controller
     public function trx_destroy($id)
     {
         $transaction = \App\Models\Transaction::findOrFail($id);
+        $trxdetail = \App\Models\TransactionDetail::where('transaction_id', $id);
+        $trxnol = \App\Models\TransactionDetail::where('transaction_id', 0);
+
+        $product = TransactionDetail::where('transaction_id', $id)->get();
+
+        foreach ($product as $key => $row) {
+
+            Product::where('id', $row->product_id)->increment('stock', $row->quantity);
+            Product::where('id', $row->product_id)->decrement('sold', $row->quantity);
+        }
+
         $transaction->delete();
+        $trxdetail->delete();
+        $trxnol->delete();
+
         return redirect()->route('reports.transaction');
+    }
+
+    public function stock_in()
+    {
+        return view('reports.stock_in');
+    }
+
+    public function stock_out()
+    {
+        return view('reports.stock_out');
     }
 }

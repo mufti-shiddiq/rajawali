@@ -54,7 +54,7 @@
                         </div>
                     </div> -->
 
-                    <label class="text-danger">TODO: Opsi ubah Role dan Status belum ada</label>
+                    <!-- <label class="text-danger">TODO: Opsi ubah Role dan Status belum ada</label> -->
 
                     <!-- select -->
                     <!-- {{-- <div class="form-group">

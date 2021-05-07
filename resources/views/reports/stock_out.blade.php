@@ -1,6 +1,6 @@
 @extends("adminlte::page")
 
-@section("title") Laporan Transaksi @endsection
+@section("title")Laporan Stok Keluar @endsection
 
 @push('css')
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/> -->
@@ -11,10 +11,10 @@
 @section('content_header')
 <div class="row">
     <div class="col-md-6">
-        <h1>Laporan Transaksi</h1>
+        <h1>Laporan Stok Keluar</h1>
     </div>
     <!-- <div class="col-md-6 text-right">
-        <a href="{{route('products.create')}}" class="btn btn-primary">Tambah Produk Baru</a>
+        <a href="{{route('stock_out.create')}}" class="btn btn-primary">Input Stok Keluar</a>
     </div> -->
 </div>
 @stop
@@ -22,16 +22,15 @@
 @section("content")
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered table-stripped table-hover bg-white transaction-table" id="table">
+        <table class="table table-bordered table-stripped table-hover bg-white data-table" id="table">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Tanggal</th>
-                    <th>Invoice</th>
-                    <th>Pelanggan</th>
-                    <th>Nilai Transaksi</th>
-                    <th>Catatan</th>
-                    <th>Kasir</th>
+                    <th>Kode</th>
+                    <th>Nama Produk</th>
+                    <th>Quantity</th>
+                    <th>Keterangan</th>
                     <th></th>
                 </tr>
             </thead>
@@ -54,12 +53,12 @@
 
 <script type="text/javascript">
     $(function() {
-        var table = $('.transaction-table').DataTable({
+        var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            order: [1, "desc"],
+            order: [1, "asc"],
 
-            ajax: "{{ route('reports.transaction') }}",
+            ajax: "{{ route('stock_out.index') }}",
             columns: [
 
                 {
@@ -69,30 +68,27 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
+
                 {
                     data: 'datetime',
                     name: 'datetime'
                 },
                 {
-                    data: 'invoice',
-                    name: 'invoice'
+                    data: 'code',
+                    name: 'code'
                 },
                 {
-                    data: 'customer',
-                    name: 'customer'
+                    data: 'name',
+                    name: 'name'
                 },
+
                 {
-                    data: 'grand_total',
-                    name: 'grand_total',
-                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                    data: 'quantity',
+                    name: 'quantity'
                 },
                 {
                     data: 'note',
                     name: 'note'
-                },
-                {
-                    data: 'user',
-                    name: 'user.name'
                 },
                 {
                     data: 'action',

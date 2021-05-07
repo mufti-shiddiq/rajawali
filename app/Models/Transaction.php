@@ -11,6 +11,8 @@ class Transaction extends Model
 
     protected $guarded = [];
 
+    // protected $dateFormat = 'd-m-Y H:i:s';
+
     public function transaction_detail()
     {
         return $this->hasMany(TransactionDetail::class);

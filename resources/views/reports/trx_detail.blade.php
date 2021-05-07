@@ -8,7 +8,7 @@
         <h1>Detail Transaksi</h1>
     </div>
     <div class="col-md-6 text-right">
-        <a class="btn btn-primary" href="{{route('transaction.print', [$id])}}"><i class="fa fa-print"></i> Print</a>
+        <a class="btn btn-primary" href="{{route('transaction.print', [$id])}}" target="_blank"><i class="fa fa-print"></i> Print</a>
         <a href="{{route('reports.transaction')}}" class="btn btn-danger">Kembali</a>
     </div>
 </div>
@@ -25,7 +25,7 @@
                 <h2><b>{{$transaction->invoice}}</b></h2>
 
                 <b>Tanggal:</b> <br />
-                {{$transaction->created_at}}
+                {{$transaction->datetime}}
                 <br>
 
                 <b>Kasir:</b> <br />

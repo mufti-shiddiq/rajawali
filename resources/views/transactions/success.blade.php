@@ -48,7 +48,7 @@
                 <div class="card-footer  text-center">
                     <!-- <input class="btn btn-primary" type="submit" value="Save" /> -->
                     <!-- <button type="submit" class="btn btn-primary" value="Print"><i class="fa fa-print"></i> Print</button> -->
-                    <a class="btn btn-primary" href="{{route('transaction.print', [$last_id])}}"><i class="fa fa-print"></i> Print</a>
+                    <a class="btn btn-primary" href="{{route('transaction.print', [$last_id])}}" target="_blank"><i class="fa fa-print"></i> Print</a>
                     <a href="{{route('transaction.index')}}" class="btn btn-danger">Kembali</a>
 
                 </div>

@@ -26,7 +26,7 @@
             </td>
             <td style='vertical-align:top' width='30%' align='left'>
                 <b><span style='font-size:12pt'>Invoice {{$transaction->invoice}}</span></b></br>
-                Tanggal : {{$transaction->created_at}}</br>
+                Tanggal : {{$transaction->datetime}}</br>
                 Kasir : {{$transaction->user->name}}</br>
                 Customer : {{$transaction->customer->name}} <br>
                 No Telp : {{$transaction->customer->phone}} <br><br>

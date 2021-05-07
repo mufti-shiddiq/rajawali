@@ -338,17 +338,25 @@ return [
                     'url'  => '/reports/transaction',
                 ],
                 [
-                    'text' => 'Laporan Harian',
-                    'url'  => '#',
+                    'text' => 'Laporan Stok Masuk',
+                    'url'  => '/reports/stock_in',
                 ],
                 [
-                    'text' => 'Laporan Mingguan',
-                    'url'  => '#',
+                    'text' => 'Laporan Stok Keluar',
+                    'url'  => '/reports/stock_out',
                 ],
-                [
-                    'text' => 'Laporan Bulanan',
-                    'url'  => '#',
-                ],
+                // [
+                //     'text' => 'Laporan Harian',
+                //     'url'  => '#',
+                // ],
+                // [
+                //     'text' => 'Laporan Mingguan',
+                //     'url'  => '#',
+                // ],
+                // [
+                //     'text' => 'Laporan Bulanan',
+                //     'url'  => '#',
+                // ],
             ],
         ],
 
