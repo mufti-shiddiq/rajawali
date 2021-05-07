@@ -19,7 +19,7 @@
             <div class="icon">
                 <i class="fas fa-shopping-cart"></i>
             </div>
-            <a href="{{route('reports.transaction')}}" class="small-box-footer">
+            <a href="{{route('reports.daily')}}" class="small-box-footer">
                 Info <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -30,13 +30,13 @@
 
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>{{number_format($total_value_trx_today,0,".",".")}}</h3>
+                <h3>{{"Rp " . number_format($total_value_trx_today,0,".",".")}}</h3>
                 <p>Nilai Transaksi Hari ini</p>
             </div>
             <div class="icon">
-                <i class="fas fa-dollar-sign"></i>
+                <i class="fa fa-money-bill"></i>
             </div>
-            <a href="{{route('reports.transaction')}}" class="small-box-footer">
+            <a href="{{route('reports.daily')}}" class="small-box-footer">
                 Info <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -47,13 +47,13 @@
 
         <div class="small-box bg-warning">
             <div class="inner">
-                <h3> {{ $total_product_sell_today }} </h3>
-                <p>Produk Terjual Hari ini</p>
+                <h3>{{"Rp " . number_format($profit_today,0,".",".")}}</h3>
+                <p>Profit Hari ini</p>
             </div>
             <div class="icon">
-                <i class="fas fa-box"></i>
+                <i class="fa fa-chart-bar"></i>
             </div>
-            <a href="{{route('reports.transaction')}}" class="small-box-footer">
+            <a href="{{route('reports.daily')}}" class="small-box-footer">
                 Info <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -63,11 +63,11 @@
 
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>{{number_format($cash_balance,0,".",".")}}</h3>
+                <h3>{{"Rp " . number_format($cash_balance,0,".",".")}}</h3>
                 <p>Saldo Kas Toko</p>
             </div>
             <div class="icon">
-                <i class="fas fa-money-bill"></i>
+                <i class="fa fa-wallet"></i>
             </div>
             <a href="{{route('wallets.index')}}" class="small-box-footer">
                 Info <i class="fas fa-arrow-circle-right"></i>
@@ -172,6 +172,10 @@
 </div>
 
 @stop
+
+@section('footer')
+true
+@endsection
 
 @section('css')
 <!-- <link rel="stylesheet" href="/css/admin_custom.css"> -->

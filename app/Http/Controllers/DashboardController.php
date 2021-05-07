@@ -44,6 +44,7 @@ class DashboardController extends Controller
         $total_trx_today = Transaction::where('created_at', '>', Carbon::today())->count();
         $total_value_trx_today = Transaction::where('created_at', '>', Carbon::today())->sum('grand_total');
         $total_product_sell_today = TransactionDetail::where('created_at', '>', Carbon::today())->sum('quantity');
+        $profit_today = TransactionDetail::dailyReport()->sum('profit');;
         // dd($total_product_sell_today);
 
         // Chart.js
@@ -80,6 +81,6 @@ class DashboardController extends Controller
         // dd($data);
 
         // Product::find($id)->select('id')->get()->count();
-        return view('dashboard', compact('total_produk', 'total_pelanggan', 'total_pengguna', 'cash_balance', 'total_trx_today', 'total_value_trx_today', 'total_product_sell_today', 'trx_month'))->with('year', json_encode($year, JSON_NUMERIC_CHECK))->with('month', json_encode($month, JSON_NUMERIC_CHECK))->with('transaction', json_encode($transaction, JSON_NUMERIC_CHECK))->with($data);
+        return view('dashboard', compact('total_produk', 'total_pelanggan', 'total_pengguna', 'cash_balance', 'total_trx_today', 'total_value_trx_today', 'total_product_sell_today', 'trx_month', 'profit_today'))->with('year', json_encode($year, JSON_NUMERIC_CHECK))->with('month', json_encode($month, JSON_NUMERIC_CHECK))->with('transaction', json_encode($transaction, JSON_NUMERIC_CHECK))->with($data);
     }
 }

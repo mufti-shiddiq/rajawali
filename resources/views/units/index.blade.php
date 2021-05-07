@@ -26,32 +26,34 @@
                 </tr>
             </thead>
             <tbody>
-        @foreach($units as $unit)
-        <tr>
-            <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
-            <td>{{$unit->name}}</td>
+                @foreach($units as $unit)
+                <tr>
+                    <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
+                    <td>{{$unit->name}}</td>
 
-            <td>{{$unit->code}}</td>
+                    <td>{{$unit->code}}</td>
 
-            <td>
-                <a class="btn btn-info text-white btn-sm" href="{{route('units.edit', [$unit->id])}}">Edit</a>
+                    <td>
+                        <a class="btn btn-info text-white btn-sm" href="{{route('units.edit', [$unit->id])}}">Edit</a>
 
-                <form onsubmit="return confirm('Yakin ingin menghapus Satuan Produk ini?')" class="d-inline" action="{{route('units.destroy', [$unit->id])}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
-                </form>
-            </td>
+                        <form onsubmit="return confirm('Yakin ingin menghapus Satuan Produk ini?')" class="d-inline" action="{{route('units.destroy', [$unit->id])}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
+                        </form>
+                    </td>
 
-        </tr>
-        @endforeach
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan=10>
-                {{$units->appends(Request::all())->links()}}
-            </td>
-        </tr>
-    </tfoot>
-    
+                </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan=10>
+                        {{$units->appends(Request::all())->links()}}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
 @endsection

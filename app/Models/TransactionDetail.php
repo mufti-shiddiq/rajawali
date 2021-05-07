@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionDetail extends Model
 {
     use HasFactory;
+    use \Reportable\Traits\Reportable;
 
     protected $guarded = [];
 

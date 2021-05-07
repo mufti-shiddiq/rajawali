@@ -14,14 +14,14 @@
 
 <div class="row">
     <div class="col-md-6">
-    
+
         <form action="{{route('categories.index')}}">
             <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Filter berdasarkan nama kategori" name="name">
-                    <div class="input-group-append">
-                        <input type="submit" value="Filter" class="btn btn-primary">
-                    </div>
-                    <div class="mx-5"></div>
+                <input type="text" class="form-control" placeholder="Filter berdasarkan nama kategori" name="name">
+                <div class="input-group-append">
+                    <input type="submit" value="Filter" class="btn btn-primary">
+                </div>
+                <div class="mx-5"></div>
             </div>
         </form>
     </div>
@@ -30,7 +30,7 @@
     </div>
     <hr class="my-3">
     <div class="col-md-8">
-    
+
         <table class="table table-bordered table-stripped table-hover bg-white">
             <thead>
                 <tr>
@@ -41,32 +41,36 @@
                 </tr>
             </thead>
             <tbody>
-        @foreach($categories as $category)
-        <tr>
-            <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
-            <td>{{$category->name}}</td>
+                @foreach($categories as $category)
+                <tr>
+                    <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
+                    <td>{{$category->name}}</td>
 
-            <td>{{$category->slug}}</td>
+                    <td>{{$category->slug}}</td>
 
-            <td>
-                <a class="btn btn-info text-white btn-sm" href="{{route('categories.edit', [$category->id])}}">Edit</a>
+                    <td>
+                        <a class="btn btn-info text-white btn-sm" href="{{route('categories.edit', [$category->id])}}">Edit</a>
 
-                <form onsubmit="return confirm('Yakin ingin menghapus kategori ini?')" class="d-inline" action="{{route('categories.destroy', [$category->id])}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
-                </form>
-            </td>
+                        <form onsubmit="return confirm('Yakin ingin menghapus kategori ini?')" class="d-inline" action="{{route('categories.destroy', [$category->id])}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
+                        </form>
+                    </td>
 
-        </tr>
-        @endforeach
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan=10>
-                {{$categories->appends(Request::all())->links()}}
-            </td>
-        </tr>
-    </tfoot>
-    <hr class="my-3">
+                </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan=10>
+                        {{$categories->appends(Request::all())->links()}}
+                    </td>
+                </tr>
+            </tfoot>
+            <hr class="my-3">
+        </table>
+    </div>
+</div>
+
 @endsection

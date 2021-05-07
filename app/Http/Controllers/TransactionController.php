@@ -17,6 +17,7 @@ use Darryldecode\Cart\Validators\CartItemValidator;
 use Darryldecode\Cart\Exceptions\UnknownModelException;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
+use \Reportable\Traits\Reportable;
 
 class TransactionController extends Controller
 {
@@ -143,7 +144,8 @@ class TransactionController extends Controller
             'conditions' => $discount_items,
             'attributes' => array(
                 'code' => $request->code,
-                'unit' => $request->unit
+                'unit' => $request->unit,
+                'buyprice' => $request->buyprice
             ),
         ));
 
@@ -244,8 +246,10 @@ class TransactionController extends Controller
                 'quantity' => $row['quantity'],
                 'unit' => $row->attributes->unit,
                 'price' => $row['price'],
+                'buy_price' => $row->attributes->buyprice,
                 'discount_item' => $row->conditions->parsedRawValue,
                 'sub_total' => $row->getPriceSumWithConditions(),
+                'profit' => (($row['price'] - $row->conditions->parsedRawValue) - $row->attributes->buyprice) * $row['quantity'],
             ]);
             $qty = $row['quantity'];
             $this->updateProduct($key, $qty);
@@ -254,6 +258,9 @@ class TransactionController extends Controller
         // dd($new_trxdetail);
 
         $new_trxdetail->save();
+
+        $trxnol = \App\Models\TransactionDetail::where('transaction_id', 0);
+        $trxnol->delete();
 
         \Cart::clear();
         return redirect()->route('transaction.success');

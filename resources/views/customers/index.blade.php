@@ -28,37 +28,40 @@
                 </tr>
             </thead>
             <tbody>
-        @foreach($customers as $customer)
-        <tr>
-            <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
-            
-            <td>{{$customer->name}}</td>
+                @foreach($customers as $customer)
+                <tr>
+                    <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
 
-            <td>{{$customer->company}}</td>
+                    <td>{{$customer->name}}</td>
 
-            <td>{{$customer->phone}}</td>
+                    <td>{{$customer->company}}</td>
 
-            <td>{{$customer->address}}</td>
+                    <td>{{$customer->phone}}</td>
 
-            <td>
-                <a class="btn btn-info text-white btn-sm" href="{{route('customers.edit', [$customer->id])}}">Edit</a>
+                    <td>{{$customer->address}}</td>
 
-                <form onsubmit="return confirm('Yakin ingin menghapus Pelanggan ini?')" class="d-inline" action="{{route('customers.destroy', [$customer->id])}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
-                </form>
-            </td>
+                    <td>
+                        <a class="btn btn-info text-white btn-sm" href="{{route('customers.edit', [$customer->id])}}">Edit</a>
 
-        </tr>
-        @endforeach
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan=10>
-                {{$customers->appends(Request::all())->links()}}
-            </td>
-        </tr>
-    </tfoot>
-    
+                        <form onsubmit="return confirm('Yakin ingin menghapus Pelanggan ini?')" class="d-inline" action="{{route('customers.destroy', [$customer->id])}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
+                        </form>
+                    </td>
+
+                </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan=10>
+                        {{$customers->appends(Request::all())->links()}}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
 @endsection

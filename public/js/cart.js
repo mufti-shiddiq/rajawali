@@ -12,6 +12,7 @@ function selectProductAction() {
   $('input#name').val(selectedData.name);
   $('input#unit').val(selectedData.unit);
   $('input#price').val(selectedData.price);
+  $('input#buyprice').val(selectedData.buyprice);
   $('.modal').modal('hide');
 }
 
@@ -59,13 +60,21 @@ $(document).ready(function () {
       name: 'sell_price',
       render: $.fn.dataTable.render.number('.', '.', 0, ''),
       orderable: false
-    }, {
+    },
+    {
+      data: 'buy_price',
+      name: 'buy_price',
+      visible: false,
+      orderable: false,
+      searchable: false
+    }, 
+    {
       data: 'actions',
       name: 'actions',
       orderable: false,
       searchable: false,
       render: function render(data, type, row) {
-        return '<button data-id="' + row.id + '" data-code="' + row.code + '" data-name="' + row.product_name + '" data-unit="' + row.unit + '" data-price="' + row.sell_price + '" class="btn btn-info text-white btn-sm btn-select-product">Pilih</button>';
+        return '<button data-id="' + row.id + '" data-code="' + row.code + '" data-name="' + row.product_name + '" data-unit="' + row.unit + '" data-price="' + row.sell_price + '" data-buyprice="' + row.buy_price + '" class="btn btn-info text-white btn-sm btn-select-product">Pilih</button>';
       }
     }]
   });

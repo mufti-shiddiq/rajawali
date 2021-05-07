@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Reportable\Traits\Reportable;
 
 class Transaction extends Model
 {
     use HasFactory;
+    use \Reportable\Traits\Reportable;
 
     protected $guarded = [];
 

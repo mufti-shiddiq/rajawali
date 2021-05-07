@@ -129,41 +129,42 @@
             </div>
         </div>
     </div>
+</div>
 
-    @endsection
+@endsection
 
-    @push('js')
+@push('js')
 
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-        //Date and time picker
-        $(function() {
-            $('#datetime').datetimepicker({
-                format: 'DD-MM-YYYY HH:mm',
-                icons: {
-                    time: 'far fa-clock'
-                },
-                locale: 'id',
-                // inline: true,
-                sideBySide: true,
-                use24hours: true
-            });
-
-
+<script type="text/javascript">
+    //Date and time picker
+    $(function() {
+        $('#datetime').datetimepicker({
+            format: 'DD-MM-YYYY HH:mm',
+            icons: {
+                time: 'far fa-clock'
+            },
+            locale: 'id',
+            // inline: true,
+            sideBySide: true,
+            use24hours: true
         });
-    </script>
 
-    <script>
-        var BASE_URL = "{{url('/')}}"
-    </script>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{asset('js/cart.js')}}"></script>
 
-    @endpush
+    });
+</script>
+
+<script>
+    var BASE_URL = "{{url('/')}}"
+</script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{asset('js/cart.js')}}"></script>
+
+@endpush

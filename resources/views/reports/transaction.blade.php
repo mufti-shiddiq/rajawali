@@ -1,6 +1,6 @@
 @extends("adminlte::page")
 
-@section("title") Laporan Transaksi @endsection
+@section("title") Laporan Semua Transaksi @endsection
 
 @push('css')
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/> -->
@@ -11,7 +11,7 @@
 @section('content_header')
 <div class="row">
     <div class="col-md-6">
-        <h1>Laporan Transaksi</h1>
+        <h1>Laporan Semua Transaksi</h1>
     </div>
     <!-- <div class="col-md-6 text-right">
         <a href="{{route('products.create')}}" class="btn btn-primary">Tambah Produk Baru</a>

@@ -31,7 +31,7 @@ return [
     */
 
     'use_ico_only' => false,
-    'use_full_favicon' => false,
+    'use_full_favicon' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -334,8 +334,20 @@ return [
             'icon'    => 'fas fa-fw fa-chart-pie',
             'submenu' => [
                 [
-                    'text' => 'Laporan Transaksi',
+                    'text' => 'Semua Transaksi',
                     'url'  => '/reports/transaction',
+                ],
+                [
+                    'text' => 'Laporan Harian',
+                    'url'  => '/reports/daily',
+                ],
+                [
+                    'text' => 'Laporan Mingguan',
+                    'url'  => '/reports/weekly',
+                ],
+                [
+                    'text' => 'Laporan Bulanan',
+                    'url'  => '/reports/monthly',
                 ],
                 [
                     'text' => 'Laporan Stok Masuk',
@@ -345,18 +357,6 @@ return [
                     'text' => 'Laporan Stok Keluar',
                     'url'  => '/reports/stock_out',
                 ],
-                // [
-                //     'text' => 'Laporan Harian',
-                //     'url'  => '#',
-                // ],
-                // [
-                //     'text' => 'Laporan Mingguan',
-                //     'url'  => '#',
-                // ],
-                // [
-                //     'text' => 'Laporan Bulanan',
-                //     'url'  => '#',
-                // ],
             ],
         ],
 
@@ -364,6 +364,7 @@ return [
             'text' => 'Pengguna',
             'url'  => 'users',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'isAdmin'
         ],
 
 

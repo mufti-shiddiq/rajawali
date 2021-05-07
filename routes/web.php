@@ -72,6 +72,10 @@ Route::delete('/reports/transaction/{id}', [ReportController::class, 'trx_destro
 Route::get('/reports/stock_in', [ReportController::class, 'stock_in'])->name('reports.stock_in');
 Route::get('/reports/stock_out', [ReportController::class, 'stock_out'])->name('reports.stock_out');
 
+Route::get('/reports/daily', [ReportController::class, 'daily'])->name('reports.daily');
+Route::get('/reports/weekly', [ReportController::class, 'weekly'])->name('reports.weekly');
+Route::get('/reports/monthly', [ReportController::class, 'monthly'])->name('reports.monthly');
+
 // Route::resource('/wallets', WalletController::class);
 Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.index');
 Route::get('/wallets/add_cash_in', [WalletController::class, 'add_cash_in'])->name('wallets.add_cash_in');

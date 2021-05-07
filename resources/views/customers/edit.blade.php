@@ -59,5 +59,6 @@
         <div class="my-5"></div>
     </div>
     <!-- /.card -->
+</div>
 
-    @endsection
+@endsection

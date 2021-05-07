@@ -85,37 +85,37 @@
         <div class="my-5"></div>
     </div>
     <!-- /.card -->
+</div>
+@endsection
 
-    @endsection
+@push('js')
 
-    @push('js')
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
 
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        //Date and time picker
-        $(function() {
-            $('#datetime').datetimepicker({
-                format: 'DD-MM-YYYY HH:mm',
-                icons: {
-                    time: 'far fa-clock'
-                },
-                locale: 'id',
-                // inline: true,
-                sideBySide: true,
-                use24hours: true
-            });
-
-
+<script type="text/javascript">
+    //Date and time picker
+    $(function() {
+        $('#datetime').datetimepicker({
+            format: 'DD-MM-YYYY HH:mm',
+            icons: {
+                time: 'far fa-clock'
+            },
+            locale: 'id',
+            // inline: true,
+            sideBySide: true,
+            use24hours: true
         });
 
-        $(document).ready(function() {
-            $("#cash_in").click(function() {
-                $(".nominal").attr("href", "https://www.w3schools.com/jquery/");
-            });
-        });
-    </script>
 
-    @endpush
+    });
+
+    $(document).ready(function() {
+        $("#cash_in").click(function() {
+            $(".nominal").attr("href", "https://www.w3schools.com/jquery/");
+        });
+    });
+</script>
+
+@endpush

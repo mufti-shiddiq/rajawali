@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5c466b19a4d0888bd424a566bb910b9",
+    "content-hash": "805cf4866dfe8d31bd3b681cf0377931",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -2312,6 +2312,58 @@
                 "source": "https://github.com/opis/closure/tree/3.6.2"
             },
             "time": "2021-04-09T13:42:10+00:00"
+        },
+        {
+            "name": "paxha/laravel-reportable",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paxha/laravel-reportable.git",
+                "reference": "f6f555d33034ecc4869bc361f89dc4293ae54ebf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paxha/laravel-reportable/zipball/f6f555d33034ecc4869bc361f89dc4293ae54ebf",
+                "reference": "f6f555d33034ecc4869bc361f89dc4293ae54ebf",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench-dusk": "^4.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "laravel",
+            "autoload": {
+                "psr-4": {
+                    "Reportable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hassan Raza Pasha",
+                    "email": "e.hassanrazapasha@gmail.com"
+                }
+            ],
+            "description": "This Laravel Eloquent extension provides record according to dates using models.",
+            "keywords": [
+                "Laravel Reportable",
+                "laravel",
+                "laravel package",
+                "laravel reports",
+                "report generator",
+                "reportable"
+            ],
+            "support": {
+                "issues": "https://github.com/paxha/laravel-reportable/issues",
+                "source": "https://github.com/paxha/laravel-reportable/tree/v1.2.0"
+            },
+            "time": "2020-12-17T16:21:59+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",

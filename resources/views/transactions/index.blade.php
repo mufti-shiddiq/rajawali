@@ -19,15 +19,12 @@
 @section("content")
 
 <div class="row">
-
     <div class="col-lg-4 pr-3">
 
         <div class="card">
-
             <div class="card-body">
-
-
                 <div class="box box-widget">
+
                     <div class="box-body">
 
                         <form action="{{ route('cart.store') }}" method="POST">
@@ -49,6 +46,7 @@
                                             <input type="hidden" id="code" name="code">
                                             <input type="hidden" id="unit" name="unit">
                                             <input type="hidden" id="price" name="price">
+                                            <input type="hidden" id="buyprice" name="buyprice">
 
                                             <input type="text" id="name" name="name" class="form-control" readonly>
 
@@ -68,7 +66,6 @@
                                         <input type="number" id="discount_item" name="discount_item" min="0" class="form-control">
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td style="vertical-align:top;" class="pt-3">
                                         <label>Qty</label>
@@ -83,19 +80,14 @@
                                         </div>
                                     </td>
                                 </tr>
-
                             </table>
                         </form>
-
                         <br>
-
                         <div>
                             <!-- <h4>Invoice <b><span id="invoice"></span></b></h4> -->
                             <h1><b style="font-size: 20pt;">Total: <span class="grand_total" id="grand_total2" style="font-size: 35pt;">{{ number_format(\Cart::getTotal(),0,".",".") }}</span></b></h1>
                         </div>
-
                         <br>
-
                         <div class="row">
                             <div class="col-lg-2">
                             </div>
@@ -111,7 +103,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -119,12 +110,8 @@
     </div>
 
     <div class="col-lg-8">
-
         <div class="card">
-
             <div class="card-body">
-
-
                 <div class="box box-widget">
                     <div class="box-body table-responsive">
                         <table class="table table-bordered table-hover cart-table" id="cart-table">
@@ -148,10 +135,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
     </div>
 </div>
 
@@ -180,6 +164,7 @@
                                         <th>Satuan</th>
                                         <th>Stok</th>
                                         <th>Harga</th>
+                                        <th></th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
