@@ -37,6 +37,7 @@
                     <th style="width: 50px"><b>No</b></th>
                     <th><b>Nama</b></th>
                     <th style="width: 225px"><b>Slug</b></th>
+                    <th style="width: 50px"><b>ID</b></th>
                     <th style="width: 125px"><b></b></th>
                 </tr>
             </thead>
@@ -47,6 +48,8 @@
                     <td>{{$category->name}}</td>
 
                     <td>{{$category->slug}}</td>
+
+                    <td>{{$category->id}}</td>
 
                     <td>
                         <a class="btn btn-info text-white btn-sm" href="{{route('categories.edit', [$category->id])}}">Edit</a>

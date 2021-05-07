@@ -43,8 +43,8 @@
 
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>{{"+ Rp " . number_format($cash_in,0,".",".")}}</h3>
-                <p>Total Kas Masuk</p>
+                <h3>{{"+ Rp " . number_format($last_ci_value,0,".",".")}}</h3>
+                <p>{{$last_ci_note}} (Kas Masuk Terakhir)</p>
             </div>
             <div class="icon">
                 <i class="fas fa-plus"></i>
@@ -60,8 +60,8 @@
 
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>{{"- Rp " . number_format($cash_out,0,".",".")}}</h3>
-                <p>Total Kas Keluar</p>
+                <h3>{{"- Rp " . number_format($last_co_value,0,".",".")}}</h3>
+                <p>{{$last_co_note}} (Kas Keluar Terakhir)</p>
             </div>
             <div class="icon">
                 <i class="fas fa-minus"></i>

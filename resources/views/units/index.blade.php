@@ -22,6 +22,7 @@
                     <th style="width: 50px"><b>No</b></th>
                     <th><b>Nama</b></th>
                     <th style="width: 150px"><b>Unit</b></th>
+                    <th style="width: 50px"><b>ID</b></th>
                     <th style="width: 125px"><b></b></th>
                 </tr>
             </thead>
@@ -32,6 +33,8 @@
                     <td>{{$unit->name}}</td>
 
                     <td>{{$unit->code}}</td>
+
+                    <td>{{$unit->id}}</td>
 
                     <td>
                         <a class="btn btn-info text-white btn-sm" href="{{route('units.edit', [$unit->id])}}">Edit</a>

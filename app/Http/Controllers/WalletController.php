@@ -20,7 +20,16 @@ class WalletController extends Controller
         $cash_out = DB::table("wallets")->sum('cash_out');
 
         $balance = $cash_in - $cash_out;
-        // dd ($balance);
+
+        $last_cash_in = Wallet::where('transaction', "Kas-Masuk")->latest()->first();
+        $last_ci_value = $last_cash_in->cash_in;
+        $last_ci_note = $last_cash_in->note;
+
+        $last_cash_out = Wallet::where('transaction', "Kas-Keluar")->latest()->first();
+        $last_co_value = $last_cash_out->cash_out;
+        $last_co_note = $last_cash_out->note;
+
+        // dd($last_co_note);
 
         if ($request->ajax()) {
             $data = Wallet::all();
@@ -44,7 +53,17 @@ class WalletController extends Controller
                 ->make(true);
         }
 
-        return view('wallets.index', compact('cash_in', 'cash_out', 'balance'));
+        return view('wallets.index', compact(
+            'cash_in',
+            'cash_out',
+            'balance',
+            'last_cash_in',
+            'last_cash_out',
+            'last_ci_value',
+            'last_co_value',
+            'last_ci_note',
+            'last_co_note'
+        ));
     }
 
     /**
@@ -71,7 +90,7 @@ class WalletController extends Controller
 
     public function store_cash_in(Request $request)
     {
-        
+
 
         $new_wallet = new \App\Models\Wallet;
         // $new_wallet->transaction = json_encode($request->get('transaction'));
@@ -79,7 +98,7 @@ class WalletController extends Controller
         $new_wallet->datetime = $request->get('datetime');
         $new_wallet->cash_in = $request->get('cash_in');
         $new_wallet->note = $request->get('note');
-        
+
         $new_wallet->created_by = \Auth::user()->name;
 
         $new_wallet->save();
@@ -88,7 +107,7 @@ class WalletController extends Controller
 
     public function store_cash_out(Request $request)
     {
-        
+
 
         $new_wallet = new \App\Models\Wallet;
         // $new_wallet->transaction = json_encode($request->get('transaction'));
@@ -96,7 +115,7 @@ class WalletController extends Controller
         $new_wallet->datetime = $request->get('datetime');
         $new_wallet->cash_out = $request->get('cash_out');
         $new_wallet->note = $request->get('note');
-        
+
         $new_wallet->created_by = \Auth::user()->name;
 
         $new_wallet->save();
