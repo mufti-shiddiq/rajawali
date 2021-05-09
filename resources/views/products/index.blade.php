@@ -37,6 +37,7 @@
                     <th>Terjual</th>
                     <th>Harga Beli</th>
                     <th>Harga Jual</th>
+                    <th>Profit</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -114,6 +115,11 @@
                 {
                     data: 'sell_price',
                     name: 'sell_price',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'profit',
+                    name: 'profit',
                     render: $.fn.dataTable.render.number('.', '.', 0, '')
                 },
                 {

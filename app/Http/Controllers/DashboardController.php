@@ -68,7 +68,9 @@ class DashboardController extends Controller
             ->orderBy('day')
             ->get();
 
-        $data = [];
+        // dd($trx_last_week);
+
+        // $data = [];
 
         foreach ($trx_last_week as $row) {
             $data['label'][] = $row->day_name;

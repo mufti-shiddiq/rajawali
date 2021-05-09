@@ -28,7 +28,7 @@
                 <b><span style='font-size:12pt'>Invoice {{$transaction->invoice}}</span></b></br>
                 Tanggal : {{$transaction->datetime}}</br>
                 Kasir : {{$transaction->user->name}}</br>
-                Customer : {{$transaction->customer->name}} <br>
+                Customer : {{$transaction->customer->name}} {{$transaction->customer->company}} <br>
                 No Telp : {{$transaction->customer->phone}} <br><br>
             </td>
         </table>

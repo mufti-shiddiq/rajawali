@@ -44,6 +44,10 @@ class ProductController extends Controller
                     return $product->unit->code;
                 })
 
+                ->addColumn('profit', function (Product $product) {
+                    return $product->sell_price - $product->buy_price;
+                })
+
                 ->addColumn('action', function ($row) {
                     // $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
                     // $product = Product::all();

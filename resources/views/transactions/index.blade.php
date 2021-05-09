@@ -31,7 +31,7 @@
                             @csrf
                             <table width="100%">
                                 <tr>
-                                    <td style="vertical-align: top; width:30%">
+                                    <td style="vertical-align: center; width:30%">
                                         <label for="code">Produk</label>
                                     </td>
                                     <td>
@@ -44,7 +44,7 @@
 
                                             <input type="hidden" id="id" name="id">
                                             <input type="hidden" id="code" name="code">
-                                            <input type="hidden" id="unit" name="unit">
+                                            <!-- <input type="hidden" id="unit" name="unit"> -->
                                             <input type="hidden" id="price" name="price">
                                             <input type="hidden" id="buyprice" name="buyprice">
 
@@ -59,21 +59,31 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="vertical-align:top;">
+                                    <td style="vertical-align:center;width:30%">
                                         <label>Diskon Item</label>
                                     </td>
-                                    <td>
-                                        <input type="number" id="discount_item" name="discount_item" min="0" class="form-control">
+                                    <td style="">
+                                        <div class="input-group">
+                                            <input type="text" id="price_view" name="price_view" min="0" class="form-control" readonly>
+                                            <label class="px-3"><b> _ </b></label>
+                                            <input type="number" id="discount_item" name="discount_item" min="0" class="form-control">
+                                            <!-- <div class="px-5"></div> -->
+                                            <!-- <div class="px-2"></div> -->
+                                            <!-- <input type="text" class="form-control" style="display: none;" id="unit" name="unit" disabled> -->
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="vertical-align:top;" class="pt-3">
-                                        <label>Qty</label>
+                                    <td style="vertical-align:center;" class="pt-3">
+                                        <label>Quantity</label>
                                     </td>
                                     <td>
                                         <div class="input-group pt-3">
                                             <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control">
-                                            <div class="px-5"></div>
+                                            <!-- <div class="text-info px-2"></div>
+                                            <div class="px-3"><a id="unit" name="unit"></a></div> -->
+                                            <input type="text" class="form-control" id="unit" name="unit" readonly>
+                                            <div class="px-2"></div>
                                             <button type="submit" class="btn btn-primary">
                                                 <i class="fa fa-cart-plus"></i> Tambah
                                             </button>

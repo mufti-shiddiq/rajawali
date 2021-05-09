@@ -9,7 +9,8 @@
     </div>
     <div class="col-md-6 text-right">
         <a class="btn btn-primary" href="{{route('transaction.print', [$id])}}" target="_blank"><i class="fa fa-print"></i> Print</a>
-        <a href="{{route('reports.transaction')}}" class="btn btn-danger">Kembali</a>
+        <!-- <a href="{{route('reports.transaction')}}" class="btn btn-danger">Kembali</a> -->
+        <input class="btn btn-danger" type="button" value="Kembali" onclick="history.back()">
     </div>
 </div>
 @stop
@@ -48,6 +49,10 @@
                 {{ number_format($transaction->change,0,".",".") }}
                 <br>
 
+                <b>Profit:</b> <br />
+                {{ number_format($transaction->profit,0,".",".") }}
+                <br>
+
                 <b>Catatan:</b> <br />
                 {{$transaction->note}}
                 <br>
@@ -72,6 +77,7 @@
                             <th>Harga Satuan</th>
                             <th>Diskon Item</th>
                             <th>Sub Total</th>
+                            <th>Profit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,6 +98,8 @@
                             <td>{{ number_format($item->discount_item,0,".",".") }}</td>
 
                             <td>{{ number_format($item->sub_total,0,".",".") }}</td>
+
+                            <td>{{ number_format($item->profit,0,".",".") }}</td>
 
                         </tr>
                         @endforeach

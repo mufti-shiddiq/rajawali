@@ -6,12 +6,14 @@ var __webpack_exports__ = {};
 var productSelected = {};
 
 function selectProductAction() {
+  let uang = Intl.NumberFormat('id-ID');
   var selectedData = $(this).data();
   $('input#id').val(selectedData.id);
   $('input#code').val(selectedData.code);
   $('input#name').val(selectedData.name);
   $('input#unit').val(selectedData.unit);
   $('input#price').val(selectedData.price);
+  $('input#price_view').val(uang.format(selectedData.price));
   $('input#buyprice').val(selectedData.buyprice);
   $('.modal').modal('hide');
 }

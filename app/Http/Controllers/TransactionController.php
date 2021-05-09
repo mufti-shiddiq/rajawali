@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\DailyReport;
 use Darryldecode\Cart\CartCollection;
 use Darryldecode\Cart\CartCondition;
 use Darryldecode\Cart\Exceptions\InvalidConditionException;
@@ -210,6 +211,7 @@ class TransactionController extends Controller
         $change = $request->get('changes');
         $cart = \Cart::getContent();
         $datetime = Carbon::now()->format('d-m-Y H:i:s');
+        $date = Carbon::now()->format('d-m-Y');
 
         // dd($datetime);
 
@@ -249,16 +251,47 @@ class TransactionController extends Controller
                 'buy_price' => $row->attributes->buyprice,
                 'discount_item' => $row->conditions->parsedRawValue,
                 'sub_total' => $row->getPriceSumWithConditions(),
+                'capital' => $row->attributes->buyprice * $row['quantity'],
                 'profit' => (($row['price'] - $row->conditions->parsedRawValue) - $row->attributes->buyprice) * $row['quantity'],
             ]);
             $qty = $row['quantity'];
             $this->updateProduct($key, $qty);
         }
-
         // dd($new_trxdetail);
-
         $new_trxdetail->save();
 
+        // Add Capital and Profit to Transaction Table
+        $transaction = Transaction::findOrFail($new_transaction->id);
+        $profit_trx = TransactionDetail::where('transaction_id', $new_transaction->id)->sum('profit');
+        $capital = TransactionDetail::where('transaction_id', $new_transaction->id)->sum('capital');
+
+        $transaction->capital = $capital;
+        $transaction->profit = $profit_trx;
+        $transaction->save();
+
+        // Add Report
+        $trx = DailyReport::where('date', $date)->first();
+
+        $qty_trx = TransactionDetail::where('transaction_id', $new_transaction->id)->sum('quantity');
+
+        if ($trx !== null) {
+            $trx->increment('transaction', 1);
+            $trx->increment('product', $qty_trx);
+            $trx->increment('value', $new_transaction->grand_total);
+            $trx->increment('capital', $capital);
+            $trx->increment('profit', $profit_trx);
+        } else {
+            $trx = DailyReport::create([
+                'date' => $date,
+                'transaction' => 1,
+                'product' => $qty_trx,
+                'value' => $new_transaction->grand_total,
+                'capital' => $capital,
+                'profit' => $profit_trx,
+            ]);
+        }
+
+        // Delete TRX with TRX_ID = 0
         $trxnol = \App\Models\TransactionDetail::where('transaction_id', 0);
         $trxnol->delete();
 

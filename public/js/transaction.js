@@ -26,9 +26,11 @@ $(function () {
 });
 
 function change() {
+    let uang = Intl.NumberFormat('id-ID');
     let grand_total = $("#grand_total").val(),
         cash = $("#cash").val();
-    $("#change").html(cash - grand_total);
+    // $("#change").html(cash - grand_total);
+    $('#change').html(uang.format(cash - grand_total));
     $("#changes").val(cash - grand_total);
 }
 

@@ -1,0 +1,11 @@
+@media print {
+    #noprint,
+    .noprint,
+    .main-footer * {
+        visibility: hidden;
+    }
+
+    .content-wrapper {
+        background-color: #fff;
+    }
+}
