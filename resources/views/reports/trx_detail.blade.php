@@ -57,8 +57,6 @@
                 {{$transaction->note}}
                 <br>
 
-                <!-- <b class="text-danger">TODO: Info Role dan Status user belum bisa muncul</b> -->
-
             </div>
         </div>
     </div>

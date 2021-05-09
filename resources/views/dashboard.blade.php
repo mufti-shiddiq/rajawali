@@ -185,14 +185,16 @@ true
 <script>
     console.log('Hi!');
 </script>
+
 <script>
     var BASE_URL = "{{url('/')}}"
 </script>
+
 <script>
     var trx_month = <?php echo $trx_month; ?>;
     var month = <?php echo $month; ?>;
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
 <script src="{{asset('js/dashboard.js')}}"></script>
 
 

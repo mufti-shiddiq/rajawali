@@ -40,12 +40,12 @@
                     </div> -->
 
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Password Baru</label>
                         <input class="form-control" placeholder="Password" type="password" name="password" id="password" />
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirmation">Password Confirmation</label>
+                        <label for="password_confirmation">Konfirmasi Password Baru</label>
                         <input class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" placeholder="Password Confirmation" type="password" name="password_confirmation" id="password_confirmation" />
                         <div class="invalid-feedback">
                             {{$errors->first('password_confirmation')}}

@@ -56,9 +56,10 @@
         </div>
         <div class="my-5"></div>
     </div>
-    <!-- /.card -->
+</div>
+<!-- /.card -->
 
-    @endsection
+@endsection
 
-    @push('js')
-    @endpush
+@push('js')
+@endpush

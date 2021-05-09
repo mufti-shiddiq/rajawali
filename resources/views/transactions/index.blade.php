@@ -273,12 +273,8 @@
 <script>
     var BASE_URL = "{{url('/')}}"
 </script>
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{asset('js/cart.js')}}"></script>
+
 <script>
     $(function() {
         $('#cart-table input[type=search]').focus();
@@ -291,46 +287,7 @@
         }
     });
 </script>
+
 <script src="{{asset('js/transaction.js')}}"></script>
-
-<!-- <script type="text/javascript">
-$('#updateitem').on('show.bs.modal', function(e) {
-    $(this).find('.modal-body').text(e.relatedTarget.id);
-});
-
-function change() {
-    let grand_total = $("#grand_total").val(),
-        cash = $("#cash").val(),
-        discount = $("#discount").val();
-    $(".change").val(cash - grand_total - discount);
-}
-
-function total() {
-    let sub_total = $("#sub_total").val(),
-        discount = $("#discount").val();
-    $(".grand_total").val(sub_total - discount);
-}
-
-
-</script> -->
-
-<!-- <script type="text/javascript">
-
-function change() {
-    let grand_total = $("#grand_total").val(),
-        cash = $("#cash").val();
-    $(".change").val(cash - grand_total);
-}
-
-function invoice(jumlah) {
-    let hasil = "",
-        char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        total = char.length;
-    for (var r = 0; r < jumlah; r++) hasil += char.charAt(Math.floor(Math.random() * total));
-    return hasil
-}
-$("#invoice").html(invoice(10));
-
-</script> -->
 
 @endpush

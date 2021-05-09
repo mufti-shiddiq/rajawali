@@ -26,7 +26,7 @@
             <th style="width: 50px">No</th>
             <th><b>Nama</b></th>
             <th style="width: 300px"><b>Username</b></th>
-            <th style="width: 100px"><b>Status</b></th>
+            <!-- <th style="width: 100px"><b>Status</b></th> -->
             <th style="width: 200px">Role</th>
             <th style="width: 280px"><b></b></th>
         </tr>
@@ -39,7 +39,7 @@
 
             <td>{{$user->username}}</td>
 
-            <td>
+            <!-- <td>
                 @if($user->status == "AKTIF")
                 <span class="badge badge-success">
                     {{$user->status}}
@@ -49,7 +49,7 @@
                     {{$user->status}}
                 </span>
                 @endif
-            </td>
+            </td> -->
 
             <td>{{$user->role}}</td>
 

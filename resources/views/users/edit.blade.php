@@ -39,31 +39,7 @@
                         <input value="{{$user->username}}" class="form-control" placeholder="Username" type="text" name="username" id="username" />
                     </div>
 
-                    <!-- <label class="text-danger">TODO: Jika form password kosong password tetap berubah</label>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input class="form-control" placeholder="Password" type="password" name="password" id="password" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password_confirmation">Password Confirmation</label>
-                        <input class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" placeholder="Password Confirmation" type="password" name="password_confirmation" id="password_confirmation" />
-                        <div class="invalid-feedback">
-                            {{$errors->first('password_confirmation')}}
-                        </div>
-                    </div> -->
-
                     <!-- <label class="text-danger">TODO: Opsi ubah Role dan Status belum ada</label> -->
-
-                    <!-- select -->
-                    <!-- {{-- <div class="form-group">
-                        <label for="">Role</label>
-                        <select name="role" class="form-control">
-                            <option {{in_array("ADMIN", json_decode($user->role)) ? "checked" : ""}} name="role[]" id="ADMIN" value="ADMIN">Admin</option>
-                    <option {{in_array("STAFF", json_decode($user->role)) ? "checked" : ""}} name="role[]" id="STAFF" value="STAFF">Staff</option>
-                    </select>
-                </div> --}} -->
 
                     <div class="form-group">
                         <label for="">Role</label>
