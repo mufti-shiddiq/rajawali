@@ -240,6 +240,7 @@ class ReportController extends Controller
 
     public function weekly(Request $request)
     {
+        // DATA THIS WEEK
         $weeklyTrx = Transaction::thisWeekReport()->get();
         $weeklyTrxDetail = TransactionDetail::thisWeekReport()->get();
 
@@ -248,6 +249,63 @@ class ReportController extends Controller
         $countTotalProduct = $weeklyTrxDetail->sum('quantity');
         $profit = $weeklyTrx->sum('profit');
 
+        // DATA LAST WEEK
+        $lastWeekTrx = Transaction::lastWeekReport()->get();
+        $lastWeekTrxDetail = TransactionDetail::lastWeekReport()->get();
+
+        $countTrxLw = $lastWeekTrx->count();
+        $totalValueTrxLw = $lastWeekTrx->sum('grand_total');
+        $countTotalProductLw = $lastWeekTrxDetail->sum('quantity');
+        $profitLw = $lastWeekTrx->sum('profit');
+
+        // CHART
+        $chartdata = [];
+        $now = Carbon::now();
+        // $day = Carbon::now()->startOfWeek();
+        // dd($day);
+
+        /* CHART PROFIT */
+
+        $trxprofit = Transaction::select(DB::raw("SUM(profit) as profit"), DB::raw("DAYNAME(created_at) as day_name"), DB::raw("DAY(created_at) as day"))
+            ->where('created_at', '>', Carbon::now()->startOfWeek())
+            ->groupBy('day_name', 'day')
+            ->orderBy('day_name')
+            ->get();
+
+        foreach ($trxprofit as $row) {
+            $chartdata['profit_label'][] = $row->day_name;
+            $chartdata['profit_data'][] = (int) $row->profit;
+        }
+
+        $trxvalue = Transaction::select(DB::raw("SUM(grand_total) as value"), DB::raw("DAYNAME(created_at) as day_name"), DB::raw("DAY(created_at) as day"))
+            ->where('created_at', '>', Carbon::now()->startOfWeek())
+            ->groupBy('day_name', 'day')
+            ->orderBy('day_name')
+            ->get();
+
+        foreach ($trxvalue as $row) {
+            $chartdata['value_label'][] = $row->day_name;
+            $chartdata['value_data'][] = (int) $row->value;
+        }
+
+        // dd($hari[]);
+
+        /* CHART TRX */
+        $trxcount = Transaction::select(DB::raw("COUNT(*) as count"), DB::raw("DAYNAME(created_at) as day_name"), DB::raw("DAY(created_at) as day"))
+            ->where('created_at', '>', Carbon::now()->startOfWeek())
+            ->groupBy('day_name', 'day')
+            ->orderBy('day_name')
+            ->get();
+
+        foreach ($trxcount as $row) {
+            $chartdata['trx_label'][] = $row->day_name;
+            $chartdata['trx_data'][] = (int) $row->count;
+        }
+
+        $chartdata['chart_data'] = json_encode($chartdata);
+        // dd($chartdata);
+
+        // DATATABLES
         if ($request->ajax()) {
             $data = Transaction::thisWeekReport()->get();
             $modelCustomer = Transaction::with('customer_id');
@@ -279,19 +337,79 @@ class ReportController extends Controller
                 ->make(true);
         }
 
-        return view('reports.weekly', compact('countTrx', 'totalValueTrx', 'countTotalProduct', 'profit'));
+        return view('reports.weekly', compact('countTrx', 'totalValueTrx', 'countTotalProduct', 'profit', 'countTrxLw', 'totalValueTrxLw', 'countTotalProductLw', 'profitLw'), $chartdata);
     }
 
     public function monthly(Request $request)
     {
+        // DATA THIS MONTH
         $monthlyTrx = Transaction::thisMonthReport()->get();
         $monthlyTrxDetail = TransactionDetail::thisMonthReport()->get();
+        // dd($monthlyTrx);
 
         $countTrx = $monthlyTrx->count();
         $totalValueTrx = $monthlyTrx->sum('grand_total');
         $countTotalProduct = $monthlyTrxDetail->sum('quantity');
         $profit = $monthlyTrx->sum('profit');
 
+        // DATA LAST MONTH
+        $lastMonthTrx = Transaction::lastMonthReport()->get();
+        $lastMonthTrxDetail = TransactionDetail::lastMonthReport()->get();
+
+        $countTrxLm = $lastMonthTrx->count();
+        $totalValueTrxLm = $lastMonthTrx->sum('grand_total');
+        $countTotalProductLm = $lastMonthTrxDetail->sum('quantity');
+        $profitLm = $lastMonthTrx->sum('profit');
+
+        // CHART
+        // CHART
+        $chartdata = [];
+        $now = Carbon::now();
+        // $day = Carbon::now()->startOfWeek();
+        // dd($day);
+
+        /* CHART PROFIT */
+
+        $trxprofit = Transaction::select(DB::raw("SUM(profit) as profit"), DB::raw("MONTHNAME(created_at) as month_name"), DB::raw("MONTH(created_at) as month"))
+            ->where('created_at', '>', Carbon::now()->firstOfYear())
+            ->groupBy('month_name', 'month')
+            ->orderBy('month')
+            ->get();
+
+        foreach ($trxprofit as $row) {
+            $chartdata['profit_label'][] = $row->month_name;
+            $chartdata['profit_data'][] = (int) $row->profit;
+        }
+
+        $trxvalue = Transaction::select(DB::raw("SUM(grand_total) as value"), DB::raw("MONTHNAME(created_at) as month_name"), DB::raw("MONTH(created_at) as month"))
+            ->where('created_at', '>', Carbon::now()->firstOfYear())
+            ->groupBy('month_name', 'month')
+            ->orderBy('month')
+            ->get();
+
+        foreach ($trxvalue as $row) {
+            $chartdata['value_label'][] = $row->month_name;
+            $chartdata['value_data'][] = (int) $row->value;
+        }
+
+        // dd($hari[]);
+
+        /* CHART TRX */
+        $trxcount = Transaction::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"), DB::raw("MONTH(created_at) as month"))
+            ->where('created_at', '>', Carbon::now()->firstOfYear())
+            ->groupBy('month_name', 'month')
+            ->orderBy('month')
+            ->get();
+
+        foreach ($trxcount as $row) {
+            $chartdata['trx_label'][] = $row->month_name;
+            $chartdata['trx_data'][] = (int) $row->count;
+        }
+
+        $chartdata['chart_data'] = json_encode($chartdata);
+        // dd($chartdata);
+
+        // DATATABLES
         if ($request->ajax()) {
             $data = Transaction::thisMonthReport()->get();
             $modelCustomer = Transaction::with('customer_id');
@@ -323,6 +441,6 @@ class ReportController extends Controller
                 ->make(true);
         }
 
-        return view('reports.monthly', compact('countTrx', 'totalValueTrx', 'countTotalProduct', 'profit'));
+        return view('reports.monthly', compact('countTrx', 'totalValueTrx', 'countTotalProduct', 'profit', 'countTrxLm', 'totalValueTrxLm', 'countTotalProductLm', 'profitLm'), $chartdata);
     }
 }

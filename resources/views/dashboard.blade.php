@@ -82,20 +82,11 @@
         <!-- AREA CHART -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Area Chart</h3>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
+                <h3 class="card-title">Transaksi Minggu ini</h3>
             </div>
             <div class="card-body">
                 <div class="chart">
-                    <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
             </div>
             <!-- /.card-body -->
@@ -106,16 +97,7 @@
         <!-- BAR CHART -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
+                <h3 class="card-title">Nilai Transaksi dan Profit Minggu ini</h3>
             </div>
             <div class="card-body">
                 <div class="chart">
@@ -155,7 +137,7 @@
     </div>
 </div> -->
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-12">
         <div class="card card-success">
             <div class="card-header">
@@ -168,8 +150,7 @@
             </div>
         </div>
     </div>
-    <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
-</div>
+</div> -->
 
 @stop
 
@@ -191,8 +172,107 @@ true
 </script>
 
 <script>
-    var trx_month = <?php echo $trx_month; ?>;
-    var month = <?php echo $month; ?>;
+    //-------------
+    //- LINE CHART -
+    //-------------
+    var lineChartCanvas = $('#barChart').get(0).getContext('2d')
+
+    var cData = JSON.parse(`<?php echo $chart_data; ?>`);
+
+    var lineChartData = {
+        // labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Juni', 'Juli', 'Agst', 'Sep', 'Okt', 'Nov', 'Des'],
+        labels: cData.profit_label,
+        datasets: [{
+                label: 'Nilai Transaksi',
+                backgroundColor: 'rgba(210, 214, 222, 1)',
+                borderColor: 'rgba(210, 214, 222, 1)',
+                pointRadius: false,
+                pointColor: 'rgba(210, 214, 222, 1)',
+                pointStrokeColor: '#c1c7d1',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(220,220,220,1)',
+                data: cData.value_data
+            },
+            {
+                label: 'Profit',
+                backgroundColor: 'rgba(60,141,188,0.9)',
+                borderColor: 'rgba(60,141,188,0.8)',
+                pointRadius: false,
+                pointColor: '#3b8bba',
+                pointStrokeColor: 'rgba(60,141,188,1)',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(60,141,188,1)',
+                data: cData.profit_data
+                // data: [65, 59, 80, 81, 56, 55, 40]
+            },
+        ]
+    }
+
+
+    var lineChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        datasetFill: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+
+    new Chart(lineChartCanvas, {
+        type: 'bar',
+        data: lineChartData,
+        options: lineChartOptions
+    })
+</script>
+
+<script>
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#lineChart').get(0).getContext('2d')
+
+    var cData = JSON.parse(`<?php echo $chart_data; ?>`);
+
+    var barChartData = {
+        // labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Juni', 'Juli', 'Agst', 'Sep', 'Okt', 'Nov', 'Des'],
+        labels: cData.trx_label,
+        datasets: [{
+            label: 'Transaksi',
+            backgroundColor: 'rgba(60,141,188,0.9)',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: cData.trx_data
+            // data: [65, 59, 80, 81, 56, 55, 40]
+        }, ]
+    }
+
+
+    var barChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        datasetFill: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+
+    new Chart(barChartCanvas, {
+        type: 'line',
+        data: barChartData,
+        options: barChartOptions
+    })
 </script>
 
 <script src="{{asset('js/dashboard.js')}}"></script>

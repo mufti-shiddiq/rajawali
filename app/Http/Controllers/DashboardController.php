@@ -30,6 +30,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $hari = Carbon::now()->isoFormat('dddd');
+        // dd($hari);
+
         // $products = Product::all();
         $total_produk = Product::count();
         $total_pelanggan = Customer::count();
@@ -52,37 +55,61 @@ class DashboardController extends Controller
         $month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
         $transaction = [];
-        foreach ($year as $key => $value) {
-            $transaction[] = Transaction::where(DB::raw("DATE_FORMAT(created_at, '%Y')"), $value)->count();
-        }
 
-        // 2
-        $trx_month = Transaction::select(DB::raw("COUNT(*) as count"))
-            ->whereYear('created_at', date('Y'))
-            ->groupBy(DB::raw("Month(created_at)"))
-            ->pluck('count');
+        // $trx_month = Transaction::select(DB::raw("COUNT(*) as count"))
+        //     ->whereYear('created_at', date('Y'))
+        //     ->groupBy(DB::raw("Month(created_at)"))
+        //     ->pluck('count');
 
-        $trx_last_week = Transaction::select(DB::raw("COUNT(*) as count"), DB::raw("DAYNAME(created_at) as day_name"), DB::raw("DAY(created_at) as day"))
-            ->where('created_at', '>', Carbon::today()->subDay(6))
+        $chartdata = [];
+        $now = Carbon::now();
+        // $day = Carbon::now()->startOfWeek();
+        // dd($day);
+
+        /* CHART PROFIT */
+
+        $trxprofit = Transaction::select(DB::raw("SUM(profit) as profit"), DB::raw("DAYNAME(created_at) as day_name"), DB::raw("DAY(created_at) as day"))
+            ->where('created_at', '>', Carbon::now()->startOfWeek())
             ->groupBy('day_name', 'day')
-            ->orderBy('day')
+            ->orderBy('day_name')
             ->get();
 
-        // dd($trx_last_week);
-
-        // $data = [];
-
-        foreach ($trx_last_week as $row) {
-            $data['label'][] = $row->day_name;
-            $data['data'][] = (int) $row->count;
+        foreach ($trxprofit as $row) {
+            $chartdata['profit_label'][] = $row->day_name;
+            $chartdata['profit_data'][] = (int) $row->profit;
         }
 
-        $data['chart_data'] = json_encode($data);
+        $trxvalue = Transaction::select(DB::raw("SUM(grand_total) as value"), DB::raw("DAYNAME(created_at) as day_name"), DB::raw("DAY(created_at) as day"))
+            ->where('created_at', '>', Carbon::now()->startOfWeek())
+            ->groupBy('day_name', 'day')
+            ->orderBy('day_name')
+            ->get();
+
+        foreach ($trxvalue as $row) {
+            $chartdata['value_label'][] = $row->day_name;
+            $chartdata['value_data'][] = (int) $row->value;
+        }
+
+        // dd($hari[]);
+
+        /* CHART TRX */
+        $trxcount = Transaction::select(DB::raw("COUNT(*) as count"), DB::raw("DAYNAME(created_at) as day_name"), DB::raw("DAY(created_at) as day"))
+            ->where('created_at', '>', Carbon::now()->startOfWeek())
+            ->groupBy('day_name', 'day')
+            ->orderBy('day_name')
+            ->get();
+
+        foreach ($trxcount as $row) {
+            $chartdata['trx_label'][] = $row->day_name;
+            $chartdata['trx_data'][] = (int) $row->count;
+        }
+
+        $chartdata['chart_data'] = json_encode($chartdata);
 
         // dd($trx_month, $transaction);
-        // dd($data);
+        // dd($chartdata);
 
         // Product::find($id)->select('id')->get()->count();
-        return view('dashboard', compact('total_produk', 'total_pelanggan', 'total_pengguna', 'cash_balance', 'total_trx_today', 'total_value_trx_today', 'total_product_sell_today', 'trx_month', 'profit_today'))->with('year', json_encode($year, JSON_NUMERIC_CHECK))->with('month', json_encode($month, JSON_NUMERIC_CHECK))->with('transaction', json_encode($transaction, JSON_NUMERIC_CHECK))->with($data);
+        return view('dashboard', compact('total_produk', 'total_pelanggan', 'total_pengguna', 'cash_balance', 'total_trx_today', 'total_value_trx_today', 'total_product_sell_today', 'profit_today'), $chartdata);
     }
 }
