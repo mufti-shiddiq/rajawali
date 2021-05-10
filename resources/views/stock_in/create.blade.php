@@ -112,6 +112,7 @@
                                             <th>Satuan</th>
                                             <th>Stok</th>
                                             <th>Harga</th>
+                                            <th></th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -148,4 +149,11 @@
 
     });
 </script>
+
+<script>
+    var BASE_URL = "{{url('/')}}"
+</script>
+
+<script src="{{asset('js/cart.js')}}"></script>
+
 @endpush
