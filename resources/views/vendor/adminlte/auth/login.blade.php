@@ -56,7 +56,7 @@
 
     {{-- Password field --}}
     <div class="input-group mb-3">
-        <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="{{ __('adminlte::adminlte.password') }}">
+        <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Password">
         <div class="input-group-append">
             <div class="input-group-text">
                 <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>

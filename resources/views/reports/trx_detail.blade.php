@@ -49,6 +49,10 @@
                 {{ number_format($transaction->change,0,".",".") }}
                 <br>
 
+                <b>Modal:</b> <br />
+                {{ number_format($transaction->capital,0,".",".") }}
+                <br>
+
                 <b>Profit:</b> <br />
                 {{ number_format($transaction->profit,0,".",".") }}
                 <br>

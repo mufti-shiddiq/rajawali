@@ -163,6 +163,39 @@
 
     </div>
 </div>
+
+<div class="row noprint">
+    <div class="col-md-12">
+        <div class="card card-primary shadow ">
+            <div class="card-header">
+                <h3 class="card-title">Transaksi Hari ini</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-stripped table-hover bg-white trx-table" id="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Invoice</th>
+                            <th>Pelanggan</th>
+                            <th>Nilai Transaksi</th>
+                            <th>Modal</th>
+                            <th>Profit</th>
+                            <th>Catatan</th>
+                            <th>Kasir</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="py-3"></div>
 
 @endsection
@@ -350,4 +383,96 @@
         });
     });
 </script>
+
+<script type="text/javascript">
+    $(function() {
+        var table = $('.trx-table').DataTable({
+            processing: true,
+            serverSide: true,
+            order: [1, "desc"],
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                        format: {
+                            body: function(data, row, column, node) {
+                                return column ?
+                                    data.replace(/[.]/g, '') :
+                                    data;
+                            }
+                        }
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                    }
+                },
+                'colvis'
+            ],
+
+            ajax: "{{ route('reports.daily2') }}",
+            columns: [
+
+                {
+                    "data": null,
+                    "sortable": false,
+                    render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    data: 'datetime',
+                    name: 'datetime'
+                },
+                {
+                    data: 'invoice',
+                    name: 'invoice'
+                },
+                {
+                    data: 'customer',
+                    name: 'customer'
+                },
+                {
+                    data: 'grand_total',
+                    name: 'grand_total',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'capital',
+                    name: 'capital',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'profit',
+                    name: 'profit',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'note',
+                    name: 'note'
+                },
+                {
+                    data: 'user',
+                    name: 'user.name'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ]
+        });
+    });
+</script>
+
 @endpush

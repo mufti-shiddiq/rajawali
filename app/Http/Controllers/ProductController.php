@@ -52,13 +52,13 @@ class ProductController extends Controller
                     // $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
                     // $product = Product::all();
 
-                    $btn = '<a class="btn btn-info text-white btn-sm" href="' . route('products.edit', [$row->id]) . '">Edit</a>
+                    $btn = '<a class="btn btn-info text-white btn-sm" href="' . route('products.edit', [$row->id]) . '"><i class="fa fa-edit"></i></a>
                             
                                     <form action="' . route('products.destroy', [$row->id]) . '" class="d-inline" method="POST">
                                         ' . csrf_field() . '
                                         ' . method_field("DELETE") . '
                                         <button type="submit" class="btn btn-danger btn-sm"
-                                            onclick="return confirm(\'Yakin ingin menghapus Produk ini?\')">Hapus</a>
+                                            onclick="return confirm(\'Yakin ingin menghapus Produk ini?\')"><i class="fa fa-trash-alt"></i></a>
                                     </form>';
 
                     // $btn = $btn.'<form onsubmit="return confirm(Yakin ingin menghapus Produk ini?)" class="d-inline" action="'.route('products.destroy', [$row->id]).'" method="POST">

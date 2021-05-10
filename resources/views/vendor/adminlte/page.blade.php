@@ -35,6 +35,10 @@
     {{-- Content Wrapper --}}
     <div class="content-wrapper {{ config('adminlte.classes_content_wrapper') ?? '' }}">
 
+        <section id="loading">
+            <div id="loading-content"></div>
+        </section>
+
         {{-- Content Header --}}
         <div class="content-header">
             <div class="{{ config('adminlte.classes_content_header') ?: $def_container_class }}">

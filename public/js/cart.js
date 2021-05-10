@@ -22,7 +22,7 @@ $(document).ready(function () {
   $('.product-table').DataTable({
     processing: true,
     serverSide: true,
-    order: [2, "asc"],
+    order: [3, "asc"],
     ajax: BASE_URL + '/products',
     columns: [{
       "data": null,
@@ -44,7 +44,6 @@ $(document).ready(function () {
     }, {
       data: 'product_name',
       name: 'product_name',
-      orderable: false
     }, {
       data: 'category',
       name: 'category.name',

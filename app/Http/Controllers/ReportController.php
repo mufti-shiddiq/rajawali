@@ -13,6 +13,7 @@ use App\Models\Wallet;
 use App\Models\DailyReport;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
+use Illuminate\Container\RewindableGenerator;
 use \Reportable\Traits\Reportable;
 use Illuminate\Support\Facades\DB;
 
@@ -44,7 +45,7 @@ class ReportController extends Controller
                                 ' . csrf_field() . '
                                 ' . method_field("DELETE") . '
                                 <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm(\'Yakin ingin menghapus?\')">Hapus</a>
+                                    onclick="return confirm(\'Yakin ingin menghapus?\')"><i class="fa fa-trash-alt"></i></a>
                             </form>';
                     return $btn;
                 })
@@ -198,7 +199,43 @@ class ReportController extends Controller
                 ->make(true);
         }
 
+
+
         return view('reports.daily', compact('countTrx', 'totalValueTrx', 'countTotalProduct', 'profit', 'countTrxYtd', 'totalValueTrxYtd', 'countTotalProductYtd', 'profitYtd', 'bulan'), $chartdata);
+    }
+
+    public function daily2(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Transaction::todayReport()->get();
+            $modelCustomer = Transaction::with('customer_id');
+            $modelUser = Transaction::with('user_id');
+
+
+            return Datatables::of($data, $modelCustomer, $modelUser)
+                ->addIndexColumn()
+
+                ->addColumn('customer', function (Transaction $transaction) {
+                    return $transaction->customer->name;
+                })
+
+                ->addColumn('user', function (Transaction $transaction) {
+                    return $transaction->user->name;
+                })
+
+                ->addColumn('action', function ($row) {
+                    $btn = '<a class="btn btn-info text-white btn-sm" href="' . route('reports.trx_detail', [$row->id]) . '">Detail</a>
+                            <form action="' . route('reports.trx_destroy', [$row->id]) . '" class="d-inline" method="POST">
+                                ' . csrf_field() . '
+                                ' . method_field("DELETE") . '
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm(\'Yakin ingin menghapus?\')">Hapus</a>
+                            </form>';
+                    return $btn;
+                })
+                ->rawColumns(['action', 'actions'])
+                ->make(true);
+        }
     }
 
     public function weekly(Request $request)

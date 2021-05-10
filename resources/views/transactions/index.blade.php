@@ -3,7 +3,6 @@
 @section("title") Transaksi @endsection
 
 @push('css')
-<link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 @endpush
 
 @section('classes_body') sidebar-collapse @endsection

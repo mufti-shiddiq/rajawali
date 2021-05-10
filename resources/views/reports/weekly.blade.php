@@ -7,8 +7,8 @@
 
 @section('content_header')
 <div class="row">
-    <div class="col-md-6">
-        <h1>Laporan Transaksi Mingguan</h1>
+    <div class="col-md-10">
+        <h1>Laporan Transaksi Mingguan (Senin-Minggu)</h1>
     </div>
     <!-- <div class="col-md-6 text-right">
         <a href="{{route('products.create')}}" class="btn btn-primary">Tambah Produk Baru</a>
@@ -99,7 +99,7 @@
                     <th>Nilai Transaksi</th>
                     <th>Catatan</th>
                     <th>Kasir</th>
-                    <th></th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>

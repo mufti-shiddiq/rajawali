@@ -73,6 +73,7 @@ Route::get('/reports/stock_in', [ReportController::class, 'stock_in'])->name('re
 Route::get('/reports/stock_out', [ReportController::class, 'stock_out'])->name('reports.stock_out');
 
 Route::get('/reports/daily', [ReportController::class, 'daily'])->name('reports.daily');
+Route::get('/reports/daily2', [ReportController::class, 'daily2'])->name('reports.daily2');
 Route::get('/reports/weekly', [ReportController::class, 'weekly'])->name('reports.weekly');
 Route::get('/reports/monthly', [ReportController::class, 'monthly'])->name('reports.monthly');
 

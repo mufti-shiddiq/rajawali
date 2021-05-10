@@ -27,6 +27,7 @@
                     <th>Invoice</th>
                     <th>Pelanggan</th>
                     <th>Nilai Transaksi</th>
+                    <th>Modal</th>
                     <th>Profit</th>
                     <th>Catatan</th>
                     <th>Kasir</th>
@@ -59,7 +60,7 @@
             buttons: [{
                     extend: 'excel',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7],
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
                         format: {
                             body: function(data, row, column, node) {
                                 return column ?
@@ -72,13 +73,13 @@
                 {
                     extend: 'pdf',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7],
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
                     }
                 },
                 {
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
                     }
                 },
                 'colvis'
@@ -109,6 +110,11 @@
                 {
                     data: 'grand_total',
                     name: 'grand_total',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'capital',
+                    name: 'capital',
                     render: $.fn.dataTable.render.number('.', '.', 0, '')
                 },
                 {

@@ -120,7 +120,7 @@
             serverSide: true,
             order: [1, "desc"],
 
-            ajax: "{{ route('reports.weekly') }}",
+            ajax: "{{ route('reports.monthly') }}",
             columns: [
 
                 {
