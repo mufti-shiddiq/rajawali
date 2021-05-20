@@ -20,9 +20,9 @@
         <table style='width:550px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td width='70%' align='left' style='padding-right:80px; vertical-align:top'>
                 <span style='font-size:15pt'><b>Rajawali Besi</b></span></br>
-                Tampiran, Ngawonggo, Ceper, Klaten<br>
-                Jawa Tengah, Indonesia 57465</br>
-                Telp : 0856-2888-851
+                Bakalan RT.02/RW.01 Ceper, Kec. Ceper<br>
+                Kab. Klaten, Jawa Tengah, Indonesia 57465</br>
+                Telp : 081285555515
             </td>
             <td style='vertical-align:top' width='30%' align='left'>
                 <b><span style='font-size:12pt'>Invoice {{$transaction->invoice}}</span></b></br>
@@ -107,9 +107,9 @@
         <table style='width:650; font-size:7pt;' cellspacing='2'>
             <tr>
                 <br>
-                <td align='center'>Penerima</br></br></br><u>(............)</u></td>
+                <td align='center'>Penerima</br></br></br><br><u>(................)</u></td>
                 <!-- <td style='border:1px solid black; padding:5px; text-align:left; width:30%'></td> -->
-                <td align='center'>Hormat kami</br></br></br><u>(...........)</u></td>
+                <td align='center'>Hormat kami</br></br></br><br><u>(................)</u></td>
             </tr>
         </table>
     </center>
