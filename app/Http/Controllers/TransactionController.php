@@ -93,8 +93,8 @@ class TransactionController extends Controller
                                                     <input type="hidden" value="' . $data->id . '" id="id" name="id">
 
                                                     <div class="form-group">
-                                                        <label for="quantity">Quantity</label>
-                                                        <input class="form-control" type="number" name="quantity" id="quantity" value="' . $data->quantity . '" />
+                                                        <label for="quantity' . $data->id . '">Quantity</label>
+                                                        <input class="form-control" type="number" min="1" name="quantity" id="quantity' . $data->id . '" value="' . $data->quantity . '" />
                                                     </div>
 
                                                 </div>
@@ -129,6 +129,17 @@ class TransactionController extends Controller
 
     public function add(Request $request)
     {
+        \Validator::make($request->all(), [
+            "id" => "required",
+            "name" => "required",
+            "price" => "required",
+            "quantity" => "required|min:1",
+            "discount_items" => "nullable",
+            "code" => "required",
+            "unit" => "required",
+            "buyprice" => "required",
+        ])->validate();
+
         $discount_items = new CartCondition(array(
             'name' => 'Diskon Item',
             'type' => 'promo',
@@ -204,6 +215,14 @@ class TransactionController extends Controller
 
     public function process(Request $request)
     {
+        \Validator::make($request->all(), [
+            "customer" => "required",
+            "note" => "nullable",
+            "cash" => "required",
+            "grand_total" => "required",
+            "changes" => "required",
+        ])->validate();
+
         $customer = $request->get('customer');
         $note = $request->get('note');
         $cash = $request->get('cash');

@@ -37,24 +37,35 @@
 
                             <!-- Date and time -->
                             <div class="form-group">
-                                <label>Tanggal/Waktu</label>
+                                <label>Tanggal/Waktu <a class="text-danger">*</a></label>
                                 <div class="input-group date" data-target-input="nearest">
-                                    <input type="text" id="datetime" name="datetime" class="form-control datetimepicker-input" data-target="#datetime" />
+                                    <input value="{{old('datetime')}}" type="text" id="datetime" name="datetime" class="form-control datetimepicker-input {{$errors->first('datetime') ? "is-invalid": ""}}" data-target="#datetime" />
                                     <div class="input-group-append" data-target="#datetime" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
+                                <div class="invalid-feedback">
+                                    {{$errors->first('datetime')}}
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="cash_in">Nominal</label>
-                                <input class="form-control" type="number" name="cash_in" id="cash_in" />
+                                <label for="cash_in">Nominal <a class="text-danger">*</a></label>
+                                <input value="{{old('cash_in')}}" class="form-control {{$errors->first('cash_in') ? "is-invalid": ""}}" type="number" name="cash_in" id="cash_in" />
+                                <div class="invalid-feedback">
+                                    {{$errors->first('cash_in')}}
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="note">Catatan</label>
-                                <textarea class="form-control" name="note" id="note" rows="3"></textarea>
+                                <textarea class="form-control {{$errors->first('note') ? "is-invalid": ""}}" name="note" id="note" rows="3">{{old('note')}}</textarea>
+                                <div class="invalid-feedback">
+                                    {{$errors->first('note')}}
+                                </div>
                             </div>
+
+                            <b class="text-danger">* Wajib diisi</b>
 
                         </div>
                     </div>

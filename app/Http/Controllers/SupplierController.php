@@ -35,11 +35,18 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+        \Validator::make($request->all(), [
+            "name" => "required|max:100||unique:suppliers",
+            "company" => "nullable",
+            "phone" => "nullable",
+            "address" => "nullable",
+        ])->validate();
+
         $name = $request->get('name');
         $company = $request->get('company');
         $phone = $request->get('phone');
         $address = $request->get('address');
-        
+
         $new_supplier = new \App\Models\supplier;
 
         $new_supplier->name = $name;
@@ -93,13 +100,20 @@ class SupplierController extends Controller
 
         $supplier = \App\Models\supplier::findOrFail($id);
 
+        \Validator::make($request->all(), [
+            "name" => "required|max:100|unique:suppliers,name," . $supplier->id . ",id",
+            "company" => "nullable",
+            "phone" => "nullable",
+            "address" => "nullable",
+        ])->validate();
+
         $supplier->name = $name;
         $supplier->company = $company;
         $supplier->phone = $phone;
         $supplier->address = $address;
 
         $supplier->updated_by = \Auth::user()->id;
-        
+
         $supplier->save();
         return redirect()->route('suppliers.edit', [$id])->with('status', 'Supplier berhasil diedit');
     }

@@ -103,6 +103,13 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = \App\Models\User::findOrFail($id);
+
+        \Validator::make($request->all(), [
+            "name" => "required|max:100",
+            "username" => "required|min:3|max:20|unique:users,username," . $user->id . ",id",
+            "role" => "required",
+        ])->validate();
+
         $user->name = $request->get('name');
         $user->username = $request->get('username');
         // $user->password = \Hash::make($request->get('password'));
@@ -114,6 +121,11 @@ class UserController extends Controller
 
     public function updatepw(Request $request, $id)
     {
+        \Validator::make($request->all(), [
+            "password" => "required",
+            "password_confirmation" => "required|same:password"
+        ])->validate();
+
         $user = \App\Models\User::findOrFail($id);
         $user->password = \Hash::make($request->get('password'));
 

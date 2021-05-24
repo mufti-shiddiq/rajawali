@@ -47,7 +47,7 @@
                                             <input type="hidden" id="price" name="price">
                                             <input type="hidden" id="buyprice" name="buyprice">
 
-                                            <input type="text" id="name" name="name" class="form-control" readonly>
+                                            <input type="text" id="name" name="name" class="form-control {{$errors->first('name') ? "is-invalid": ""}}" readonly>
 
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#pilihProduk">
@@ -65,7 +65,7 @@
                                         <div class="input-group">
                                             <input type="text" id="price_view" name="price_view" min="0" class="form-control" readonly>
                                             <label class="px-3"><b> _ </b></label>
-                                            <input type="number" id="discount_item" name="discount_item" min="0" class="form-control">
+                                            <input type="number" id="discount_item" name="discount_item" min="0" class="form-control {{$errors->first('discount_item') ? "is-invalid": ""}}">
                                             <!-- <div class="px-5"></div> -->
                                             <!-- <div class="px-2"></div> -->
                                             <!-- <input type="text" class="form-control" style="display: none;" id="unit" name="unit" disabled> -->
@@ -78,7 +78,7 @@
                                     </td>
                                     <td>
                                         <div class="input-group pt-3">
-                                            <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control">
+                                            <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control {{$errors->first('quantity') ? "is-invalid": ""}}">
                                             <!-- <div class="text-info px-2"></div>
                                             <div class="px-3"><a id="unit" name="unit"></a></div> -->
                                             <input type="text" class="form-control" id="unit" name="unit" readonly>

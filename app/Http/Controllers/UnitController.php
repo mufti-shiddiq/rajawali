@@ -43,6 +43,11 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
+        \Validator::make($request->all(), [
+            "name" => "required|max:100|unique:units",
+            "code" => "required|max:100|unique:units",
+        ])->validate();
+
         $name = $request->get('name');
         $code = $request->get('code');
 
@@ -93,6 +98,11 @@ class UnitController extends Controller
         $code = $request->get('code');
 
         $unit = \App\Models\unit::findOrFail($id);
+
+        \Validator::make($request->all(), [
+            "name" => "required|max:100|unique:units,name," . $unit->id . ",id",
+            "code" => "required|max:100|unique:units,code," . $unit->id . ",id",
+        ])->validate();
 
         $unit->name = $name;
         $unit->code = $code;

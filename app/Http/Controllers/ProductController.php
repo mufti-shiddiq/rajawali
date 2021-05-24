@@ -99,6 +99,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        \Validator::make($request->all(), [
+            "product_name" => "required|max:50|unique:products",
+            "code" => "required|min:3|max:20|unique:products",
+            "category_id" => "required",
+            "unit_id" => "required",
+            "stock" => "required",
+            "buy_price" => "required",
+            "sell_price" => "required",
+        ])->validate();
+
         $product_name = $request->get('product_name');
         $code = $request->get('code');
         $category_id = $request->get('category_id');
@@ -168,6 +178,16 @@ class ProductController extends Controller
         $sell_price = $request->get('sell_price');
 
         $product = \App\Models\product::findOrFail($id);
+
+        \Validator::make($request->all(), [
+            "product_name" => "required|max:50|unique:products,product_name," . $product->id . ",id",
+            "code" => "required|min:3|max:20|unique:products,code," . $product->id . ",id",
+            "category_id" => "required",
+            "unit_id" => "required",
+            "stock" => "required",
+            "buy_price" => "required",
+            "sell_price" => "required",
+        ])->validate();
 
         $product->product_name = $product_name;
         $product->code = $code;

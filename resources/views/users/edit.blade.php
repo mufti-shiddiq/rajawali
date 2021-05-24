@@ -30,24 +30,35 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="name">Nama</label>
-                        <input value="{{$user->name}}" class="form-control" placeholder="Full Name" type="text" name="name" id="name" />
+                        <label for="name">Nama <a class="text-danger">*</a></label>
+                        <input value="{{$user->name}}" class="form-control {{$errors->first('name') ? "is-invalid": ""}}" placeholder="Nama" type="text" name="name" id="name" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('name')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input value="{{$user->username}}" class="form-control" placeholder="Username" type="text" name="username" id="username" />
+                        <label for="username">Username <a class="text-danger">*</a></label>
+                        <input value="{{$user->username}}" class="form-control {{$errors->first('username') ? "is-invalid": ""}}" placeholder="Username" type="text" name="username" id="username" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('username')}}
+                        </div>
                     </div>
 
                     <!-- <label class="text-danger">TODO: Opsi ubah Role dan Status belum ada</label> -->
 
                     <div class="form-group">
-                        <label for="">Role</label>
-                        <select name="role" class="form-control">
+                        <label for="">Role <a class="text-danger">*</a></label>
+                        <select name="role" class="form-control {{$errors->first('role') ? "is-invalid": ""}}">
                             <option {{ ( $user->role == "ADMIN") ? 'selected' : '' }} name="role" id="ADMIN" value="ADMIN">Admin</option>
                             <option {{ ( $user->role == "STAFF") ? 'selected' : '' }} name="role" id="STAFF" value="STAFF">Staff</option>
                         </select>
+                        <div class="invalid-feedback">
+                            {{$errors->first('role')}}
+                        </div>
                     </div>
+
+                    <b class="text-danger">* Wajib diisi</b>
 
                 </div>
                 <!-- /.card-body -->

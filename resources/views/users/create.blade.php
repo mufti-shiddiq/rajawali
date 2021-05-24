@@ -28,15 +28,15 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="name">Nama</label>
-                        <input value="{{old('name')}}" class="form-control {{$errors->first('name') ? "is-invalid": ""}}" placeholder="Full Name" type="text" name="name" id="name" />
+                        <label for="name">Nama <a class="text-danger">*</a></label>
+                        <input value="{{old('name')}}" class="form-control {{$errors->first('name') ? "is-invalid": ""}}" placeholder="Nama" type="text" name="name" id="name" />
                         <div class="invalid-feedback">
                             {{$errors->first('name')}}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="username">Username</label>
+                        <label for="username">Username <a class="text-danger">*</a></label>
                         <input value="{{old('username')}}" class="form-control {{$errors->first('username') ? "is-invalid" : ""}}" placeholder="Username" type="text" name="username" id="username" />
                         <div class="invalid-feedback">
                             {{$errors->first('username')}}
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Password <a class="text-danger">*</a></label>
                         <input class="form-control {{$errors->first('password') ? "is-invalid" : ""}}" placeholder="Password" type="password" name="password" id="password" />
                         <div class="invalid-feedback">
                             {{$errors->first('password')}}
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirmation">Konfirmasi Password</label>
+                        <label for="password_confirmation">Konfirmasi Password <a class="text-danger">*</a></label>
                         <input class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" placeholder="Konfirmasi Password" type="password" name="password_confirmation" id="password_confirmation" />
                         <div class="invalid-feedback">
                             {{$errors->first('password_confirmation')}}
@@ -69,7 +69,7 @@
                         </select>
                     </div> -->
                     <div class="form-group">
-                        <label for="">Role</label>
+                        <label for="">Role <a class="text-danger">*</a></label>
                         <select name="role" class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}">
                             <option value=""> -- Pilih -- </option>
                             <option class="form-control" name="role" id="ADMIN" value="ADMIN">Admin</option>
@@ -88,9 +88,11 @@
                 <input class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}" type="checkbox" name="role[]" id="STAFF" value="STAFF">
                 <label for="STAFF">Staff</label> -->
 
-                    <div class="invalid-feedback">
+                    <!-- <div class="invalid-feedback">
                         {{$errors->first('role')}}
-                    </div>
+                    </div> -->
+
+                    <b class="text-danger">* Wajib diisi</b>
 
                 </div>
                 <!-- /.card-body -->

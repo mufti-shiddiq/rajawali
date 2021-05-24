@@ -28,9 +28,14 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="name">Nama Kategori</label>
-                        <input class="form-control" placeholder="Nama Kategori" type="text" name="name" id="name" />
+                        <label for="name">Nama Kategori <a class="text-danger">*</a></label>
+                        <input value="{{old('name')}}" class="form-control {{$errors->first('name') ? "is-invalid": ""}}" placeholder="Nama Kategori" type="text" name="name" id="name" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('name')}}
+                        </div>
                     </div>
+
+                    <b class="text-danger">* Wajib diisi</b>
 
                 </div>
                 <!-- /.card-body -->

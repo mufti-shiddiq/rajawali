@@ -30,21 +30,35 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="name">Nama</label>
-                        <input class="form-control" value="{{$customer->name}}" placeholder="Nama Pelanggan" type="text" name="name" id="name" />
+                        <label for="name">Nama <a class="text-danger">*</a></label>
+                        <input class="form-control {{$errors->first('name') ? "is-invalid": ""}}" value="{{$customer->name}}" placeholder="Nama Pelanggan" type="text" name="name" id="name" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('name')}}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="company">Perusahaan</label>
-                        <input class="form-control" value="{{$customer->company}}" placeholder="Nama Perusahaan" type="text" name="company" id="company" />
+                        <input class="form-control {{$errors->first('company') ? "is-invalid": ""}}" value="{{$customer->company}}" placeholder="Nama Perusahaan" type="text" name="company" id="company" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('company')}}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="phone">Telepon</label>
-                        <input class="form-control" value="{{$customer->phone}}" placeholder="Nomor Telepon" type="tel" name="phone" id="phone" />
+                        <input class="form-control {{$errors->first('phone') ? "is-invalid": ""}}" value="{{$customer->phone}}" placeholder="Nomor Telepon" type="tel" name="phone" id="phone" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('phone')}}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="address">Alamat</label>
-                        <textarea class="form-control" name="address" id="address" rows="3">{{$customer->address}}</textarea>
+                        <textarea class="form-control {{$errors->first('address') ? "is-invalid": ""}}" name="address" id="address" rows="3">{{$customer->address}}</textarea>
+                        <div class="invalid-feedback">
+                            {{$errors->first('address')}}
+                        </div>
                     </div>
+
+                    <b class="text-danger">* Wajib diisi</b>
 
                 </div>
                 <!-- /.card-body -->

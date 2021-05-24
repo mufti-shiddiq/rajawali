@@ -35,11 +35,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        \Validator::make($request->all(), [
+            "name" => "required|max:100||unique:customers",
+            "company" => "nullable",
+            "phone" => "nullable",
+            "address" => "nullable",
+        ])->validate();
+
         $name = $request->get('name');
         $company = $request->get('company');
         $phone = $request->get('phone');
         $address = $request->get('address');
-        
+
         $new_customer = new \App\Models\customer;
 
         $new_customer->name = $name;
@@ -93,13 +100,20 @@ class CustomerController extends Controller
 
         $customer = \App\Models\customer::findOrFail($id);
 
+        \Validator::make($request->all(), [
+            "name" => "required|max:100|unique:customers,name," . $customer->id . ",id",
+            "company" => "nullable",
+            "phone" => "nullable",
+            "address" => "nullable",
+        ])->validate();
+
         $customer->name = $name;
         $customer->company = $company;
         $customer->phone = $phone;
         $customer->address = $address;
 
         $customer->updated_by = \Auth::user()->id;
-        
+
         $customer->save();
         return redirect()->route('customers.edit', [$id])->with('status', 'Pelanggan berhasil diedit');
     }

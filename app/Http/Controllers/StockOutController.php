@@ -69,6 +69,13 @@ class StockOutController extends Controller
      */
     public function store(Request $request)
     {
+        \Validator::make($request->all(), [
+            "datetime" => "required",
+            "id" => "required",
+            "quantity" => "required",
+            "note" => "nullable",
+        ])->validate();
+
         $datetime = $request->get('datetime');
         $product_id = $request->get('id');
         $quantity = $request->get('quantity');

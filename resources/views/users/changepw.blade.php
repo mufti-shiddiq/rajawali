@@ -40,17 +40,22 @@
                     </div> -->
 
                     <div class="form-group">
-                        <label for="password">Password Baru</label>
-                        <input class="form-control" placeholder="Password" type="password" name="password" id="password" />
+                        <label for="password">Password Baru <a class="text-danger">*</a></label>
+                        <input class="form-control {{$errors->first('password') ? "is-invalid" : ""}}" placeholder="Password" type="password" name="password" id="password" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('password')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirmation">Konfirmasi Password Baru</label>
+                        <label for="password_confirmation">Konfirmasi Password Baru <a class="text-danger">*</a></label>
                         <input class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" placeholder="Konfirmasi Password" type="password" name="password_confirmation" id="password_confirmation" />
                         <div class="invalid-feedback">
                             {{$errors->first('password_confirmation')}}
                         </div>
                     </div>
+
+                    <b class="text-danger">* Wajib diisi</b>
 
                 </div>
                 <!-- /.card-body -->

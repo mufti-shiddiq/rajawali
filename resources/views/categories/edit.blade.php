@@ -30,14 +30,22 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="name">Nama Kategori</label>
-                        <input class="form-control" value="{{$category->name}}" placeholder="Nama Kategori" type="text" name="name" id="name" />
+                        <label for="name">Nama Kategori <a class="text-danger">*</a></label>
+                        <input class="form-control {{$errors->first('name') ? "is-invalid": ""}}" value="{{$category->name}}" placeholder="Nama Kategori" type="text" name="name" id="name" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('name')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Slug Kategori</label>
-                        <input class="form-control" value="{{$category->slug}}" placeholder="Slug Kategori" type="text" name="slug" id="slug" />
+                        <label for="slug">Slug Kategori <a class="text-danger">*</a></label>
+                        <input class="form-control {{$errors->first('slug') ? "is-invalid": ""}}" value="{{$category->slug}}" placeholder="Slug Kategori" type="text" name="slug" id="slug" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('slug')}}
+                        </div>
                     </div>
+
+                    <b class="text-danger">* Wajib diisi</b>
 
                 </div>
                 <!-- /.card-body -->

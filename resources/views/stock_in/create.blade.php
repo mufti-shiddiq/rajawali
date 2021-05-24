@@ -34,39 +34,55 @@
 
                             <!-- Date and time -->
                             <div class="form-group">
-                                <label>Tanggal/Waktu</label>
+                                <label>Tanggal/Waktu <a class="text-danger">*</a></label>
                                 <div class="input-group date" data-target-input="nearest">
-                                    <input type="text" id="datetime" name="datetime" class="form-control datetimepicker-input" data-target="#datetime" />
+                                    <input value="{{old('datetime')}}" type="text" id="datetime" name="datetime" class="form-control datetimepicker-input {{$errors->first('datetime') ? "is-invalid": ""}}" data-target="#datetime" />
                                     <div class="input-group-append" data-target="#datetime" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
+                                <div class="invalid-feedback">
+                                    {{$errors->first('datetime')}}
+                                </div>
                             </div>
 
-                            <label>Produk</label>
+                            <label>Produk <a class="text-danger">*</a></label>
                             <div class="form-group input-group">
 
-                                <input type="hidden" id="id" name="id">
-                                <input type="hidden" id="code" name="code">
+                                <input value="{{old('id')}}" type="hidden" id="id" name="id">
+                                <input value="{{old('code')}}" type="hidden" id="code" name="code">
 
-                                <input type="text" id="name" name="name" class="form-control" readonly>
+                                <input value="{{old('name')}}" type="text" id="name" name="name" class="form-control {{$errors->first('id') ? "is-invalid": ""}}" readonly>
 
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#pilihProduk">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
+
+                                <div class="invalid-feedback">
+                                    {{$errors->first('id')}}
+                                </div>
+
                             </div>
 
                             <div class="form-group">
-                                <label for="quantity">Quantity</label>
-                                <input class="form-control" type="number" name="quantity" id="quantity" />
+                                <label for="quantity">Quantity <a class="text-danger">*</a></label>
+                                <input value="{{old('quantity')}}" class="form-control {{$errors->first('quantity') ? "is-invalid": ""}}" type="number" name="quantity" id="quantity" />
+                                <div class="invalid-feedback">
+                                    {{$errors->first('quantity')}}
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="note">Keterangan</label>
-                                <textarea class="form-control" name="note" id="note" rows="3"></textarea>
+                                <textarea class="form-control {{$errors->first('note') ? "is-invalid": ""}}" name="note" id="note" rows="3">{{old('note')}}</textarea>
+                                <div class="invalid-feedback">
+                                    {{$errors->first('note')}}
+                                </div>
                             </div>
+
+                            <b class="text-danger">* Wajib diisi</b>
 
                         </div>
                     </div>

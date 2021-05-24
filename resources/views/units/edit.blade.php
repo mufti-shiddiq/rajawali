@@ -30,14 +30,22 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="name">Nama</label>
-                        <input class="form-control" value="{{$unit->name}}" placeholder="Nama Satuan Produk" type="text" name="name" id="name" />
+                        <label for="name">Nama <a class="text-danger">*</a></label>
+                        <input class="form-control {{$errors->first('name') ? "is-invalid": ""}}" value="{{$unit->name}}" placeholder="Nama Satuan Produk" type="text" name="name" id="name" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('name')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Unit</label>
-                        <input class="form-control" value="{{$unit->code}}" placeholder="Unit" type="text" name="code" id="code" />
+                        <label for="code">Unit <a class="text-danger">*</a></label>
+                        <input class="form-control {{$errors->first('code') ? "is-invalid": ""}}" value="{{$unit->code}}" placeholder="Unit" type="text" name="code" id="code" />
+                        <div class="invalid-feedback">
+                            {{$errors->first('code')}}
+                        </div>
                     </div>
+
+                    <b class="text-danger">* Wajib diisi</b>
 
                 </div>
                 <!-- /.card-body -->

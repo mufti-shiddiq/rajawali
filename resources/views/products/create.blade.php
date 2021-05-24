@@ -30,49 +30,72 @@
                     <div class="form-row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="product_name">Nama Produk</label>
-                                <input class="form-control" placeholder="Nama Produk" type="text" name="product_name" id="product_name" />
+                                <label for="product_name">Nama Produk <a class="text-danger">*</a></label>
+                                <input value="{{old('product_name')}}" class="form-control {{$errors->first('product_name') ? "is-invalid": ""}}" placeholder="Nama Produk" type="text" name="product_name" id="product_name" />
+                                <div class="invalid-feedback">
+                                    {{$errors->first('product_name')}}
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="code">Kode</label>
-                                <input class="form-control" placeholder="Kode Produk" type="text" name="code" id="code" />
+                                <label for="code">Kode <a class="text-danger">*</a></label>
+                                <input value="{{old('code')}}" class="form-control {{$errors->first('code') ? "is-invalid": ""}}" placeholder="Kode Produk" type="text" name="code" id="code" />
+                                <div class="invalid-feedback">
+                                    {{$errors->first('code')}}
+                                </div>
                             </div>
 
                             <!-- category -->
                             <div class="form-group">
-                                <label for="category_id">Kategory Produk</label>
-                                <select class="form-control" name="category_id" id="category_id">
-                                    <option>-- Pilih --</option>
+                                <label for="category_id">Kategory Produk <a class="text-danger">*</a></label>
+                                <select value="{{old('category_id')}}" class="form-control {{$errors->first('category_id') ? "is-invalid": ""}}" name="category_id" id="category_id">
+                                    <option value="">-- Pilih --</option>
                                     @foreach ($category as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
+                                <div class="invalid-feedback">
+                                    {{$errors->first('category_id')}}
+                                </div>
                             </div>
 
                             <!-- unit -->
                             <div class="form-group">
-                                <label for="unit_id">Satuan</label>
-                                <select class="form-control" name="unit_id" id="unit_id">
-                                    <option>-- Pilih --</option>
+                                <label for="unit_id">Satuan <a class="text-danger">*</a></label>
+                                <select value="{{old('unit_id')}}" class="form-control {{$errors->first('unit_id') ? "is-invalid": ""}}" name="unit_id" id="unit_id">
+                                    <option value="">-- Pilih --</option>
                                     @foreach ($unit as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
+                                <div class="invalid-feedback">
+                                    {{$errors->first('unit_id')}}
+                                </div>
                             </div>
                         </div>
                         <div class="col-6 pl-5">
                             <div class="form-group">
-                                <label for="stock">Stok</label>
-                                <input class="form-control" placeholder="Stok Produk" type="number" name="stock" id="stock" />
+                                <label for="stock">Stok <a class="text-danger">*</a></label>
+                                <input value="{{old('stock')}}" class="form-control {{$errors->first('stock') ? "is-invalid": ""}}" placeholder="Stok Produk" type="number" name="stock" id="stock" />
+                                <div class="invalid-feedback">
+                                    {{$errors->first('stock')}}
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="buy_price">Harga Beli</label>
-                                <input class="form-control" placeholder="Harga Beli Produk" type="number" name="buy_price" id="buy_price" />
+                                <label for="buy_price">Harga Beli <a class="text-danger">*</a></label>
+                                <input value="{{old('buy_price')}}" class="form-control {{$errors->first('buy_price') ? "is-invalid": ""}}" placeholder="Harga Beli Produk" type="number" name="buy_price" id="buy_price" />
+                                <div class="invalid-feedback">
+                                    {{$errors->first('buy_price')}}
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="sell_price">Harga Jual</label>
-                                <input class="form-control" placeholder="Harga Jual Produk" type="number" name="sell_price" id="sell_price" />
+                                <label for="sell_price">Harga Jual <a class="text-danger">*</a></label>
+                                <input value="{{old('sell_price')}}" class="form-control {{$errors->first('sell_price') ? "is-invalid": ""}}" placeholder="Harga Jual Produk" type="number" name="sell_price" id="sell_price" />
+                                <div class="invalid-feedback">
+                                    {{$errors->first('sell_price')}}
+                                </div>
                             </div>
+
+                            <b class="text-danger">* Wajib diisi</b>
 
                         </div>
                     </div>

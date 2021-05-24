@@ -45,6 +45,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        \Validator::make($request->all(), [
+            "name" => "required|max:100|unique:categories",
+        ])->validate();
+
         $name = $request->get('name');
         $new_category = new \App\Models\Category;
         $new_category->name = $name;
@@ -91,6 +95,11 @@ class CategoryController extends Controller
         $slug = $request->get('slug');
 
         $category = \App\Models\Category::findOrFail($id);
+
+        \Validator::make($request->all(), [
+            "name" => "required|max:100|unique:categories,name," . $category->id . ",id",
+            "slug" => "required|unique:categories,slug," . $category->id . ",id",
+        ])->validate();
 
         $category->name = $name;
         $category->slug = $slug;

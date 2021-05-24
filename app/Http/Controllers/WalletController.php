@@ -90,7 +90,12 @@ class WalletController extends Controller
 
     public function store_cash_in(Request $request)
     {
-
+        \Validator::make($request->all(), [
+            "transaction" => "required",
+            "datetime" => "required",
+            "cash_in" => "required",
+            "note" => "nullable",
+        ])->validate();
 
         $new_wallet = new \App\Models\Wallet;
         // $new_wallet->transaction = json_encode($request->get('transaction'));
@@ -107,7 +112,12 @@ class WalletController extends Controller
 
     public function store_cash_out(Request $request)
     {
-
+        \Validator::make($request->all(), [
+            "transaction" => "required",
+            "datetime" => "required",
+            "cash_out" => "required",
+            "note" => "nullable",
+        ])->validate();
 
         $new_wallet = new \App\Models\Wallet;
         // $new_wallet->transaction = json_encode($request->get('transaction'));
