@@ -28,7 +28,7 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Nama</label>
                         <input value="{{old('name')}}" class="form-control {{$errors->first('name') ? "is-invalid": ""}}" placeholder="Full Name" type="text" name="name" id="name" />
                         <div class="invalid-feedback">
                             {{$errors->first('name')}}
@@ -52,8 +52,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirmation">Password Confirmation</label>
-                        <input class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" placeholder="Password Confirmation" type="password" name="password_confirmation" id="password_confirmation" />
+                        <label for="password_confirmation">Konfirmasi Password</label>
+                        <input class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" placeholder="Konfirmasi Password" type="password" name="password_confirmation" id="password_confirmation" />
                         <div class="invalid-feedback">
                             {{$errors->first('password_confirmation')}}
                         </div>
@@ -70,11 +70,14 @@
                     </div> -->
                     <div class="form-group">
                         <label for="">Role</label>
-                        <select name="role" class="form-control">
+                        <select name="role" class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}">
                             <option value=""> -- Pilih -- </option>
                             <option class="form-control" name="role" id="ADMIN" value="ADMIN">Admin</option>
                             <option class="form-control" name="role" id="STAFF" value="STAFF">Staff</option>
                         </select>
+                        <div class="invalid-feedback">
+                            {{$errors->first('role')}}
+                        </div>
                     </div>
 
                     <!-- <label for="">Role</label>

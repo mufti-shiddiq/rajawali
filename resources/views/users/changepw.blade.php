@@ -46,7 +46,7 @@
 
                     <div class="form-group">
                         <label for="password_confirmation">Konfirmasi Password Baru</label>
-                        <input class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" placeholder="Password Confirmation" type="password" name="password_confirmation" id="password_confirmation" />
+                        <input class="form-control {{$errors->first('password_confirmation') ? "is-invalid" : ""}}" placeholder="Konfirmasi Password" type="password" name="password_confirmation" id="password_confirmation" />
                         <div class="invalid-feedback">
                             {{$errors->first('password_confirmation')}}
                         </div>

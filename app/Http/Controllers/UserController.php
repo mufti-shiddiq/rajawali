@@ -43,6 +43,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        \Validator::make($request->all(), [
+            "name" => "required|max:100",
+            "username" => "required|min:3|max:20|unique:users",
+            "role" => "required",
+            "password" => "required",
+            "password_confirmation" => "required|same:password"
+        ])->validate();
+
         $new_user = new \App\Models\User;
         $new_user->name = $request->get('name');
         $new_user->username = $request->get('username');

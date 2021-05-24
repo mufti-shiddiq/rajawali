@@ -30,7 +30,7 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Nama</label>
                         <input value="{{$user->name}}" class="form-control" placeholder="Full Name" type="text" name="name" id="name" />
                     </div>
 
