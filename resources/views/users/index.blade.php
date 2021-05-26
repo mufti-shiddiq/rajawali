@@ -28,11 +28,11 @@
             <th style="width: 300px"><b>Username</b></th>
             <!-- <th style="width: 100px"><b>Status</b></th> -->
             <th style="width: 200px">Role</th>
-            <th style="width: 280px"><b></b></th>
+            <th style="width: 280px"><b>Aksi</b></th>
         </tr>
     </thead>
     <tbody>
-        @foreach($users as $user)
+        @forelse($users as $user)
         <tr>
             <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
             <td>{{$user->name}}</td>
@@ -69,7 +69,11 @@
             </td>
 
         </tr>
-        @endforeach
+        @empty
+        <tr>
+            <td colspan="10" class="text-center">Belum ada data</td>
+        </tr>
+        @endforelse
     </tbody>
     <tfoot>
         <tr>

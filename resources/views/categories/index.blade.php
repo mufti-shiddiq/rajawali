@@ -38,11 +38,11 @@
                     <th><b>Nama</b></th>
                     <th style="width: 225px"><b>Slug</b></th>
                     <th style="width: 50px"><b>ID</b></th>
-                    <th style="width: 125px"><b></b></th>
+                    <th style="width: 125px"><b>Aksi</b></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($categories as $category)
+                @forelse($categories as $category)
                 <tr>
                     <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
                     <td>{{$category->name}}</td>
@@ -62,7 +62,11 @@
                     </td>
 
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="10" class="text-center">Belum ada data</td>
+                </tr>
+                @endforelse
             </tbody>
             <tfoot>
                 <tr>

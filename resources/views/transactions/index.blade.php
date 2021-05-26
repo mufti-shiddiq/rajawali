@@ -133,8 +133,8 @@
                                     <th>Satuan</th>
                                     <th>Harga Satuan</th>
                                     <th width="10%">Diskon Item</th>
-                                    <th>Total</th>
-                                    <th width="100px"></th>
+                                    <th>Sub Total</th>
+                                    <th width="100px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

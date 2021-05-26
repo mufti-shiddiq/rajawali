@@ -47,7 +47,7 @@ class CustomerController extends Controller
         $phone = $request->get('phone');
         $address = $request->get('address');
 
-        $new_customer = new \App\Models\customer;
+        $new_customer = new \App\Models\Customer;
 
         $new_customer->name = $name;
         $new_customer->company = $company;
@@ -79,7 +79,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $customer_to_edit = \App\Models\customer::findOrFail($id);
+        $customer_to_edit = \App\Models\Customer::findOrFail($id);
 
         return view('customers.edit', ['customer' => $customer_to_edit]);
     }
@@ -98,7 +98,7 @@ class CustomerController extends Controller
         $phone = $request->get('phone');
         $address = $request->get('address');
 
-        $customer = \App\Models\customer::findOrFail($id);
+        $customer = \App\Models\Customer::findOrFail($id);
 
         \Validator::make($request->all(), [
             "name" => "required|max:100|unique:customers,name," . $customer->id . ",id",
@@ -126,7 +126,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $customer = \App\Models\customer::findOrFail($id);
+        $customer = \App\Models\Customer::findOrFail($id);
         $customer->delete();
         return redirect()->route('customers.index')->with('status', 'Pelanggan berhasil dihapus');
     }

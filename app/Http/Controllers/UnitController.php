@@ -52,7 +52,7 @@ class UnitController extends Controller
         $name = $request->get('name');
         $code = $request->get('code');
 
-        $new_unit = new \App\Models\unit;
+        $new_unit = new \App\Models\Unit;
 
         $new_unit->name = $name;
         $new_unit->code = $code;
@@ -81,7 +81,7 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
-        $unit_to_edit = \App\Models\unit::findOrFail($id);
+        $unit_to_edit = \App\Models\Unit::findOrFail($id);
 
         return view('units.edit', ['unit' => $unit_to_edit]);
     }
@@ -98,7 +98,7 @@ class UnitController extends Controller
         $name = $request->get('name');
         $code = $request->get('code');
 
-        $unit = \App\Models\unit::findOrFail($id);
+        $unit = \App\Models\Unit::findOrFail($id);
 
         \Validator::make($request->all(), [
             "name" => "required|max:100|unique:units,name," . $unit->id . ",id",
@@ -122,7 +122,7 @@ class UnitController extends Controller
      */
     public function destroy($id)
     {
-        $unit = \App\Models\unit::findOrFail($id);
+        $unit = \App\Models\Unit::findOrFail($id);
         $unit->delete();
         return redirect()->route('units.index')->with('status', 'Satuan produk berhasil dihapus');
     }

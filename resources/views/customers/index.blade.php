@@ -24,11 +24,11 @@
                     <th><b>Perusahaan</b></th>
                     <th><b>Telepon</b></th>
                     <th><b>Alamat</b></th>
-                    <th style="width: 125px"><b></b></th>
+                    <th style="width: 125px"><b>Aksi</b></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($customers as $customer)
+                @forelse($customers as $customer)
                 <tr>
                     <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
 
@@ -51,7 +51,11 @@
                     </td>
 
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="10" class="text-center">Belum ada data</td>
+                </tr>
+                @endforelse
             </tbody>
             <tfoot>
                 <tr>

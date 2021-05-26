@@ -47,7 +47,7 @@ class SupplierController extends Controller
         $phone = $request->get('phone');
         $address = $request->get('address');
 
-        $new_supplier = new \App\Models\supplier;
+        $new_supplier = new \App\Models\Supplier;
 
         $new_supplier->name = $name;
         $new_supplier->company = $company;
@@ -79,7 +79,7 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        $supplier_to_edit = \App\Models\supplier::findOrFail($id);
+        $supplier_to_edit = \App\Models\Supplier::findOrFail($id);
 
         return view('suppliers.edit', ['supplier' => $supplier_to_edit]);
     }
@@ -98,7 +98,7 @@ class SupplierController extends Controller
         $phone = $request->get('phone');
         $address = $request->get('address');
 
-        $supplier = \App\Models\supplier::findOrFail($id);
+        $supplier = \App\Models\Supplier::findOrFail($id);
 
         \Validator::make($request->all(), [
             "name" => "required|max:100|unique:suppliers,name," . $supplier->id . ",id",
@@ -126,7 +126,7 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $supplier = \App\Models\supplier::findOrFail($id);
+        $supplier = \App\Models\Supplier::findOrFail($id);
         $supplier->delete();
         return redirect()->route('suppliers.index')->with('status', 'Supplier berhasil dihapus');
     }

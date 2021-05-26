@@ -134,7 +134,7 @@ class ProductController extends Controller
         $buy_price = $request->get('buy_price');
         $sell_price = $request->get('sell_price');
 
-        $new_product = new \App\Models\product;
+        $new_product = new \App\Models\Product;
 
         $new_product->product_name = $product_name;
         $new_product->code = $code;
@@ -169,10 +169,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $category = category::all();
-        $unit = unit::all();
+        $category = Category::all();
+        $unit = Unit::all();
 
-        $product_to_edit = \App\Models\product::findOrFail($id);
+        $product_to_edit = \App\Models\Product::findOrFail($id);
 
         return view('products.edit', ['product' => $product_to_edit], compact('category', 'unit'));
     }
@@ -194,7 +194,7 @@ class ProductController extends Controller
         $buy_price = $request->get('buy_price');
         $sell_price = $request->get('sell_price');
 
-        $product = \App\Models\product::findOrFail($id);
+        $product = \App\Models\Product::findOrFail($id);
 
         \Validator::make($request->all(), [
             "product_name" => "required|max:50|unique:products,product_name," . $product->id . ",id",
@@ -228,7 +228,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = \App\Models\product::findOrFail($id);
+        $product = \App\Models\Product::findOrFail($id);
         $product->delete();
         return redirect()->route('products.index')->with('status', 'Produk berhasil dihapus');
     }

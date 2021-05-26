@@ -23,11 +23,11 @@
                     <th><b>Nama</b></th>
                     <th style="width: 150px"><b>Unit</b></th>
                     <th style="width: 50px"><b>ID</b></th>
-                    <th style="width: 125px"><b></b></th>
+                    <th style="width: 125px"><b>Aksi</b></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($units as $unit)
+                @forelse($units as $unit)
                 <tr>
                     <th class="leading-6 text-center whitespace-nowrap">{{$loop->iteration}}.</th>
                     <td>{{$unit->name}}</td>
@@ -47,7 +47,11 @@
                     </td>
 
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="10" class="text-center">Belum ada data</td>
+                </tr>
+                @endforelse
             </tbody>
             <tfoot>
                 <tr>

@@ -25,8 +25,8 @@ class TransactionController extends Controller
     public function index(Request $request)
     {
         // $userId = \Auth::user()->id;
-        $kasir = \Auth::user();
-        $customer = customer::all();
+        $kasir = \Auth::User();
+        $customer = Customer::all();
         // $product = product::all();
 
         // date_default_timezone_set("Asia/Jakarta");
