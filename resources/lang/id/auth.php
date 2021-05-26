@@ -12,6 +12,7 @@ return [
     |
     */
 
-    'failed'   => 'Identitas tersebut tidak cocok dengan data kami.',
+    'failed'   => 'Username/Passowrd yang Anda masukkan salah!',
+    'password' => 'Password salah!',
     'throttle' => 'Terlalu banyak upaya masuk. Silahkan coba lagi dalam :seconds detik.',
 ];

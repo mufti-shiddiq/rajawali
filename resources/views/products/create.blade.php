@@ -43,7 +43,7 @@
                                 <tbody>
                                     <tr>
                                         @foreach ($last['code'] as $row)
-                                        <td class="text-center text-primary"><b>{{$row}}</b></td>
+                                        <td class="text-center text-info"><b>{{$row}}</b></td>
                                         @endforeach
                                     </tr>
                                 </tbody>

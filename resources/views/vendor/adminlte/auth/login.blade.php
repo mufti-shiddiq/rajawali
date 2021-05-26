@@ -24,6 +24,8 @@
 <form action="{{ $login_url }}" method="post">
     {{ csrf_field() }}
 
+    <p class="login-box-msg">Silahkan Login</p>
+
     {{-- Username field --}}
     <div class="input-group mb-3">
         <input type="text" name="username" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" value="{{ old('username') }}" placeholder="Username" autofocus>
