@@ -86,9 +86,32 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $product = Product::all();
         $category = category::all();
         $unit = unit::all();
-        return view('products.create', compact('category', 'unit'));
+
+        $last_product = Product::where('category_id', 21)->orderByDesc('created_at')->first('code');
+        $total_category = Category::count();
+
+        $last = [];
+
+        foreach ($category as $row) {
+            if (Product::where('category_id', $row->id)->orderByDesc('created_at')->first() != null) {
+                $last_code = Product::where('category_id', $row->id)->orderByDesc('id')->first('code');
+
+                $last['category'][] = $row->name;
+                $last['code'][] = $last_code->code;
+            }
+        }
+
+        // $last_acc = Product::orderByDesc('created_at')->first('code');
+        // $last_besi = 
+
+        // dd($last);
+
+
+
+        return view('products.create', compact('product', 'category', 'unit', 'last_product', 'total_category', 'last'));
     }
 
     /**

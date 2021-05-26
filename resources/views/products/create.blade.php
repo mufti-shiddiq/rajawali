@@ -27,6 +27,34 @@
                 @csrf
                 <div class="card-body">
 
+                    <div class="form-row pb-4">
+                        <div class="col">
+                            <h5>Kode Produk Terakhir Berdasarkan Kategori: </h5>
+                            <!-- <b class="text-danger">{{$last_product->code}}</b> -->
+
+                            <table class="table table-bordered bg-white">
+                                <thead>
+                                    <tr>
+                                        @foreach ($last['category'] as $row)
+                                        <th class="text-center">{{$row}}</th>
+                                        @endforeach
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @foreach ($last['code'] as $row)
+                                        <td class="text-center text-primary"><b>{{$row}}</b></td>
+                                        @endforeach
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+
+
+                        </div>
+                    </div>
+
                     <div class="form-row">
                         <div class="col">
                             <div class="form-group">
