@@ -16,8 +16,8 @@ class AdminSeeder extends Seeder
         $admin = new \App\Models\User;
         $admin->username = "admin";
         $admin->name = "Admininstrator";
-        $admin->email = "admin@rajawali.test";
-        $admin->role = json_encode(["ADMIN"]);
+        // $admin->role = json_encode(["ADMIN"]);
+        $admin->role = "ADMIN";
         $admin->password = \Hash::make("admin");
         $admin->save();
         $this->command->info("User Admin berhasil diinsert");

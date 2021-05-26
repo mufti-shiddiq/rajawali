@@ -15,7 +15,7 @@ class CreateWalletsTable extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
-            $table->string("datetime")->nullable();
+            $table->string("datetime");
             $table->enum("transaction", ["Kas-Masuk", "Kas-Keluar"]);
             $table->integer("cash_in")->nullable();
             $table->integer("cash_out")->nullable();

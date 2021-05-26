@@ -15,15 +15,16 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string("datetime");
             $table->string("invoice");
             $table->integer("customer_id");
-            $table->integer("sub_total");
-            $table->integer("discount")->nullable();
             $table->integer("grand_total");
             $table->integer("cash");
             $table->integer("change");
-            $table->integer("created_by");
-            $table->integer("updated_by")->nullable();
+            $table->integer("capital");
+            $table->integer("profit");
+            $table->string("note");
+            $table->integer("user_id");
             $table->timestamps();
         });
     }

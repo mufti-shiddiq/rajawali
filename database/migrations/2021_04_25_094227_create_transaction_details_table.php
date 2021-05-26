@@ -17,11 +17,16 @@ class CreateTransactionDetailsTable extends Migration
             $table->id();
             $table->integer("transaction_id");
             $table->integer("product_id");
+            $table->string("code");
+            $table->string("product");
             $table->integer("quantity");
             $table->string("unit");
             $table->integer("price");
+            $table->integer("buy_price");
             $table->integer("discount_item")->nullable();
-            $table->integer("total");       
+            $table->integer("sub_total");
+            $table->integer("capital");
+            $table->integer("profit");
             $table->timestamps();
         });
     }
