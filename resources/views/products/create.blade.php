@@ -27,9 +27,9 @@
                 @csrf
                 <div class="card-body">
 
-                    @if ($total_category > 0)
+                    @if ($total_product > 0)
                     <div class="form-row pb-4">
-                        <div class="col">
+                        <div class="col-6">
 
                             <h5>Kode Produk Terakhir Berdasarkan Kategori: </h5>
 

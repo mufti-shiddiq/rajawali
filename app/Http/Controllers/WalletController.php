@@ -21,13 +21,23 @@ class WalletController extends Controller
 
         $balance = $cash_in - $cash_out;
 
-        $last_cash_in = Wallet::where('transaction', "Kas-Masuk")->latest()->first();
-        $last_ci_value = $last_cash_in->cash_in;
-        $last_ci_note = $last_cash_in->note;
+        if ($cash_in > 0) {
+            $last_cash_in = Wallet::where('transaction', "Kas-Masuk")->latest()->first();
+            $last_ci_value = $last_cash_in->cash_in;
+            $last_ci_note = $last_cash_in->note;
+        } else {
+            $last_ci_value = 0;
+            $last_ci_note = "Belum ada Data";
+        }
 
-        $last_cash_out = Wallet::where('transaction', "Kas-Keluar")->latest()->first();
-        $last_co_value = $last_cash_out->cash_out;
-        $last_co_note = $last_cash_out->note;
+        if ($cash_out > 0) {
+            $last_cash_out = Wallet::where('transaction', "Kas-Keluar")->latest()->first();
+            $last_co_value = $last_cash_out->cash_out;
+            $last_co_note = $last_cash_out->note;
+        } else {
+            $last_co_value = 0;
+            $last_co_note = "Belum ada Data";
+        }
 
         // dd($last_co_note);
 
@@ -57,8 +67,6 @@ class WalletController extends Controller
             'cash_in',
             'cash_out',
             'balance',
-            'last_cash_in',
-            'last_cash_out',
             'last_ci_value',
             'last_co_value',
             'last_ci_note',

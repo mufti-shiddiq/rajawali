@@ -90,7 +90,7 @@ class ProductController extends Controller
         $category = Category::all();
         $unit = Unit::all();
 
-        $total_category = Category::count();
+        $total_product = Product::count();
 
         $last = [];
 
@@ -105,7 +105,7 @@ class ProductController extends Controller
 
         // dd($total_category);
 
-        return view('products.create', compact('product', 'category', 'unit', 'total_category', 'last'));
+        return view('products.create', compact('product', 'category', 'unit', 'total_product', 'last'));
     }
 
     /**
