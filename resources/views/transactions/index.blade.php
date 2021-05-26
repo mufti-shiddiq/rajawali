@@ -269,9 +269,7 @@
 @endsection
 
 @push('js')
-<script>
-    var BASE_URL = "{{url('/')}}"
-</script>
+
 <script src="{{asset('js/cart.js')}}"></script>
 
 <script>

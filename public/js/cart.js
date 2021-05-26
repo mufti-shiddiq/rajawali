@@ -23,7 +23,7 @@ $(document).ready(function () {
     processing: true,
     serverSide: true,
     order: [3, "asc"],
-    ajax: BASE_URL + '/products',
+    ajax: 'products',
     columns: [{
       "data": null,
       "sortable": false,

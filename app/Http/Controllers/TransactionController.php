@@ -195,10 +195,15 @@ class TransactionController extends Controller
 
     public function generateInvoice()
     {
+        $total_trx = Transaction::count();
 
-        $last_trx = Transaction::latest('id')->first();
-        $conv_last_trx = (int)$last_trx->id;
-        $new_inv = $conv_last_trx + 1;
+        if ($total_trx > 0) {
+            $last_trx = Transaction::latest('id')->first();
+            $conv_last_trx = (int)$last_trx->id;
+            $new_inv = $conv_last_trx + 1;
+        } else {
+            $conv_last_trx = 0;
+        }
 
         if ($conv_last_trx > 0) {
             return 'RJ-INV-' . $new_inv;
@@ -334,6 +339,7 @@ class TransactionController extends Controller
         $trx_detail = \App\Models\TransactionDetail::where('transaction_id', $id)->get();
 
         return view('transactions.print', ['transaction' => $transaction, 'trx_detail' => $trx_detail]);
+
         // $produk = TransactionDetail::all($id);
 
         // $tanggal = new DateTime($produk->tanggal);

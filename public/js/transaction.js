@@ -4,7 +4,7 @@ $(function () {
         processing: true,
         serverSide: true,
                 
-        ajax: "/transactions",
+        ajax: "transactions",
         columns: [
 
             { "data": null,"sortable": false, 
@@ -33,13 +33,3 @@ function change() {
     $('#change').html(uang.format(cash - grand_total));
     $("#changes").val(cash - grand_total);
 }
-
-function invoice(jumlah) {
-    let hasil = "",
-        char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        total = char.length;
-    for (var r = 0; r < jumlah; r++) hasil += char.charAt(Math.floor(Math.random() * total));
-    return hasil
-}
-$("#invoice").html(invoice(10));
-

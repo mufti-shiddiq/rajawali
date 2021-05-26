@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->integer("change");
             $table->integer("capital");
             $table->integer("profit");
-            $table->string("note");
+            $table->string("note")->nullable();
             $table->integer("user_id");
             $table->timestamps();
         });
