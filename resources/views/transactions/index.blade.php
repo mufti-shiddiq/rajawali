@@ -31,7 +31,7 @@
                             <table width="100%">
                                 <tr>
                                     <td style="vertical-align: center; width:30%">
-                                        <label for="code">Produk</label>
+                                        <label for="code">Produk <a class="text-danger">*</a></label>
                                     </td>
                                     <td>
                                         <div class="form-group input-group">
@@ -74,7 +74,7 @@
                                 </tr>
                                 <tr>
                                     <td style="vertical-align:center;" class="pt-3">
-                                        <label>Quantity</label>
+                                        <label>Quantity <a class="text-danger">*</a></label>
                                     </td>
                                     <td>
                                         <div class="input-group pt-3">
@@ -213,12 +213,12 @@
                     </div> -->
 
                     <div class="form-group">
-                        <label for="user">Kasir</label>
+                        <label for="user">Kasir <a class="text-danger">*</a></label>
                         <input id="user" value="{{ $kasir->name }}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
-                        <label>Customer</label>
+                        <label>Customer <a class="text-danger">*</a></label>
                         <select id="customer" name="customer" class="form-control">
                             <!-- <option value="3">Umum</option> -->
                             @foreach ($customer as $item)
@@ -229,11 +229,11 @@
 
                     <div class="form-group">
                         <label>Catatan</label>
-                        <textarea id="note" name="note" rows="2" class="form-control"></textarea>
+                        <textarea id="note" name="note" rows="2" class="form-control" placeholder="Optional"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label>Jumlah Uang</label>
+                        <label>Jumlah Uang <a class="text-danger">*</a></label>
                         <input placeholder="Jumlah Uang" type="number" class="form-control cash" id="cash" name="cash" min="0" onkeyup="change()" required>
                     </div>
 
