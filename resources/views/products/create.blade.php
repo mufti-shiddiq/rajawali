@@ -30,7 +30,6 @@
                     <div class="form-row pb-4">
                         <div class="col">
                             <h5>Kode Produk Terakhir Berdasarkan Kategori: </h5>
-                            <!-- <b class="text-danger">{{$last_product->code}}</b> -->
 
                             <table class="table table-bordered bg-white">
                                 <thead>
