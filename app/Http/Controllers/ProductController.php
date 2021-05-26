@@ -87,11 +87,8 @@ class ProductController extends Controller
     public function create()
     {
         $product = Product::all();
-        $category = category::all();
-        $unit = unit::all();
-
-        $last_product = Product::where('category_id', 21)->orderByDesc('created_at')->first('code');
-        $total_category = Category::count();
+        $category = Category::all();
+        $unit = Unit::all();
 
         $last = [];
 
@@ -104,14 +101,9 @@ class ProductController extends Controller
             }
         }
 
-        // $last_acc = Product::orderByDesc('created_at')->first('code');
-        // $last_besi = 
-
         // dd($last);
 
-
-
-        return view('products.create', compact('product', 'category', 'unit', 'last_product', 'total_category', 'last'));
+        return view('products.create', compact('product', 'category', 'unit', 'last'));
     }
 
     /**

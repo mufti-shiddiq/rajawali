@@ -13,7 +13,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = \App\Models\supplier::paginate(5);
+        $suppliers = \App\Models\Supplier::paginate(10);
         return view('suppliers.index', ['suppliers' => $suppliers]);
     }
 

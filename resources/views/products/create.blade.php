@@ -35,16 +35,20 @@
                             <table class="table table-bordered bg-white">
                                 <thead>
                                     <tr>
-                                        @foreach ($last['category'] as $row)
+                                        @forelse ($last['category'] as $row)
                                         <th class="text-center">{{$row}}</th>
-                                        @endforeach
+                                        @empty
+                                        <th colspan="10" class="text-center">Belum ada Kategori Produk</td>
+                                            @endforelse
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        @foreach ($last['code'] as $row)
+                                        @forelse ($last['code'] as $row)
                                         <td class="text-center text-info"><b>{{$row}}</b></td>
-                                        @endforeach
+                                        @empty
+                                        <th colspan="10" class="text-center">Silahkan membuat Kategori Produk dahulu!</td>
+                                            @endforelse
                                     </tr>
                                 </tbody>
                             </table>

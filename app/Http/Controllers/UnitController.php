@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -21,7 +22,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units = \App\Models\unit::paginate(10);
+        $units = Unit::paginate(10);
         return view('units.index', ['units' => $units]);
     }
 
