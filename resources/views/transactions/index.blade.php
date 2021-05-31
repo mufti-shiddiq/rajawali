@@ -46,6 +46,7 @@
                                             <!-- <input type="hidden" id="unit" name="unit"> -->
                                             <input type="hidden" id="price" name="price">
                                             <input type="hidden" id="buyprice" name="buyprice">
+                                            <input type="number" id="stock" name="stock">
 
                                             <input type="text" id="name" name="name" class="form-control {{$errors->first('name') ? "is-invalid": ""}}" readonly>
 
@@ -86,6 +87,20 @@
                                             <button type="submit" class="btn btn-primary">
                                                 <i class="fa fa-cart-plus"></i> Tambah
                                             </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <b class="{{$errors->first('stock') ? "is-invalid": ""}}">Stok : <a id="stockview"></a></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div class="invalid-feedback">
+                                            {{$errors->first('stock')}}
                                         </div>
                                     </td>
                                 </tr>

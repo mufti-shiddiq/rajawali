@@ -20,7 +20,7 @@
         <table style='width:550px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td width='70%' align='left' style='padding-right:80px; vertical-align:top'>
                 <span style='font-size:15pt'><b>Rajawali Besi</b></span></br>
-                Bakalan RT.02/RW.01 Ceper, Kec. Ceper<br>
+                Bakalan RT.02 RW.01 Ceper, Kec. Ceper<br>
                 Kab. Klaten, Jawa Tengah, Indonesia 57465</br>
                 Telp : 081285555515
             </td>
@@ -84,8 +84,8 @@
                 <td width='13%'></td>
             <tr>
             <tr>
-                <td>Catatan: {{$transaction->note}}</td>
-                <td colspan='5'>
+                <td colspan="3">Catatan: {{$transaction->note}}</td>
+                <td colspan='3'>
                     <div style='text-align:right'>Grand Total : </div>
                 </td>
                 <td style='text-align:right'>{{ number_format($transaction->grand_total,0,".",".") }}</td>

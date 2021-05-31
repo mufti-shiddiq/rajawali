@@ -77,7 +77,7 @@
 
                             <!-- category -->
                             <div class="form-group">
-                                <label for="category_id">Kategory Produk <a class="text-danger">*</a></label>
+                                <label for="category_id">Kategori Produk <a class="text-danger">*</a></label>
                                 <select value="{{old('category_id')}}" class="form-control {{$errors->first('category_id') ? "is-invalid": ""}}" name="category_id" id="category_id">
                                     <option value="">-- Pilih --</option>
                                     @foreach ($category as $item)

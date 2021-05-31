@@ -138,7 +138,11 @@ class TransactionController extends Controller
             "code" => "required",
             "unit" => "required",
             "buyprice" => "required",
+            "stock" => "required|min:1|numeric",
         ])->validate();
+
+        // $cek = $this->assertSessionHasErrors();
+        // dd($cek);
 
         $discount_items = new CartCondition(array(
             'name' => 'Diskon Item',
@@ -146,7 +150,9 @@ class TransactionController extends Controller
             'value' => '-' . $request->discount_item,
         ));
 
-        // dd($discount_items);
+        $stock = $request->stock;
+
+        // dd($stock);
 
         $cart = \Cart::add(array(
             'id' => $request->id,
