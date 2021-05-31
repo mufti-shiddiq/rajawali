@@ -46,7 +46,7 @@
                                             <!-- <input type="hidden" id="unit" name="unit"> -->
                                             <input type="hidden" id="price" name="price">
                                             <input type="hidden" id="buyprice" name="buyprice">
-                                            <input type="number" id="stock" name="stock">
+                                            <input type="hidden" id="stock" name="stock">
 
                                             <input type="text" id="name" name="name" class="form-control {{$errors->first('name') ? "is-invalid": ""}}" readonly>
 
