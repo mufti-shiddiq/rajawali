@@ -167,7 +167,7 @@
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            order: [1, "desc"],
+            order: [2, "desc"],
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'excel',
