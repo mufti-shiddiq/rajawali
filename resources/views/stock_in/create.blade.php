@@ -51,6 +51,11 @@
 
                                 <input value="{{old('id')}}" type="hidden" id="id" name="id">
                                 <input value="{{old('code')}}" type="hidden" id="code" name="code">
+                                <!-- <input type="hidden" id="price" name="price">
+                                <input type="hidden" id="buyprice" name="buyprice">
+                                <input type="hidden" id="stock" name="stock">
+                                <b class="hidden"><a id="stockview"></a></b> -->
+
 
                                 <input value="{{old('name')}}" type="text" id="name" name="name" class="form-control {{$errors->first('id') ? "is-invalid": ""}}" readonly>
 
@@ -148,6 +153,8 @@
 @endsection
 
 @push('js')
+<!-- <script src="{{asset('js/product.js')}}"></script> -->
+
 <script type="text/javascript">
     //Date and time picker
     $(function() {
@@ -166,10 +173,99 @@
     });
 </script>
 
-<script>
-    var BASE_URL = "{{url('/')}}"
-</script>
+<script type="text/javascript">
+    /******/
+    (() => { // webpackBootstrap
+        var __webpack_exports__ = {};
+        /*!******************************!*\
+          !*** ./resources/js/cart.js ***!
+          \******************************/
+        var productSelected = {};
+        ajax: "{{ route('products.index') }}"
 
-<script src="{{asset('js/cart.js')}}"></script>
+        function selectProductAction() {
+            let uang = Intl.NumberFormat('id-ID');
+            var selectedData = $(this).data();
+            $('input#id').val(selectedData.id);
+            $('input#code').val(selectedData.code);
+            $('input#name').val(selectedData.name);
+            $('.modal').modal('hide');
+        }
+
+        $(document).ready(function() {
+            $('.product-table').DataTable({
+                processing: true,
+                serverSide: true,
+                order: [3, "asc"],
+                ajax: "{{ route('products.index') }}",
+                columns: [{
+                        "data": null,
+                        "sortable": false,
+                        render: function render(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        data: 'id',
+                        name: 'id',
+                        visible: false,
+                        orderable: false,
+                        searchable: false
+                    }, {
+                        data: 'code',
+                        name: 'code',
+                        orderable: false
+                    }, {
+                        data: 'product_name',
+                        name: 'product_name',
+                    }, {
+                        data: 'category',
+                        name: 'category.name',
+                        orderable: false
+                    }, {
+                        data: 'unit',
+                        name: 'unit.code',
+                        orderable: false
+                    }, {
+                        data: 'stock',
+                        name: 'stock',
+                        orderable: false
+                    }, {
+                        data: 'sell_price',
+                        name: 'sell_price',
+                        render: $.fn.dataTable.render.number('.', '.', 0, ''),
+                        orderable: false
+                    },
+                    {
+                        data: 'buy_price',
+                        name: 'buy_price',
+                        visible: false,
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        orderable: false,
+                        searchable: false,
+                        render: function render(data, type, row) {
+                            return '<button data-id="' + row.id + '" data-code="' + row.code + '" data-name="' + row.product_name + '" class="btn btn-info text-white btn-sm btn-select-product">Pilih</button>';
+                        }
+                    }
+                ]
+            });
+            $('.product-table').on('click', '.btn-select-product', selectProductAction);
+
+        });
+
+        $(function() {
+            $('.product-table input[type=search]').focus();
+        });
+
+
+
+        /******/
+    })();
+</script>
 
 @endpush
